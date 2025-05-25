@@ -1,10 +1,12 @@
-import React from 'react';
-import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
 import LoadingAnimation from '@/components/LoadingAnimation';
 
 const Index = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const whatsappNumber = "5511999999999"; // Substituir pelo número real
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
@@ -12,6 +14,14 @@ const Index = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
+      behavior: 'smooth'
+    });
+    setMobileMenuOpen(false); // Fecha o menu mobile após navegação
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
       behavior: 'smooth'
     });
   };
@@ -24,12 +34,13 @@ const Index = () => {
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
+            {/* Logo clicável */}
+            <button onClick={scrollToTop} className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
               <img alt="Focus Contabilidade" className="h-10 w-auto" src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png" />
-            </div>
+            </button>
             
+            {/* Menu Desktop */}
             <nav className="hidden md:flex items-center space-x-6">
-              <button onClick={() => scrollToSection('inicio')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Início</button>
               <button onClick={() => scrollToSection('vantagens')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Vantagens</button>
               <button onClick={() => scrollToSection('servicos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Serviços</button>
               <button onClick={() => scrollToSection('planos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Planos</button>
@@ -37,10 +48,58 @@ const Index = () => {
               <button onClick={() => scrollToSection('contato')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Contato</button>
             </nav>
 
-            <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-focus-green hover:bg-focus-green/90 text-white font-medium">
-              <MessageCircle className="w-4 h-4 mr-2" />
-              Fale no WhatsApp
-            </Button>
+            <div className="flex items-center space-x-3">
+              <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-focus-green hover:bg-focus-green/90 text-white font-medium">
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Fale no WhatsApp
+              </Button>
+
+              {/* Menu Mobile */}
+              <Drawer open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+                <DrawerTrigger asChild>
+                  <Button variant="outline" size="icon" className="md:hidden">
+                    <Menu className="h-4 w-4" />
+                  </Button>
+                </DrawerTrigger>
+                <DrawerContent>
+                  <DrawerHeader>
+                    <DrawerTitle>Menu</DrawerTitle>
+                  </DrawerHeader>
+                  <div className="px-4 pb-6 space-y-4">
+                    <button 
+                      onClick={() => scrollToSection('vantagens')} 
+                      className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                    >
+                      Vantagens
+                    </button>
+                    <button 
+                      onClick={() => scrollToSection('servicos')} 
+                      className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                    >
+                      Serviços
+                    </button>
+                    <button 
+                      onClick={() => scrollToSection('planos')} 
+                      className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                    >
+                      Planos
+                    </button>
+                    <button 
+                      onClick={() => scrollToSection('quem-somos')} 
+                      className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                    >
+                      Quem Somos
+                    </button>
+                    <button 
+                      onClick={() => scrollToSection('contato')} 
+                      className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                    >
+                      Contato
+                    </button>
+                  </div>
+                </DrawerContent>
+              </Drawer>
+            </div>
           </div>
         </div>
       </header>

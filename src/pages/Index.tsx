@@ -151,7 +151,7 @@ const Index = () => {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-focus-gray/80">
-                  <li>• Envio de guias do DAS pelo WhatsApp</li>
+                  <li>• Envio de guias e folha</li>
                   <li>• Consultoria básica</li>
                   <li>• Suporte via WhatsApp</li>
                 </ul>

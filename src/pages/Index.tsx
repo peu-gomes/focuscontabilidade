@@ -298,7 +298,7 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <img src="/lovable-uploads/caa28dc7-ee67-4c8a-82ac-a2653995749f.png" alt="Focus Contabilidade" className="h-8 w-auto brightness-0 invert" />
+                <img alt="Focus Contabilidade" className="h-8 w-auto brightness-0 invert" src="/lovable-uploads/7e766620-115f-42c5-b8f9-90b895b6862e.png" />
               </div>
               <p className="text-gray-300">
                 Contabilidade moderna, ágil e 100% digital para todo o Brasil.

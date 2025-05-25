@@ -310,7 +310,7 @@ const Index = () => {
               <div className="space-y-2 text-gray-300">
                 <p>WhatsApp: (11) 99999-9999</p>
                 <p>E-mail: contato@focuscontabilidade.com.br</p>
-                <p>Atendimento online para todo o Brasil</p>
+                
               </div>
             </div>
             

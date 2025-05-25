@@ -1,33 +1,24 @@
-
 import React from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-
 const Index = () => {
   const whatsappNumber = "5511999999999"; // Substituir pelo número real
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
       behavior: 'smooth'
     });
   };
-
-  return (
-    <div className="min-h-screen bg-white font-sans">
+  return <div className="min-h-screen bg-white font-sans">
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <img 
-                src="/lovable-uploads/caa28dc7-ee67-4c8a-82ac-a2653995749f.png" 
-                alt="Focus Contabilidade" 
-                className="h-10 w-auto"
-              />
+              <img alt="Focus Contabilidade" className="h-10 w-auto" src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png" />
             </div>
             
             <nav className="hidden md:flex items-center space-x-6">
@@ -134,12 +125,10 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => (
-              <div key={index} className="flex items-center space-x-3 bg-white p-4 rounded-lg shadow-sm">
+            {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => <div key={index} className="flex items-center space-x-3 bg-white p-4 rounded-lg shadow-sm">
                 <Check className="w-5 h-5 text-focus-green flex-shrink-0" />
                 <span className="text-focus-gray">{servico}</span>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -265,9 +254,7 @@ const Index = () => {
             <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
                 </div>
                 <p className="text-focus-gray/80 mb-4">
                   "Comecei com a Focus porque queria simplicidade. Hoje não me preocupo mais com nada, eles cuidam de tudo."
@@ -279,9 +266,7 @@ const Index = () => {
             <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
                 </div>
                 <p className="text-focus-gray/80 mb-4">
                   "Toda a documentação chega no meu WhatsApp. Rápido e simples, do jeito que eu precisava."
@@ -313,11 +298,7 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <img 
-                  src="/lovable-uploads/caa28dc7-ee67-4c8a-82ac-a2653995749f.png" 
-                  alt="Focus Contabilidade" 
-                  className="h-8 w-auto brightness-0 invert"
-                />
+                <img src="/lovable-uploads/caa28dc7-ee67-4c8a-82ac-a2653995749f.png" alt="Focus Contabilidade" className="h-8 w-auto brightness-0 invert" />
               </div>
               <p className="text-gray-300">
                 Contabilidade moderna, ágil e 100% digital para todo o Brasil.
@@ -348,8 +329,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;

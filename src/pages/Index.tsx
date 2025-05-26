@@ -131,7 +131,7 @@ const Index = () => {
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-6xl font-bold text-focus-gray mb-6 leading-tight">
               <span className="inline-block">🚀</span> Contabilidade moderna,
-              <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent"> ágil e <AnimatedCounter end={100} duration={1000} suffix="%" /> digital</span>
+              <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent"> ágil e <AnimatedCounter end={100} duration={800} suffix="%" /> digital</span>
             </h2>
             <p className="text-xl text-focus-gray/80 mb-8 leading-relaxed font-medium max-w-3xl mx-auto">
               Aqui você resolve tudo pelo celular: documentação na nuvem, atendimento via WhatsApp e nada de complicação. 
@@ -505,7 +505,7 @@ const Index = () => {
         </div>
       </footer>
 
-      <style jsx>{`
+      <style>{`
         @keyframes rocketBounce {
           0%, 20%, 50%, 80%, 100% {
             transform: translateY(0);

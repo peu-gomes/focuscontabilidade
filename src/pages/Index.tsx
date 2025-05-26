@@ -44,9 +44,10 @@ const Index = () => {
             </nav>
 
             <div className="flex items-center space-x-3">
+              {/* WhatsApp Button - texto completo no desktop, só ícone no mobile */}
               <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-focus-green hover:bg-focus-green/90 text-white font-medium">
-                <MessageCircle className="w-4 h-4 mr-2" />
-                Fale no WhatsApp
+                <MessageCircle className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Fale no WhatsApp</span>
               </Button>
 
               {/* Menu Mobile */}

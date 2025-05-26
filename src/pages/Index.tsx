@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -37,7 +38,7 @@ const Index = () => {
     element?.scrollIntoView({
       behavior: 'smooth'
     });
-    setMobileMenuOpen(false); // Fecha o menu mobile após navegação
+    setMobileMenuOpen(false);
   };
 
   const scrollToTop = () => {
@@ -56,7 +57,8 @@ const Index = () => {
     }`;
   };
 
-  return <>
+  return (
+    <>
       <LoadingAnimation />
       
       {/* Header */}
@@ -121,7 +123,9 @@ const Index = () => {
 
       {/* Hero Section */}
       <section id="inicio" className="pt-20 pb-20 bg-gradient-to-br from-blue-50 via-white to-gray-50 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23f1f5f9" fill-opacity="0.3"%3E%3Ccircle cx="30" cy="30" r="1.5"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
+        <div className="absolute inset-0 opacity-50" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f1f5f9' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }}></div>
         <div 
           id="hero" 
           data-animate 
@@ -241,7 +245,9 @@ const Index = () => {
 
       {/* Serviços */}
       <section id="servicos" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50/20 relative">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23e2e8f0" fill-opacity="0.2"%3E%3Cpath d="M20 20l10-10v20l-10-10z"/%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+        <div className="absolute inset-0 opacity-30" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e2e8f0' fill-opacity='0.2'%3E%3Cpath d='M20 20l10-10v20l-10-10z'/%3E%3C/g%3E%3C/svg%3E")`
+        }}></div>
         <div className="container mx-auto px-4 relative z-10">
           <div 
             id="servicos-title" 
@@ -447,7 +453,9 @@ const Index = () => {
 
       {/* CTA Final */}
       <section className="py-20 bg-gradient-to-r from-focus-blue to-focus-green relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }}></div>
         <div 
           id="cta-final" 
           data-animate 
@@ -502,7 +510,8 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </>;
+    </>
+  );
 };
 
 export default Index;

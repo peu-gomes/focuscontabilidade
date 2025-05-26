@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -68,13 +67,13 @@ const Index = () => {
               <img alt="Focus Contabilidade" className="h-10 w-auto" src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png" />
             </button>
             
-            {/* Menu Desktop */}
-            <nav className="hidden md:flex items-center space-x-6">
+            {/* Menu Desktop - com margem nas laterais */}
+            <nav className="hidden md:flex items-center space-x-6 mx-8">
               <button onClick={() => scrollToSection('vantagens')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Vantagens</button>
               <button onClick={() => scrollToSection('servicos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Serviços</button>
               <button onClick={() => scrollToSection('planos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Planos</button>
               <button onClick={() => scrollToSection('quem-somos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Quem Somos</button>
-              <button onClick={() => scrollToSection('contato')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Contato</button>
+              <button onClick={() => scrollToSection('cta-final')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Contato</button>
             </nav>
 
             <div className="flex items-center space-x-3">
@@ -108,7 +107,7 @@ const Index = () => {
                     <button onClick={() => scrollToSection('quem-somos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
                       Quem Somos
                     </button>
-                    <button onClick={() => scrollToSection('contato')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
+                    <button onClick={() => scrollToSection('cta-final')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
                       Contato
                     </button>
                   </div>
@@ -131,8 +130,8 @@ const Index = () => {
         >
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-6xl font-bold text-focus-gray mb-6 leading-tight">
-              <span className="rocket-bounce inline-block">🚀</span> Contabilidade moderna,
-              <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent"> ágil e <AnimatedCounter end={100} suffix="%" /> digital</span>
+              <span className="inline-block">🚀</span> Contabilidade moderna,
+              <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent"> ágil e <AnimatedCounter end={100} duration={1000} suffix="%" /> digital</span>
             </h2>
             <p className="text-xl text-focus-gray/80 mb-8 leading-relaxed font-medium max-w-3xl mx-auto">
               Aqui você resolve tudo pelo celular: documentação na nuvem, atendimento via WhatsApp e nada de complicação. 
@@ -448,14 +447,14 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-r from-focus-blue to-focus-green relative overflow-hidden">
+      <section id="cta-final" className="py-20 bg-gradient-to-r from-focus-blue to-focus-green relative overflow-hidden">
         <div className="absolute inset-0" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
         }}></div>
         <div 
-          id="cta-final" 
+          id="cta-final-content" 
           data-animate 
-          className={getSectionClasses('cta-final', 'container mx-auto px-4 text-center relative z-10')}
+          className={getSectionClasses('cta-final-content', 'container mx-auto px-4 text-center relative z-10')}
         >
           <h3 className="text-3xl font-bold text-white mb-4">📞 Pronto para descomplicar sua contabilidade?</h3>
           <p className="text-xl text-blue-100 mb-8 font-medium">

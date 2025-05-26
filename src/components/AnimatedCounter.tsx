@@ -9,7 +9,7 @@ interface AnimatedCounterProps {
 
 const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ 
   end, 
-  duration = 2000, 
+  duration = 1000, 
   suffix = '' 
 }) => {
   const [count, setCount] = useState(0);
@@ -23,7 +23,7 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
           setIsVisible(true);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3, rootMargin: '20px' }
     );
 
     if (counterRef.current) {
@@ -60,7 +60,7 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
   }, [isVisible, end, duration]);
 
   return (
-    <span ref={counterRef} className="inline-block">
+    <span ref={counterRef} className="inline-block font-bold min-w-[3ch] text-center">
       {count}{suffix}
     </span>
   );

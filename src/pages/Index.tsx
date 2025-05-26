@@ -4,7 +4,7 @@ import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu }
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
-import LoadingAnimation from '@/components/LoadingAnimation';
+import AnimatedCounter from '@/components/AnimatedCounter';
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -59,8 +59,6 @@ const Index = () => {
 
   return (
     <>
-      <LoadingAnimation />
-      
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-4">
@@ -133,8 +131,8 @@ const Index = () => {
         >
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-6xl font-bold text-focus-gray mb-6 leading-tight">
-              🚀 Contabilidade moderna,
-              <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent"> ágil e 100% digital</span>
+              <span className="rocket-bounce inline-block">🚀</span> Contabilidade moderna,
+              <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent"> ágil e <AnimatedCounter end={100} suffix="%" /> digital</span>
             </h2>
             <p className="text-xl text-focus-gray/80 mb-8 leading-relaxed font-medium max-w-3xl mx-auto">
               Aqui você resolve tudo pelo celular: documentação na nuvem, atendimento via WhatsApp e nada de complicação. 
@@ -406,7 +404,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Depoimentos */}
       <section className="py-20 bg-white relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/10 to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -451,7 +448,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Final */}
       <section className="py-20 bg-gradient-to-r from-focus-blue to-focus-green relative overflow-hidden">
         <div className="absolute inset-0" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
@@ -472,7 +468,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
       <footer id="contato" className="py-16 bg-focus-gray text-white relative">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -510,6 +505,28 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      <style jsx>{`
+        @keyframes rocketBounce {
+          0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+          }
+          40% {
+            transform: translateY(-10px);
+          }
+          60% {
+            transform: translateY(-5px);
+          }
+        }
+
+        .rocket-bounce {
+          animation: rocketBounce 2s infinite;
+        }
+
+        .rocket-bounce:hover {
+          animation: rocketBounce 0.5s infinite;
+        }
+      `}</style>
     </>
   );
 };

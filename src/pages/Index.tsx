@@ -9,9 +9,22 @@ const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   
-  const whatsappNumber = "5511999999999";
-  const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappNumber = "5577815226832";
+  
+  // Mensagens personalizadas para cada botão
+  const whatsappMessages = {
+    header: "Olá! Gostaria de falar com um contador.",
+    hero: "Olá! Gostaria de falar com um contador.",
+    meiPlan: "Olá! Quero saber mais sobre o Plano MEI.",
+    essentialPlan: "Oi! Quero saber mais sobre o Plano Essencial.",
+    proPlan: "Olá! Quero saber mais sobre o Plano PRO.",
+    customPlan: "Oi! Quero entender como funciona o Plano Personalizado.",
+    footer: "Olá! Gostaria de falar com um contador."
+  };
+
+  const createWhatsAppUrl = (message: string) => {
+    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  };
 
   // Intersection Observer para animar elementos quando entram na tela
   useEffect(() => {
@@ -78,7 +91,7 @@ const Index = () => {
 
             <div className="flex items-center space-x-3">
               {/* WhatsApp Button - texto completo no desktop, só ícone no mobile */}
-              <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-focus-green hover:bg-focus-green/90 text-white font-medium">
+              <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.header), '_blank')} className="bg-focus-green hover:bg-focus-green/90 text-white font-medium">
                 <MessageCircle className="w-4 h-4 sm:mr-2" />
                 <span className="hidden sm:inline">Fale no WhatsApp</span>
               </Button>
@@ -130,14 +143,14 @@ const Index = () => {
         >
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-6xl font-bold text-focus-gray mb-6 leading-tight">
-              <span className="inline-block">🚀</span> Contabilidade moderna,
+              🚀 Contabilidade moderna,
               <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent"> ágil e <AnimatedCounter end={100} duration={800} suffix="%" /> digital</span>
             </h2>
             <p className="text-xl text-focus-gray/80 mb-8 leading-relaxed font-medium max-w-3xl mx-auto">
               Aqui você resolve tudo pelo celular: documentação na nuvem, atendimento via WhatsApp e nada de complicação. 
               A gente cuida de tudo, você foca no seu negócio.
             </p>
-            <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+            <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.hero), '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
               <MessageCircle className="w-5 h-5 mr-2" />
               Fale com um contador agora
             </Button>
@@ -304,7 +317,7 @@ const Index = () => {
                   <li>• Consultoria básica</li>
                   <li>• Suporte via WhatsApp</li>
                 </ul>
-                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
+                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.meiPlan), '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
@@ -330,7 +343,7 @@ const Index = () => {
                   <li>• Relatórios mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
-                <Button className="w-full mt-6 bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
+                <Button className="w-full mt-6 bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.essentialPlan), '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
@@ -353,7 +366,7 @@ const Index = () => {
                   <li>• Relatórios personalizados e orientações mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Folha de pagamento à parte. Suporte completo, direto no WhatsApp.</p>
-                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
+                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.proPlan), '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
@@ -365,7 +378,7 @@ const Index = () => {
             data-animate 
             className={getSectionClasses('planos-cta', 'text-center')}
           >
-            <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 text-lg font-semibold py-8 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+            <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.customPlan), '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 text-lg font-semibold py-8 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
               Quero um plano personalizado
             </Button>
           </div>
@@ -460,7 +473,7 @@ const Index = () => {
           <p className="text-xl text-blue-100 mb-8 font-medium">
             Fale agora com a Focus e tenha um contador no seu bolso, direto pelo WhatsApp.
           </p>
-          <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-white text-focus-blue hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
+          <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.footer), '_blank')} className="bg-white text-focus-blue hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
             <MessageCircle className="w-5 h-5 mr-2" />
             Falar agora via WhatsApp
           </Button>
@@ -483,9 +496,8 @@ const Index = () => {
             <div>
               <h5 className="font-semibold mb-4">Contato</h5>
               <div className="space-y-2 text-gray-300">
-                <p>WhatsApp: (11) 99999-9999</p>
+                <p>WhatsApp: (77) 8152-2683</p>
                 <p>E-mail: contato@focuscontabilidade.com.br</p>
-                
               </div>
             </div>
             
@@ -493,7 +505,7 @@ const Index = () => {
               <h5 className="font-semibold mb-4">Redes Sociais</h5>
               <div className="space-y-2">
                 <a href="#" className="text-gray-300 hover:text-white transition-colors block">Instagram</a>
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors block">WhatsApp</a>
+                <a href={createWhatsAppUrl(whatsappMessages.footer)} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors block">WhatsApp</a>
                 <a href="#" className="text-gray-300 hover:text-white transition-colors block">LinkedIn</a>
               </div>
             </div>

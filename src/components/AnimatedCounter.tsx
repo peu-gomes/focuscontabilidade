@@ -23,7 +23,7 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
           setIsVisible(true);
         }
       },
-      { threshold: 0.3, rootMargin: '20px' }
+      { threshold: 0.1, rootMargin: '10px' }
     );
 
     if (counterRef.current) {
@@ -60,7 +60,16 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
   }, [isVisible, end, duration]);
 
   return (
-    <span ref={counterRef} className="inline-block font-bold min-w-[3ch] text-center">
+    <span 
+      ref={counterRef} 
+      className="inline-block font-bold text-center"
+      style={{ 
+        minWidth: `${end.toString().length + suffix.length}ch`,
+        WebkitTextFillColor: 'transparent',
+        WebkitBackgroundClip: 'text',
+        backgroundClip: 'text'
+      }}
+    >
       {count}{suffix}
     </span>
   );

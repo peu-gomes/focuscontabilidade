@@ -4,13 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
 import LoadingAnimation from '@/components/LoadingAnimation';
-
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const whatsappNumber = "5511999999999"; // Substituir pelo número real
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
@@ -18,16 +16,13 @@ const Index = () => {
     });
     setMobileMenuOpen(false); // Fecha o menu mobile após navegação
   };
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
   };
-
-  return (
-    <>
+  return <>
       <LoadingAnimation />
       
       {/* Header */}
@@ -66,34 +61,19 @@ const Index = () => {
                     <DrawerTitle>Menu</DrawerTitle>
                   </DrawerHeader>
                   <div className="px-4 pb-6 space-y-4">
-                    <button 
-                      onClick={() => scrollToSection('vantagens')} 
-                      className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                    >
+                    <button onClick={() => scrollToSection('vantagens')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
                       Vantagens
                     </button>
-                    <button 
-                      onClick={() => scrollToSection('servicos')} 
-                      className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                    >
+                    <button onClick={() => scrollToSection('servicos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
                       Serviços
                     </button>
-                    <button 
-                      onClick={() => scrollToSection('planos')} 
-                      className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                    >
+                    <button onClick={() => scrollToSection('planos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
                       Planos
                     </button>
-                    <button 
-                      onClick={() => scrollToSection('quem-somos')} 
-                      className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                    >
+                    <button onClick={() => scrollToSection('quem-somos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
                       Quem Somos
                     </button>
-                    <button 
-                      onClick={() => scrollToSection('contato')} 
-                      className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                    >
+                    <button onClick={() => scrollToSection('contato')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
                       Contato
                     </button>
                   </div>
@@ -191,12 +171,10 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => (
-              <div key={index} className="flex items-center space-x-3 bg-white p-4 rounded-lg shadow-sm">
+            {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => <div key={index} className="flex items-center space-x-3 bg-white p-4 rounded-lg shadow-sm">
                 <Check className="w-5 h-5 text-focus-green flex-shrink-0" />
                 <span className="text-focus-gray">{servico}</span>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -280,7 +258,7 @@ const Index = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 py-4 text-lg font-semibold">
+            <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 text-lg font-semibold py-[32px]">
               Quero um plano personalizado
             </Button>
           </div>
@@ -322,9 +300,7 @@ const Index = () => {
             <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
                 </div>
                 <p className="text-focus-gray/80 mb-4">
                   "Comecei com a Focus porque queria simplicidade. Hoje não me preocupo mais com nada, eles cuidam de tudo."
@@ -336,9 +312,7 @@ const Index = () => {
             <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
                 </div>
                 <p className="text-focus-gray/80 mb-4">
                   "Toda a documentação chega no meu WhatsApp. Rápido e simples, do jeito que eu precisava."
@@ -401,8 +375,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </>
-  );
+    </>;
 };
-
 export default Index;

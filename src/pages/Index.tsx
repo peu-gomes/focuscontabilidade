@@ -301,6 +301,9 @@ const Index = () => {
             className={getSectionClasses('planos-cards', 'grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12')}
           >
             <Card className="relative hover:shadow-lg transition-shadow">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+                🔥 Promoção
+              </div>
               <CardHeader>
                 <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mb-4">
                   <span className="text-focus-blue font-bold">MEI</span>

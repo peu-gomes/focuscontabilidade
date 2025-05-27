@@ -1,9 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
-import AnimatedCounter from '@/components/AnimatedCounter';
+import AnimatedText from '@/components/AnimatedText';
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -73,11 +74,11 @@ const Index = () => {
     <>
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 border-b border-gray-100">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            {/* Logo clicável */}
-            <button onClick={scrollToTop} className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-              <img alt="Focus Contabilidade" className="h-10 w-auto" src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png" />
+            {/* Logo clicável com altura fixa */}
+            <button onClick={scrollToTop} className="flex items-center space-x-3 hover:opacity-80 transition-opacity flex-shrink-0">
+              <img alt="Focus Contabilidade" className="h-8 sm:h-10 w-auto" src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png" />
             </button>
             
             {/* Menu Desktop - com margem nas laterais */}
@@ -144,8 +145,8 @@ const Index = () => {
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-focus-gray mb-6 leading-tight">
               🚀 Contabilidade moderna,
-              <br className="sm:hidden" />
-              <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent"> ágil e <AnimatedCounter end={100} duration={800} suffix="%" /> digital</span>
+              <br />
+              ágil e <AnimatedText text="100% digital" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold" />
             </h2>
             <p className="text-xl text-focus-gray/80 mb-8 leading-relaxed font-medium max-w-3xl mx-auto">
               Aqui você resolve tudo pelo celular: documentação na nuvem, atendimento via WhatsApp e nada de complicação. 
@@ -243,10 +244,11 @@ const Index = () => {
               </div>
               <div className="flex items-center justify-center">
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-focus-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Clock className="w-10 h-10 text-focus-blue" />
-                  </div>
-                  <p className="text-focus-gray/80 font-medium">Economia de tempo e praticidade em cada processo</p>
+                  <img 
+                    src="/lovable-uploads/772505e3-d5a1-4c0f-af39-ca1be3ca9476.png" 
+                    alt="Mockup de celulares com WhatsApp" 
+                    className="w-full max-w-xs mx-auto"
+                  />
                 </div>
               </div>
             </div>

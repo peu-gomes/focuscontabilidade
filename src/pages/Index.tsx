@@ -1,10 +1,12 @@
+
 import React, { useState, useEffect } from 'react';
-import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu } from 'lucide-react';
+import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu, Crown, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
 import AnimatedText from '@/components/AnimatedText';
 import PhoneMockup from '@/components/PhoneMockup';
+import TestimonialCarousel from '@/components/TestimonialCarousel';
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -73,26 +75,26 @@ const Index = () => {
   return (
     <>
       {/* Header */}
-      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 border-b border-gray-100">
+      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             {/* Logo clicável com altura fixa */}
-            <button onClick={scrollToTop} className="flex items-center space-x-3 hover:opacity-80 transition-opacity flex-shrink-0">
-              <img alt="Focus Contabilidade" className="h-8 sm:h-10 w-auto" src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png" />
+            <button onClick={scrollToTop} className="flex items-center space-x-3 hover:opacity-80 transition-all duration-300 hover:scale-105 flex-shrink-0">
+              <img alt="Focus Contabilidade" className="h-8 sm:h-10 w-auto drop-shadow-sm" src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png" />
             </button>
             
             {/* Menu Desktop - com margem nas laterais */}
             <nav className="hidden md:flex items-center space-x-6 mx-8">
-              <button onClick={() => scrollToSection('vantagens')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Vantagens</button>
-              <button onClick={() => scrollToSection('servicos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Serviços</button>
-              <button onClick={() => scrollToSection('planos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Planos</button>
-              <button onClick={() => scrollToSection('quem-somos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Quem Somos</button>
-              <button onClick={() => scrollToSection('cta-final')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Contato</button>
+              <button onClick={() => scrollToSection('vantagens')} className="text-focus-gray hover:text-focus-blue transition-all duration-300 font-medium hover:scale-105">Vantagens</button>
+              <button onClick={() => scrollToSection('servicos')} className="text-focus-gray hover:text-focus-blue transition-all duration-300 font-medium hover:scale-105">Serviços</button>
+              <button onClick={() => scrollToSection('planos')} className="text-focus-gray hover:text-focus-blue transition-all duration-300 font-medium hover:scale-105">Planos</button>
+              <button onClick={() => scrollToSection('quem-somos')} className="text-focus-gray hover:text-focus-blue transition-all duration-300 font-medium hover:scale-105">Quem Somos</button>
+              <button onClick={() => scrollToSection('cta-final')} className="text-focus-gray hover:text-focus-blue transition-all duration-300 font-medium hover:scale-105">Contato</button>
             </nav>
 
             <div className="flex items-center space-x-3">
               {/* WhatsApp Button - texto completo no desktop, só ícone no mobile */}
-              <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.header), '_blank')} className="bg-focus-green hover:bg-focus-green/90 text-white font-medium">
+              <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.header), '_blank')} className="bg-focus-green hover:bg-focus-green/90 text-white font-medium transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                 <MessageCircle className="w-4 h-4 sm:mr-2" />
                 <span className="hidden sm:inline">Fale no WhatsApp</span>
               </Button>
@@ -100,7 +102,7 @@ const Index = () => {
               {/* Menu Mobile */}
               <Drawer open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
                 <DrawerTrigger asChild>
-                  <Button variant="outline" size="icon" className="md:hidden">
+                  <Button variant="outline" size="icon" className="md:hidden hover:scale-105 transition-all duration-300">
                     <Menu className="h-4 w-4" />
                   </Button>
                 </DrawerTrigger>
@@ -109,19 +111,19 @@ const Index = () => {
                     <DrawerTitle>Menu</DrawerTitle>
                   </DrawerHeader>
                   <div className="px-4 pb-6 space-y-4">
-                    <button onClick={() => scrollToSection('vantagens')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
+                    <button onClick={() => scrollToSection('vantagens')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium hover:scale-105">
                       Vantagens
                     </button>
-                    <button onClick={() => scrollToSection('servicos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
+                    <button onClick={() => scrollToSection('servicos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium hover:scale-105">
                       Serviços
                     </button>
-                    <button onClick={() => scrollToSection('planos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
+                    <button onClick={() => scrollToSection('planos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium hover:scale-105">
                       Planos
                     </button>
-                    <button onClick={() => scrollToSection('quem-somos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
+                    <button onClick={() => scrollToSection('quem-somos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium hover:scale-105">
                       Quem Somos
                     </button>
-                    <button onClick={() => scrollToSection('cta-final')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
+                    <button onClick={() => scrollToSection('cta-final')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium hover:scale-105">
                       Contato
                     </button>
                   </div>
@@ -145,8 +147,8 @@ const Index = () => {
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-focus-gray mb-6 leading-tight">
               🚀 Contabilidade moderna,
-              <br />
-              ágil e <AnimatedText text="100% digital" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold" />
+              <br className="md:hidden" />
+              <AnimatedText text="ágil e 100% digital" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold" />
             </h2>
             <p className="text-xl text-focus-gray/80 mb-8 leading-relaxed font-medium max-w-3xl mx-auto">
               Aqui você resolve tudo pelo celular: documentação na nuvem, atendimento via WhatsApp e nada de complicação. 
@@ -300,8 +302,8 @@ const Index = () => {
             data-animate 
             className={getSectionClasses('planos-cards', 'grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12')}
           >
-            <Card className="relative hover:shadow-lg transition-shadow">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+            <Card className="relative hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-lg">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg">
                 🔥 Promoção
               </div>
               <CardHeader>
@@ -317,14 +319,14 @@ const Index = () => {
                   <li>• Consultoria básica</li>
                   <li>• Suporte via WhatsApp</li>
                 </ul>
-                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.meiPlan), '_blank')}>
+                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium transform hover:scale-105 transition-all duration-300" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.meiPlan), '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="relative hover:shadow-lg transition-shadow border-2 border-focus-green/20">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-4 py-1 rounded-full text-sm font-medium">
+            <Card className="relative hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-focus-green/20 shadow-lg">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg">
                 Mais Popular
               </div>
               <CardHeader>
@@ -343,16 +345,23 @@ const Index = () => {
                   <li>• Relatórios mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
-                <Button className="w-full mt-6 bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.essentialPlan), '_blank')}>
+                <Button className="w-full mt-6 bg-focus-green hover:bg-focus-green/90 font-medium transform hover:scale-105 transition-all duration-300" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.essentialPlan), '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="relative hover:shadow-lg transition-shadow">
+            <Card className="relative hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/30">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg flex items-center space-x-1">
+                <Crown className="w-3 h-3" />
+                <span>Premium</span>
+              </div>
               <CardHeader>
-                <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-focus-blue font-bold">PRO</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <span className="text-purple-600 font-bold flex items-center">
+                    <Sparkles className="w-4 h-4 mr-1" />
+                    PRO
+                  </span>
                 </div>
                 <CardTitle className="text-xl text-focus-gray">Pro Digital</CardTitle>
                 <CardDescription className="text-3xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
@@ -366,7 +375,7 @@ const Index = () => {
                   <li>• Relatórios personalizados e orientações mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Folha de pagamento à parte. Suporte completo, direto no WhatsApp.</p>
-                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.proPlan), '_blank')}>
+                <Button className="w-full mt-6 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium transform hover:scale-105 transition-all duration-300" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.proPlan), '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
@@ -395,7 +404,7 @@ const Index = () => {
           >
             <h3 className="text-4xl font-bold text-focus-gray mb-8">Quem Somos</h3>
             <div className="w-24 h-1 bg-gradient-to-r from-focus-blue to-focus-green mx-auto rounded-full mb-12"></div>
-            <div className="bg-white rounded-2xl p-10 shadow-xl border border-gray-100">
+            <div className="bg-white rounded-2xl p-10 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300">
               <div className="w-20 h-20 bg-focus-blue/10 rounded-full flex items-center justify-center mx-auto mb-8">
                 <Users className="w-10 h-10 text-focus-blue" />
               </div>
@@ -416,6 +425,7 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Avaliações em Carrossel */}
       <section className="py-20 bg-gradient-to-b from-white via-gray-50/30 to-blue-50/20 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-50/10 to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -429,37 +439,16 @@ const Index = () => {
           </div>
           
           <div 
-            id="depoimentos-cards" 
+            id="depoimentos-carousel" 
             data-animate 
-            className={getSectionClasses('depoimentos-cards', 'grid md:grid-cols-2 gap-8 max-w-4xl mx-auto')}
+            className={getSectionClasses('depoimentos-carousel', '')}
           >
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
-                </div>
-                <p className="text-focus-gray/80 mb-4">
-                  "Comecei com a Focus porque queria simplicidade. Hoje não me preocupo mais com nada, eles cuidam de tudo."
-                </p>
-                <p className="font-semibold text-focus-gray">— Luana M., Designer Freelancer</p>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
-                </div>
-                <p className="text-focus-gray/80 mb-4">
-                  "Toda a documentação chega no meu WhatsApp. Rápido e simples, do jeito que eu precisava."
-                </p>
-                <p className="font-semibold text-focus-gray">— Carlos A., Prestador de Serviços</p>
-              </CardContent>
-            </Card>
+            <TestimonialCarousel />
           </div>
         </div>
       </section>
 
+      {/* CTA Final */}
       <section id="cta-final" className="py-20 bg-gradient-to-r from-focus-blue to-focus-green relative overflow-hidden">
         <div className="absolute inset-0" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
@@ -473,13 +462,14 @@ const Index = () => {
           <p className="text-xl text-blue-100 mb-8 font-medium">
             Fale agora com a Focus e tenha um contador no seu bolso, direto pelo WhatsApp.
           </p>
-          <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.footer), '_blank')} className="bg-white text-focus-blue hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
+          <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.footer), '_blank')} className="bg-white text-focus-blue hover:bg-gray-100 px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
             <MessageCircle className="w-5 h-5 mr-2" />
             Falar agora via WhatsApp
           </Button>
         </div>
       </section>
 
+      {/* Footer */}
       <footer id="contato" className="py-16 bg-focus-gray text-white relative">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -516,28 +506,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-
-      <style>{`
-        @keyframes rocketBounce {
-          0%, 20%, 50%, 80%, 100% {
-            transform: translateY(0);
-          }
-          40% {
-            transform: translateY(-10px);
-          }
-          60% {
-            transform: translateY(-5px);
-          }
-        }
-
-        .rocket-bounce {
-          animation: rocketBounce 2s infinite;
-        }
-
-        .rocket-bounce:hover {
-          animation: rocketBounce 0.5s infinite;
-        }
-      `}</style>
     </>
   );
 };

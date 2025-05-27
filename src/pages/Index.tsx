@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
 import AnimatedText from '@/components/AnimatedText';
+import PhoneMockup from '@/components/PhoneMockup';
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -243,13 +243,7 @@ const Index = () => {
                 </ul>
               </div>
               <div className="flex items-center justify-center">
-                <div className="text-center">
-                  <img 
-                    src="/lovable-uploads/772505e3-d5a1-4c0f-af39-ca1be3ca9476.png" 
-                    alt="Mockup de celulares com WhatsApp" 
-                    className="w-full max-w-xs mx-auto"
-                  />
-                </div>
+                <PhoneMockup />
               </div>
             </div>
           </div>

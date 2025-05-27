@@ -9,7 +9,7 @@ const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   
-  const whatsappNumber = "5577815226832";
+  const whatsappNumber = "5577981522683";
   
   // Mensagens personalizadas para cada botão
   const whatsappMessages = {
@@ -132,7 +132,7 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section id="inicio" className="pt-20 pb-20 bg-gradient-to-br from-blue-50 via-white to-gray-50 relative overflow-hidden">
+      <section id="inicio" className="pt-20 pb-12 bg-gradient-to-br from-blue-50 via-white to-gray-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-50" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f1f5f9' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
         }}></div>
@@ -142,8 +142,9 @@ const Index = () => {
           className={getSectionClasses('hero', 'container mx-auto px-4 py-16 relative z-10')}
         >
           <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-6xl font-bold text-focus-gray mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-focus-gray mb-6 leading-tight">
               🚀 Contabilidade moderna,
+              <br className="sm:hidden" />
               <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent"> ágil e <AnimatedCounter end={100} duration={800} suffix="%" /> digital</span>
             </h2>
             <p className="text-xl text-focus-gray/80 mb-8 leading-relaxed font-medium max-w-3xl mx-auto">
@@ -159,8 +160,8 @@ const Index = () => {
       </section>
 
       {/* Vantagens */}
-      <section id="vantagens" className="py-20 bg-white relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-50/30 to-transparent"></div>
+      <section id="vantagens" className="py-20 bg-gradient-to-b from-white via-gray-50/30 to-white relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div 
             id="vantagens-title" 
@@ -254,7 +255,7 @@ const Index = () => {
       </section>
 
       {/* Serviços */}
-      <section id="servicos" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50/20 relative">
+      <section id="servicos" className="py-20 bg-gradient-to-br from-blue-50/30 via-gray-50 to-green-50/20 relative">
         <div className="absolute inset-0 opacity-30" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e2e8f0' fill-opacity='0.2'%3E%3Cpath d='M20 20l10-10v20l-10-10z'/%3E%3C/g%3E%3C/svg%3E")`
         }}></div>
@@ -286,8 +287,8 @@ const Index = () => {
       </section>
 
       {/* Planos */}
-      <section id="planos" className="py-20 bg-white relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50/30 via-transparent to-green-50/30"></div>
+      <section id="planos" className="py-20 bg-gradient-to-b from-white via-blue-50/20 to-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-green-50/30 via-transparent to-blue-50/30"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div 
             id="planos-title" 
@@ -386,7 +387,7 @@ const Index = () => {
       </section>
 
       {/* Quem Somos */}
-      <section id="quem-somos" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50/20">
+      <section id="quem-somos" className="py-20 bg-gradient-to-br from-gray-50/50 via-blue-50/30 to-green-50/20">
         <div className="container mx-auto px-4">
           <div 
             id="quem-somos-content" 
@@ -416,8 +417,8 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-white relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/10 to-transparent"></div>
+      <section className="py-20 bg-gradient-to-b from-white via-gray-50/30 to-blue-50/20 relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-50/10 to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div 
             id="depoimentos-title" 
@@ -496,7 +497,7 @@ const Index = () => {
             <div>
               <h5 className="font-semibold mb-4">Contato</h5>
               <div className="space-y-2 text-gray-300">
-                <p>WhatsApp: (77) 8152-2683</p>
+                <p>WhatsApp: (77) 98152-2683</p>
                 <p>E-mail: contato@focuscontabilidade.com.br</p>
               </div>
             </div>

@@ -65,16 +65,16 @@ const TestimonialCard = memo(({ testimonial, index }: { testimonial: typeof test
   );
 
   return (
-    <CarouselItem className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-      <Card className="hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50 h-full">
+    <CarouselItem className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+      <Card className="hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-200 shadow-lg bg-white h-full">
         <CardContent className="p-6 flex flex-col h-full">
           <div className="flex mb-4">
             {stars}
           </div>
-          <p className="text-focus-gray/80 mb-6 flex-grow leading-relaxed">
+          <p className="text-gray-700 mb-6 flex-grow leading-relaxed font-medium">
             "{testimonial.text}"
           </p>
-          <p className="font-semibold text-focus-gray text-sm">
+          <p className="font-bold text-focus-gray text-sm">
             — {testimonial.author}
           </p>
         </CardContent>
@@ -89,25 +89,28 @@ const TestimonialCarousel = memo(() => {
   const carouselOptions = useMemo(() => ({
     align: "start" as const,
     loop: true,
+    slidesToScroll: 1,
   }), []);
 
   return (
-    <Carousel 
-      opts={carouselOptions}
-      className="w-full max-w-5xl mx-auto"
-    >
-      <CarouselContent className="-ml-2 md:-ml-4">
-        {testimonials.map((testimonial, index) => (
-          <TestimonialCard 
-            key={`${testimonial.author}-${index}`} 
-            testimonial={testimonial} 
-            index={index} 
-          />
-        ))}
-      </CarouselContent>
-      <CarouselPrevious className="hidden md:flex -left-12 bg-white/90 hover:bg-white border-focus-blue/20 hover:border-focus-blue text-focus-blue" />
-      <CarouselNext className="hidden md:flex -right-12 bg-white/90 hover:bg-white border-focus-blue/20 hover:border-focus-blue text-focus-blue" />
-    </Carousel>
+    <div className="relative">
+      <Carousel 
+        opts={carouselOptions}
+        className="w-full max-w-7xl mx-auto"
+      >
+        <CarouselContent className="-ml-2 md:-ml-4">
+          {testimonials.map((testimonial, index) => (
+            <TestimonialCard 
+              key={`${testimonial.author}-${index}`} 
+              testimonial={testimonial} 
+              index={index} 
+            />
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="hidden md:flex -left-16 bg-white hover:bg-gray-50 border-2 border-focus-blue/30 hover:border-focus-blue text-focus-blue shadow-lg" />
+        <CarouselNext className="hidden md:flex -right-16 bg-white hover:bg-gray-50 border-2 border-focus-blue/30 hover:border-focus-blue text-focus-blue shadow-lg" />
+      </Carousel>
+    </div>
   );
 });
 

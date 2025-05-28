@@ -169,7 +169,19 @@ const Index = () => {
         >
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-focus-gray mb-6 leading-tight">
-              <span className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+              {/* Layout mobile otimizado */}
+              <div className="flex flex-col items-center justify-center gap-2 sm:hidden">
+                <span className="text-4xl">🚀</span>
+                <div className="flex flex-col items-center gap-1">
+                  <span className="text-2xl">Contabilidade moderna,</span>
+                  <span className="text-2xl bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent">
+                    ágil e 100% digital
+                  </span>
+                </div>
+              </div>
+              
+              {/* Layout desktop */}
+              <div className="hidden sm:flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
                 <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl">🚀</span>
                 <span className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-1 sm:gap-2">
                   <span>Contabilidade moderna,</span>
@@ -177,7 +189,7 @@ const Index = () => {
                     ágil e 100% digital
                   </span>
                 </span>
-              </span>
+              </div>
             </h1>
             <p className="text-xl text-focus-gray/80 mb-8 leading-relaxed font-medium max-w-3xl mx-auto">
               Aqui você resolve tudo pelo celular: documentação na nuvem, atendimento via WhatsApp e nada de complicação. 
@@ -381,7 +393,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="relative hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-focus-green/20 shadow-lg bg-gradient-to-br from-white to-purple-50/30">
+            <Card className="relative hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-lg bg-gradient-to-br from-white to-purple-50/30">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg flex items-center space-x-1" style={{ backgroundColor: '#6A1B9A' }}>
                 <Crown className="w-3 h-3" />
                 <span>Premium</span>
@@ -402,7 +414,11 @@ const Index = () => {
                   <li>• Relatórios personalizados e orientações mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Folha de pagamento à parte. Suporte completo, direto no WhatsApp.</p>
-                <Button className="w-full mt-6 bg-gradient-to-r text-white font-medium transform hover:scale-105 transition-all duration-300 border-2 border-focus-green/20" style={{ backgroundImage: 'linear-gradient(to right, #6A1B9A, #3B82F6)' }} onClick={() => window.open(createWhatsAppUrl(whatsappMessages.proPlan), '_blank')}>
+                <Button 
+                  className="w-full mt-6 text-white font-medium transform hover:scale-105 transition-all duration-300" 
+                  style={{ background: 'linear-gradient(to right, #6A1B9A, #1E3A8A)' }}
+                  onClick={() => window.open(createWhatsAppUrl(whatsappMessages.proPlan), '_blank')}
+                >
                   Escolher Plano
                 </Button>
               </CardContent>

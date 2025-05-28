@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu, Crown, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -168,10 +169,14 @@ const Index = () => {
         >
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-focus-gray mb-6 leading-tight">
-              🚀 Contabilidade moderna,
-              <br className="md:hidden" />
-              <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent">
-                ágil e 100% digital
+              <span className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+                <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl">🚀</span>
+                <span className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-1 sm:gap-2">
+                  <span>Contabilidade moderna,</span>
+                  <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent">
+                    ágil e 100% digital
+                  </span>
+                </span>
               </span>
             </h1>
             <p className="text-xl text-focus-gray/80 mb-8 leading-relaxed font-medium max-w-3xl mx-auto">
@@ -327,7 +332,7 @@ const Index = () => {
             className={getSectionClasses('planos-cards', 'grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12')}
           >
             <Card className="relative hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-lg">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg" style={{ backgroundColor: '#F2C94C' }}>
                 🔥 Promoção
               </div>
               <CardHeader>
@@ -376,16 +381,13 @@ const Index = () => {
             </Card>
 
             <Card className="relative hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/30">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg flex items-center space-x-1">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg flex items-center space-x-1" style={{ backgroundColor: '#6A1B9A' }}>
                 <Crown className="w-3 h-3" />
                 <span>Premium</span>
               </div>
               <CardHeader>
                 <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-purple-600 font-bold flex items-center">
-                    <Sparkles className="w-4 h-4 mr-1" />
-                    PRO
-                  </span>
+                  <span className="text-purple-600 font-bold">PRO</span>
                 </div>
                 <CardTitle className="text-xl text-focus-gray">Pro Digital</CardTitle>
                 <CardDescription className="text-3xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>

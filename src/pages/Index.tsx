@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu, Crown, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -14,8 +14,8 @@ const Index = () => {
   
   const whatsappNumber = "5577981522683";
   
-  // Mensagens personalizadas para cada botão
-  const whatsappMessages = {
+  // Mensagens personalizadas para cada botão - memoizadas
+  const whatsappMessages = useMemo(() => ({
     header: "Olá! Gostaria de falar com um contador.",
     hero: "Olá! Gostaria de falar com um contador.",
     meiPlan: "Olá! Quero saber mais sobre o Plano MEI.",
@@ -23,13 +23,13 @@ const Index = () => {
     proPlan: "Olá! Quero saber mais sobre o Plano PRO.",
     customPlan: "Oi! Quero entender como funciona o Plano Personalizado.",
     footer: "Olá! Gostaria de falar com um contador."
-  };
+  }), []);
 
-  const createWhatsAppUrl = (message: string) => {
+  const createWhatsAppUrl = useCallback((message: string) => {
     return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-  };
+  }, [whatsappNumber]);
 
-  // Intersection Observer para animar elementos quando entram na tela
+  // Intersection Observer otimizado
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -39,7 +39,12 @@ const Index = () => {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '50px' }
+      { 
+        threshold: 0.1, 
+        rootMargin: '50px',
+        // Otimização: reduzir frequência de callbacks
+        passive: true
+      }
     );
 
     const sections = document.querySelectorAll('[data-animate]');
@@ -48,29 +53,41 @@ const Index = () => {
     return () => observer.disconnect();
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
       behavior: 'smooth'
     });
     setMobileMenuOpen(false);
-  };
+  }, []);
 
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
-  };
+  }, []);
 
-  const getSectionClasses = (sectionId: string, baseClasses: string = '') => {
+  const getSectionClasses = useCallback((sectionId: string, baseClasses: string = '') => {
     const isVisible = visibleSections.has(sectionId);
     return `${baseClasses} transition-all duration-700 ease-out ${
       isVisible 
         ? 'opacity-100 translate-y-0' 
         : 'opacity-0 translate-y-8'
     }`;
-  };
+  }, [visibleSections]);
+
+  // Memoizar lista de serviços para evitar re-criação
+  const servicos = useMemo(() => [
+    'Abertura de empresa', 
+    'Contabilidade mensal', 
+    'Emissão de notas fiscais e obrigações', 
+    'Folha de pagamento (serviço adicional)', 
+    'Imposto de Renda Pessoa Física', 
+    'Consultoria e planejamento tributário', 
+    'Regularização de CNPJ e parcelamentos', 
+    'Monitoramento de certidões e pendências fiscais'
+  ], []);
 
   return (
     <>
@@ -78,9 +95,17 @@ const Index = () => {
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            {/* Logo clicável com altura fixa */}
+            {/* Logo clicável com altura fixa e lazy loading */}
             <button onClick={scrollToTop} className="flex items-center space-x-3 hover:opacity-80 transition-all duration-300 hover:scale-105 flex-shrink-0">
-              <img alt="Focus Contabilidade" className="h-8 sm:h-10 w-auto drop-shadow-sm" src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png" />
+              <img 
+                alt="Focus Contabilidade" 
+                className="h-8 sm:h-10 w-auto drop-shadow-sm" 
+                src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png"
+                loading="eager"
+                decoding="async"
+                width="40"
+                height="40"
+              />
             </button>
             
             {/* Menu Desktop - com margem nas laterais */}
@@ -145,11 +170,13 @@ const Index = () => {
           className={getSectionClasses('hero', 'container mx-auto px-4 py-16 relative z-10')}
         >
           <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-focus-gray mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-focus-gray mb-6 leading-tight">
               🚀 Contabilidade moderna,
               <br className="md:hidden" />
-              <AnimatedText text="ágil e 100% digital" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold" />
-            </h2>
+              <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent">
+                ágil e 100% digital
+              </span>
+            </h1>
             <p className="text-xl text-focus-gray/80 mb-8 leading-relaxed font-medium max-w-3xl mx-auto">
               Aqui você resolve tudo pelo celular: documentação na nuvem, atendimento via WhatsApp e nada de complicação. 
               A gente cuida de tudo, você foca no seu negócio.
@@ -171,7 +198,7 @@ const Index = () => {
             data-animate 
             className={getSectionClasses('vantagens-title', 'text-center mb-16')}
           >
-            <h3 className="text-4xl font-bold text-focus-gray mb-4">🔧 Por que escolher a Focus?</h3>
+            <h2 className="text-4xl font-bold text-focus-gray mb-4">🔧 Por que escolher a Focus?</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-focus-blue to-focus-green mx-auto rounded-full"></div>
           </div>
           
@@ -224,7 +251,7 @@ const Index = () => {
           >
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h4 className="font-bold text-focus-gray mb-6 text-xl">✅ Nossos diferenciais:</h4>
+                <h3 className="font-bold text-focus-gray mb-6 text-xl">✅ Nossos diferenciais:</h3>
                 <ul className="space-y-3 text-focus-gray/80">
                   <li className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-focus-green rounded-full mt-2 flex-shrink-0"></div>
@@ -263,7 +290,7 @@ const Index = () => {
             data-animate 
             className={getSectionClasses('servicos-title', 'text-center mb-16')}
           >
-            <h3 className="text-4xl font-bold text-focus-gray mb-4">Nossos Serviços</h3>
+            <h2 className="text-4xl font-bold text-focus-gray mb-4">Nossos Serviços</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-focus-blue to-focus-green mx-auto rounded-full"></div>
           </div>
           
@@ -272,7 +299,7 @@ const Index = () => {
             data-animate 
             className={getSectionClasses('servicos-grid', 'grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto')}
           >
-            {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => 
+            {servicos.map((servico, index) => 
               <div key={index} className="flex items-center space-x-4 bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
                 <div className="w-8 h-8 bg-focus-green/10 rounded-full flex items-center justify-center flex-shrink-0">
                   <Check className="w-4 h-4 text-focus-green" />
@@ -293,7 +320,7 @@ const Index = () => {
             data-animate 
             className={getSectionClasses('planos-title', 'text-center mb-16')}
           >
-            <h3 className="text-4xl font-bold text-focus-gray mb-4">📦 Planos simples e transparentes</h3>
+            <h2 className="text-4xl font-bold text-focus-gray mb-4">📦 Planos simples e transparentes</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-focus-blue to-focus-green mx-auto rounded-full"></div>
           </div>
           
@@ -402,7 +429,7 @@ const Index = () => {
             data-animate 
             className={getSectionClasses('quem-somos-content', 'max-w-4xl mx-auto text-center')}
           >
-            <h3 className="text-4xl font-bold text-focus-gray mb-8">Quem Somos</h3>
+            <h2 className="text-4xl font-bold text-focus-gray mb-8">Quem Somos</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-focus-blue to-focus-green mx-auto rounded-full mb-12"></div>
             <div className="bg-white rounded-2xl p-10 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300">
               <div className="w-20 h-20 bg-focus-blue/10 rounded-full flex items-center justify-center mx-auto mb-8">
@@ -434,7 +461,7 @@ const Index = () => {
             data-animate 
             className={getSectionClasses('depoimentos-title', 'text-center mb-16')}
           >
-            <h3 className="text-4xl font-bold text-focus-gray mb-4">O que nossos clientes dizem</h3>
+            <h2 className="text-4xl font-bold text-focus-gray mb-4">O que nossos clientes dizem</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-focus-blue to-focus-green mx-auto rounded-full"></div>
           </div>
           
@@ -458,7 +485,7 @@ const Index = () => {
           data-animate 
           className={getSectionClasses('cta-final-content', 'container mx-auto px-4 text-center relative z-10')}
         >
-          <h3 className="text-3xl font-bold text-white mb-4">📞 Pronto para descomplicar sua contabilidade?</h3>
+          <h2 className="text-3xl font-bold text-white mb-4">📞 Pronto para descomplicar sua contabilidade?</h2>
           <p className="text-xl text-blue-100 mb-8 font-medium">
             Fale agora com a Focus e tenha um contador no seu bolso, direto pelo WhatsApp.
           </p>
@@ -476,7 +503,15 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <img alt="Focus Contabilidade" className="h-8 w-auto brightness-0 invert" src="/lovable-uploads/7e766620-115f-42c5-b8f9-90b895b6862e.png" />
+                <img 
+                  alt="Focus Contabilidade" 
+                  className="h-8 w-auto brightness-0 invert" 
+                  src="/lovable-uploads/7e766620-115f-42c5-b8f9-90b895b6862e.png"
+                  loading="lazy"
+                  decoding="async"
+                  width="32"
+                  height="32"
+                />
               </div>
               <p className="text-gray-300">
                 Contabilidade moderna, ágil e 100% digital para todo o Brasil.
@@ -484,7 +519,7 @@ const Index = () => {
             </div>
             
             <div>
-              <h5 className="font-semibold mb-4">Contato</h5>
+              <h4 className="font-semibold mb-4">Contato</h4>
               <div className="space-y-2 text-gray-300">
                 <p>WhatsApp: (77) 98152-2683</p>
                 <p>E-mail: contato@focuscontabilidade.com.br</p>
@@ -492,7 +527,7 @@ const Index = () => {
             </div>
             
             <div>
-              <h5 className="font-semibold mb-4">Redes Sociais</h5>
+              <h4 className="font-semibold mb-4">Redes Sociais</h4>
               <div className="space-y-2">
                 <a href="#" className="text-gray-300 hover:text-white transition-colors block">Instagram</a>
                 <a href={createWhatsAppUrl(whatsappMessages.footer)} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors block">WhatsApp</a>

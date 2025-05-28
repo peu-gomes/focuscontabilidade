@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu, Crown, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -41,9 +40,7 @@ const Index = () => {
       },
       { 
         threshold: 0.1, 
-        rootMargin: '50px',
-        // Otimização: reduzir frequência de callbacks
-        passive: true
+        rootMargin: '50px'
       }
     );
 

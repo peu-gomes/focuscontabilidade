@@ -332,15 +332,16 @@ const Index = () => {
             className={getSectionClasses('planos-cards', 'grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12')}
           >
             <Card className="relative hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-lg">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg" style={{ backgroundColor: '#F2C94C' }}>
-                🔥 Promoção
-              </div>
               <CardHeader>
                 <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mb-4">
                   <span className="text-focus-blue font-bold">MEI</span>
                 </div>
                 <CardTitle className="text-xl text-focus-gray">MEI Digital</CardTitle>
-                <CardDescription className="text-3xl font-bold text-focus-gray">R$ 79<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
+                <CardDescription className="text-3xl font-bold text-focus-gray">
+                  R$ 79
+                  <span className="text-sm text-focus-gray/60">/mês</span>
+                  <div className="text-sm text-gray-400 line-through">R$ 99</div>
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-focus-gray/80">
@@ -380,14 +381,14 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="relative hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/30">
+            <Card className="relative hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-focus-green/20 shadow-lg bg-gradient-to-br from-white to-purple-50/30">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg flex items-center space-x-1" style={{ backgroundColor: '#6A1B9A' }}>
                 <Crown className="w-3 h-3" />
                 <span>Premium</span>
               </div>
               <CardHeader>
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-purple-600 font-bold">PRO</span>
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                  <span className="font-bold" style={{ color: '#6A1B9A' }}>PRO</span>
                 </div>
                 <CardTitle className="text-xl text-focus-gray">Pro Digital</CardTitle>
                 <CardDescription className="text-3xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
@@ -401,7 +402,7 @@ const Index = () => {
                   <li>• Relatórios personalizados e orientações mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Folha de pagamento à parte. Suporte completo, direto no WhatsApp.</p>
-                <Button className="w-full mt-6 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium transform hover:scale-105 transition-all duration-300" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.proPlan), '_blank')}>
+                <Button className="w-full mt-6 bg-gradient-to-r text-white font-medium transform hover:scale-105 transition-all duration-300 border-2 border-focus-green/20" style={{ backgroundImage: 'linear-gradient(to right, #6A1B9A, #3B82F6)' }} onClick={() => window.open(createWhatsAppUrl(whatsappMessages.proPlan), '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>

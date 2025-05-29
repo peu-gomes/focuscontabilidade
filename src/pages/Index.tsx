@@ -1,34 +1,20 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu, Crown, Sparkles } from 'lucide-react';
+
+import React, { useState, useEffect } from 'react';
+import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
-import AnimatedText from '@/components/AnimatedText';
-import PhoneMockup from '@/components/PhoneMockup';
-import TestimonialCarousel from '@/components/TestimonialCarousel';
+import LoadingAnimation from '@/components/LoadingAnimation';
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   
-  const whatsappNumber = "5577981522683";
-  
-  // Mensagens personalizadas para cada botão - memoizadas
-  const whatsappMessages = useMemo(() => ({
-    header: "Olá! Gostaria de falar com um contador.",
-    hero: "Olá! Gostaria de falar com um contador.",
-    meiPlan: "Olá! Quero saber mais sobre o Plano MEI.",
-    essentialPlan: "Oi! Quero saber mais sobre o Plano Essencial.",
-    proPlan: "Olá! Quero saber mais sobre o Plano PRO.",
-    customPlan: "Oi! Quero entender como funciona o Plano Personalizado.",
-    footer: "Olá! Gostaria de falar com um contador."
-  }), []);
+  const whatsappNumber = "5511999999999";
+  const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-  const createWhatsAppUrl = useCallback((message: string) => {
-    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-  }, [whatsappNumber]);
-
-  // Intersection Observer otimizado
+  // Intersection Observer para animar elementos quando entram na tela
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -38,10 +24,7 @@ const Index = () => {
           }
         });
       },
-      { 
-        threshold: 0.1, 
-        rootMargin: '50px'
-      }
+      { threshold: 0.1, rootMargin: '50px' }
     );
 
     const sections = document.querySelectorAll('[data-animate]');
@@ -50,73 +33,55 @@ const Index = () => {
     return () => observer.disconnect();
   }, []);
 
-  const scrollToSection = useCallback((sectionId: string) => {
+  const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
       behavior: 'smooth'
     });
     setMobileMenuOpen(false);
-  }, []);
+  };
 
-  const scrollToTop = useCallback(() => {
+  const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
-  }, []);
+  };
 
-  const getSectionClasses = useCallback((sectionId: string, baseClasses: string = '') => {
+  const getSectionClasses = (sectionId: string, baseClasses: string = '') => {
     const isVisible = visibleSections.has(sectionId);
     return `${baseClasses} transition-all duration-700 ease-out ${
       isVisible 
         ? 'opacity-100 translate-y-0' 
         : 'opacity-0 translate-y-8'
     }`;
-  }, [visibleSections]);
-
-  // Memoizar lista de serviços para evitar re-criação
-  const servicos = useMemo(() => [
-    'Abertura de empresa', 
-    'Contabilidade mensal', 
-    'Emissão de notas fiscais e obrigações', 
-    'Folha de pagamento (serviço adicional)', 
-    'Imposto de Renda Pessoa Física', 
-    'Consultoria e planejamento tributário', 
-    'Regularização de CNPJ e parcelamentos', 
-    'Monitoramento de certidões e pendências fiscais'
-  ], []);
+  };
 
   return (
     <>
+      <LoadingAnimation />
+      
       {/* Header */}
-      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50 border-b border-gray-100">
-        <div className="container mx-auto px-4 py-3 sm:py-4">
+      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 border-b border-gray-100">
+        <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            {/* Logo clicável com altura fixa e lazy loading */}
-            <button onClick={scrollToTop} className="flex items-center space-x-3 hover:opacity-80 transition-all duration-300 hover:scale-105 flex-shrink-0">
-              <img 
-                alt="Focus Contabilidade" 
-                className="h-8 sm:h-10 w-auto drop-shadow-sm" 
-                src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png"
-                loading="eager"
-                decoding="async"
-                width="40"
-                height="40"
-              />
+            {/* Logo clicável */}
+            <button onClick={scrollToTop} className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+              <img alt="Focus Contabilidade" className="h-10 w-auto" src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png" />
             </button>
             
-            {/* Menu Desktop - com margem nas laterais */}
-            <nav className="hidden md:flex items-center space-x-6 mx-8">
-              <button onClick={() => scrollToSection('vantagens')} className="text-focus-gray hover:text-focus-blue transition-all duration-300 font-medium hover:scale-105">Vantagens</button>
-              <button onClick={() => scrollToSection('servicos')} className="text-focus-gray hover:text-focus-blue transition-all duration-300 font-medium hover:scale-105">Serviços</button>
-              <button onClick={() => scrollToSection('planos')} className="text-focus-gray hover:text-focus-blue transition-all duration-300 font-medium hover:scale-105">Planos</button>
-              <button onClick={() => scrollToSection('quem-somos')} className="text-focus-gray hover:text-focus-blue transition-all duration-300 font-medium hover:scale-105">Quem Somos</button>
-              <button onClick={() => scrollToSection('cta-final')} className="text-focus-gray hover:text-focus-blue transition-all duration-300 font-medium hover:scale-105">Contato</button>
+            {/* Menu Desktop */}
+            <nav className="hidden md:flex items-center space-x-6">
+              <button onClick={() => scrollToSection('vantagens')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Vantagens</button>
+              <button onClick={() => scrollToSection('servicos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Serviços</button>
+              <button onClick={() => scrollToSection('planos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Planos</button>
+              <button onClick={() => scrollToSection('quem-somos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Quem Somos</button>
+              <button onClick={() => scrollToSection('contato')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Contato</button>
             </nav>
 
             <div className="flex items-center space-x-3">
               {/* WhatsApp Button - texto completo no desktop, só ícone no mobile */}
-              <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.header), '_blank')} className="bg-focus-green hover:bg-focus-green/90 text-white font-medium transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+              <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-focus-green hover:bg-focus-green/90 text-white font-medium">
                 <MessageCircle className="w-4 h-4 sm:mr-2" />
                 <span className="hidden sm:inline">Fale no WhatsApp</span>
               </Button>
@@ -124,7 +89,7 @@ const Index = () => {
               {/* Menu Mobile */}
               <Drawer open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
                 <DrawerTrigger asChild>
-                  <Button variant="outline" size="icon" className="md:hidden hover:scale-105 transition-all duration-300">
+                  <Button variant="outline" size="icon" className="md:hidden">
                     <Menu className="h-4 w-4" />
                   </Button>
                 </DrawerTrigger>
@@ -133,19 +98,19 @@ const Index = () => {
                     <DrawerTitle>Menu</DrawerTitle>
                   </DrawerHeader>
                   <div className="px-4 pb-6 space-y-4">
-                    <button onClick={() => scrollToSection('vantagens')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium hover:scale-105">
+                    <button onClick={() => scrollToSection('vantagens')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
                       Vantagens
                     </button>
-                    <button onClick={() => scrollToSection('servicos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium hover:scale-105">
+                    <button onClick={() => scrollToSection('servicos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
                       Serviços
                     </button>
-                    <button onClick={() => scrollToSection('planos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium hover:scale-105">
+                    <button onClick={() => scrollToSection('planos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
                       Planos
                     </button>
-                    <button onClick={() => scrollToSection('quem-somos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium hover:scale-105">
+                    <button onClick={() => scrollToSection('quem-somos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
                       Quem Somos
                     </button>
-                    <button onClick={() => scrollToSection('cta-final')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium hover:scale-105">
+                    <button onClick={() => scrollToSection('contato')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
                       Contato
                     </button>
                   </div>
@@ -157,7 +122,7 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section id="inicio" className="pt-20 pb-12 bg-gradient-to-br from-blue-50 via-white to-gray-50 relative overflow-hidden">
+      <section id="inicio" className="pt-20 pb-20 bg-gradient-to-br from-blue-50 via-white to-gray-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-50" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f1f5f9' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
         }}></div>
@@ -167,22 +132,15 @@ const Index = () => {
           className={getSectionClasses('hero', 'container mx-auto px-4 py-16 relative z-10')}
         >
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-focus-gray mb-6 leading-tight">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
-                <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl">🚀</span>
-                <span className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-1 sm:gap-2">
-                  <span>Contabilidade moderna,</span>
-                  <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent">
-                    ágil e 100% digital
-                  </span>
-                </span>
-              </div>
-            </h1>
+            <h2 className="text-4xl md:text-6xl font-bold text-focus-gray mb-6 leading-tight">
+              🚀 Contabilidade moderna,
+              <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent"> ágil e 100% digital</span>
+            </h2>
             <p className="text-xl text-focus-gray/80 mb-8 leading-relaxed font-medium max-w-3xl mx-auto">
               Aqui você resolve tudo pelo celular: documentação na nuvem, atendimento via WhatsApp e nada de complicação. 
               A gente cuida de tudo, você foca no seu negócio.
             </p>
-            <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.hero), '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+            <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
               <MessageCircle className="w-5 h-5 mr-2" />
               Fale com um contador agora
             </Button>
@@ -191,15 +149,15 @@ const Index = () => {
       </section>
 
       {/* Vantagens */}
-      <section id="vantagens" className="py-20 bg-gradient-to-b from-white via-gray-50/30 to-white relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 to-transparent"></div>
+      <section id="vantagens" className="py-20 bg-white relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-50/30 to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div 
             id="vantagens-title" 
             data-animate 
             className={getSectionClasses('vantagens-title', 'text-center mb-16')}
           >
-            <h2 className="text-4xl font-bold text-focus-gray mb-4">🔧 Por que escolher a Focus?</h2>
+            <h3 className="text-4xl font-bold text-focus-gray mb-4">🔧 Por que escolher a Focus?</h3>
             <div className="w-24 h-1 bg-gradient-to-r from-focus-blue to-focus-green mx-auto rounded-full"></div>
           </div>
           
@@ -252,7 +210,7 @@ const Index = () => {
           >
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="font-bold text-focus-gray mb-6 text-xl">✅ Nossos diferenciais:</h3>
+                <h4 className="font-bold text-focus-gray mb-6 text-xl">✅ Nossos diferenciais:</h4>
                 <ul className="space-y-3 text-focus-gray/80">
                   <li className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-focus-green rounded-full mt-2 flex-shrink-0"></div>
@@ -273,7 +231,12 @@ const Index = () => {
                 </ul>
               </div>
               <div className="flex items-center justify-center">
-                <PhoneMockup />
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-focus-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Clock className="w-10 h-10 text-focus-blue" />
+                  </div>
+                  <p className="text-focus-gray/80 font-medium">Economia de tempo e praticidade em cada processo</p>
+                </div>
               </div>
             </div>
           </div>
@@ -281,7 +244,7 @@ const Index = () => {
       </section>
 
       {/* Serviços */}
-      <section id="servicos" className="py-20 bg-gradient-to-br from-blue-50/30 via-gray-50 to-green-50/20 relative">
+      <section id="servicos" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50/20 relative">
         <div className="absolute inset-0 opacity-30" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e2e8f0' fill-opacity='0.2'%3E%3Cpath d='M20 20l10-10v20l-10-10z'/%3E%3C/g%3E%3C/svg%3E")`
         }}></div>
@@ -291,7 +254,7 @@ const Index = () => {
             data-animate 
             className={getSectionClasses('servicos-title', 'text-center mb-16')}
           >
-            <h2 className="text-4xl font-bold text-focus-gray mb-4">Nossos Serviços</h2>
+            <h3 className="text-4xl font-bold text-focus-gray mb-4">Nossos Serviços</h3>
             <div className="w-24 h-1 bg-gradient-to-r from-focus-blue to-focus-green mx-auto rounded-full"></div>
           </div>
           
@@ -300,7 +263,7 @@ const Index = () => {
             data-animate 
             className={getSectionClasses('servicos-grid', 'grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto')}
           >
-            {servicos.map((servico, index) => 
+            {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => 
               <div key={index} className="flex items-center space-x-4 bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
                 <div className="w-8 h-8 bg-focus-green/10 rounded-full flex items-center justify-center flex-shrink-0">
                   <Check className="w-4 h-4 text-focus-green" />
@@ -313,15 +276,15 @@ const Index = () => {
       </section>
 
       {/* Planos */}
-      <section id="planos" className="py-20 bg-gradient-to-b from-white via-blue-50/20 to-white relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-green-50/30 via-transparent to-blue-50/30"></div>
+      <section id="planos" className="py-20 bg-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50/30 via-transparent to-green-50/30"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div 
             id="planos-title" 
             data-animate 
             className={getSectionClasses('planos-title', 'text-center mb-16')}
           >
-            <h2 className="text-4xl font-bold text-focus-gray mb-4">📦 Planos simples e transparentes</h2>
+            <h3 className="text-4xl font-bold text-focus-gray mb-4">📦 Planos simples e transparentes</h3>
             <div className="w-24 h-1 bg-gradient-to-r from-focus-blue to-focus-green mx-auto rounded-full"></div>
           </div>
           
@@ -330,17 +293,13 @@ const Index = () => {
             data-animate 
             className={getSectionClasses('planos-cards', 'grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12')}
           >
-            <Card className="relative hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-lg">
+            <Card className="relative hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mb-4">
                   <span className="text-focus-blue font-bold">MEI</span>
                 </div>
                 <CardTitle className="text-xl text-focus-gray">MEI Digital</CardTitle>
-                <CardDescription className="text-3xl font-bold text-focus-gray">
-                  R$ 79
-                  <span className="text-sm text-focus-gray/60">/mês</span>
-                  <div className="text-sm text-gray-400 line-through">R$ 99</div>
-                </CardDescription>
+                <CardDescription className="text-3xl font-bold text-focus-gray">R$ 79<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-focus-gray/80">
@@ -348,14 +307,14 @@ const Index = () => {
                   <li>• Consultoria básica</li>
                   <li>• Suporte via WhatsApp</li>
                 </ul>
-                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium transform hover:scale-105 transition-all duration-300" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.meiPlan), '_blank')}>
+                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="relative hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-focus-green/20 shadow-lg">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg">
+            <Card className="relative hover:shadow-lg transition-shadow border-2 border-focus-green/20">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-4 py-1 rounded-full text-sm font-medium">
                 Mais Popular
               </div>
               <CardHeader>
@@ -374,20 +333,16 @@ const Index = () => {
                   <li>• Relatórios mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
-                <Button className="w-full mt-6 bg-focus-green hover:bg-focus-green/90 font-medium transform hover:scale-105 transition-all duration-300" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.essentialPlan), '_blank')}>
+                <Button className="w-full mt-6 bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="relative hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-lg bg-gradient-to-br from-white to-purple-50/30">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg flex items-center space-x-1" style={{ backgroundColor: '#6A1B9A' }}>
-                <Crown className="w-3 h-3" />
-                <span>Premium</span>
-              </div>
+            <Card className="relative hover:shadow-lg transition-shadow">
               <CardHeader>
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <span className="font-bold" style={{ color: '#6A1B9A' }}>PRO</span>
+                <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mb-4">
+                  <span className="text-focus-blue font-bold">PRO</span>
                 </div>
                 <CardTitle className="text-xl text-focus-gray">Pro Digital</CardTitle>
                 <CardDescription className="text-3xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
@@ -401,11 +356,7 @@ const Index = () => {
                   <li>• Relatórios personalizados e orientações mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Folha de pagamento à parte. Suporte completo, direto no WhatsApp.</p>
-                <Button 
-                  className="w-full mt-6 text-white font-medium transform hover:scale-105 transition-all duration-300" 
-                  style={{ background: 'linear-gradient(to right, #6A1B9A, #1E3A8A)' }}
-                  onClick={() => window.open(createWhatsAppUrl(whatsappMessages.proPlan), '_blank')}
-                >
+                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
@@ -417,7 +368,7 @@ const Index = () => {
             data-animate 
             className={getSectionClasses('planos-cta', 'text-center')}
           >
-            <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.customPlan), '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 text-lg font-semibold py-8 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+            <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 text-lg font-semibold py-8 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
               Quero um plano personalizado
             </Button>
           </div>
@@ -425,16 +376,16 @@ const Index = () => {
       </section>
 
       {/* Quem Somos */}
-      <section id="quem-somos" className="py-20 bg-gradient-to-br from-gray-50/50 via-blue-50/30 to-green-50/20">
+      <section id="quem-somos" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50/20">
         <div className="container mx-auto px-4">
           <div 
             id="quem-somos-content" 
             data-animate 
             className={getSectionClasses('quem-somos-content', 'max-w-4xl mx-auto text-center')}
           >
-            <h2 className="text-4xl font-bold text-focus-gray mb-8">Quem Somos</h2>
+            <h3 className="text-4xl font-bold text-focus-gray mb-8">Quem Somos</h3>
             <div className="w-24 h-1 bg-gradient-to-r from-focus-blue to-focus-green mx-auto rounded-full mb-12"></div>
-            <div className="bg-white rounded-2xl p-10 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300">
+            <div className="bg-white rounded-2xl p-10 shadow-xl border border-gray-100">
               <div className="w-20 h-20 bg-focus-blue/10 rounded-full flex items-center justify-center mx-auto mb-8">
                 <Users className="w-10 h-10 text-focus-blue" />
               </div>
@@ -455,44 +406,66 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Avaliações em Carrossel */}
-      <section className="py-20 bg-gradient-to-b from-white via-gray-50/30 to-blue-50/20 relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-50/10 to-transparent"></div>
+      {/* Depoimentos */}
+      <section className="py-20 bg-white relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/10 to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div 
             id="depoimentos-title" 
             data-animate 
             className={getSectionClasses('depoimentos-title', 'text-center mb-16')}
           >
-            <h2 className="text-4xl font-bold text-focus-gray mb-4">O que nossos clientes dizem</h2>
+            <h3 className="text-4xl font-bold text-focus-gray mb-4">O que nossos clientes dizem</h3>
             <div className="w-24 h-1 bg-gradient-to-r from-focus-blue to-focus-green mx-auto rounded-full"></div>
           </div>
           
           <div 
-            id="depoimentos-carousel" 
+            id="depoimentos-cards" 
             data-animate 
-            className={getSectionClasses('depoimentos-carousel', '')}
+            className={getSectionClasses('depoimentos-cards', 'grid md:grid-cols-2 gap-8 max-w-4xl mx-auto')}
           >
-            <TestimonialCarousel />
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
+                </div>
+                <p className="text-focus-gray/80 mb-4">
+                  "Comecei com a Focus porque queria simplicidade. Hoje não me preocupo mais com nada, eles cuidam de tudo."
+                </p>
+                <p className="font-semibold text-focus-gray">— Luana M., Designer Freelancer</p>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
+                </div>
+                <p className="text-focus-gray/80 mb-4">
+                  "Toda a documentação chega no meu WhatsApp. Rápido e simples, do jeito que eu precisava."
+                </p>
+                <p className="font-semibold text-focus-gray">— Carlos A., Prestador de Serviços</p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* CTA Final */}
-      <section id="cta-final" className="py-20 bg-gradient-to-r from-focus-blue to-focus-green relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-r from-focus-blue to-focus-green relative overflow-hidden">
         <div className="absolute inset-0" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
         }}></div>
         <div 
-          id="cta-final-content" 
+          id="cta-final" 
           data-animate 
-          className={getSectionClasses('cta-final-content', 'container mx-auto px-4 text-center relative z-10')}
+          className={getSectionClasses('cta-final', 'container mx-auto px-4 text-center relative z-10')}
         >
-          <h2 className="text-3xl font-bold text-white mb-4">📞 Pronto para descomplicar sua contabilidade?</h2>
+          <h3 className="text-3xl font-bold text-white mb-4">📞 Pronto para descomplicar sua contabilidade?</h3>
           <p className="text-xl text-blue-100 mb-8 font-medium">
             Fale agora com a Focus e tenha um contador no seu bolso, direto pelo WhatsApp.
           </p>
-          <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.footer), '_blank')} className="bg-white text-focus-blue hover:bg-gray-100 px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+          <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-white text-focus-blue hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
             <MessageCircle className="w-5 h-5 mr-2" />
             Falar agora via WhatsApp
           </Button>
@@ -506,15 +479,7 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <img 
-                  alt="Focus Contabilidade" 
-                  className="h-8 w-auto brightness-0 invert" 
-                  src="/lovable-uploads/7e766620-115f-42c5-b8f9-90b895b6862e.png"
-                  loading="lazy"
-                  decoding="async"
-                  width="32"
-                  height="32"
-                />
+                <img alt="Focus Contabilidade" className="h-8 w-auto brightness-0 invert" src="/lovable-uploads/7e766620-115f-42c5-b8f9-90b895b6862e.png" />
               </div>
               <p className="text-gray-300">
                 Contabilidade moderna, ágil e 100% digital para todo o Brasil.
@@ -522,18 +487,19 @@ const Index = () => {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Contato</h4>
+              <h5 className="font-semibold mb-4">Contato</h5>
               <div className="space-y-2 text-gray-300">
-                <p>WhatsApp: (77) 98152-2683</p>
+                <p>WhatsApp: (11) 99999-9999</p>
                 <p>E-mail: contato@focuscontabilidade.com.br</p>
+                
               </div>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Redes Sociais</h4>
+              <h5 className="font-semibold mb-4">Redes Sociais</h5>
               <div className="space-y-2">
                 <a href="#" className="text-gray-300 hover:text-white transition-colors block">Instagram</a>
-                <a href={createWhatsAppUrl(whatsappMessages.footer)} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors block">WhatsApp</a>
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors block">WhatsApp</a>
                 <a href="#" className="text-gray-300 hover:text-white transition-colors block">LinkedIn</a>
               </div>
             </div>

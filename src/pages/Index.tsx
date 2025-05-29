@@ -314,7 +314,7 @@ const Index = () => {
                   <li>• Tudo do plano Essencial +</li>
                   <li>• Análise mensal da situação fiscal</li>
                   <li>• Envio automático de certidões negativas</li>
-                  <li>• Monitoramento contínuo da saúde fiscal</li>
+                  <li>• Reunião periódicas por videochamada</li>
                   <li>• Relatórios personalizados e orientações mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu, Crown, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -169,19 +168,7 @@ const Index = () => {
         >
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-focus-gray mb-6 leading-tight">
-              {/* Layout mobile otimizado */}
-              <div className="flex flex-col items-center justify-center gap-2 sm:hidden">
-                <span className="text-4xl">🚀</span>
-                <div className="flex flex-col items-center gap-1">
-                  <span className="text-2xl">Contabilidade moderna,</span>
-                  <span className="text-2xl bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent">
-                    ágil e 100% digital
-                  </span>
-                </div>
-              </div>
-              
-              {/* Layout desktop */}
-              <div className="hidden sm:flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
                 <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl">🚀</span>
                 <span className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-1 sm:gap-2">
                   <span>Contabilidade moderna,</span>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -18,6 +19,29 @@ const Index = () => {
       behavior: 'smooth'
     });
   };
+
+  const advantages = [
+    {
+      icon: MessageCircle,
+      title: "Atendimento rápido via WhatsApp",
+      description: "Resolva tudo direto pelo celular"
+    },
+    {
+      icon: FileText,
+      title: "Documentos 100% digitais e na nuvem",
+      description: "Acesse de qualquer lugar, a qualquer hora"
+    },
+    {
+      icon: Zap,
+      title: "Entregamos relatórios e guias com agilidade",
+      description: "Processos otimizados para sua empresa"
+    },
+    {
+      icon: Shield,
+      title: "Monitoramos sua situação fiscal automaticamente",
+      description: "Fique sempre em dia com suas obrigações"
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-white font-sans">
@@ -70,47 +94,34 @@ const Index = () => {
       <StatsSection />
 
       {/* Vantagens */}
-      <section id="vantagens" className="py-16 bg-white">
+      <section id="vantagens" className="py-16 bg-gradient-to-br from-focus-blue to-focus-green">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-focus-gray mb-4">🔧 Por que escolher a Focus?</h3>
+            <h3 className="text-3xl font-bold text-white mb-4">
+              🔧 Por que escolher a Focus?
+            </h3>
+            <p className="text-blue-100 text-lg">
+              Nossos diferenciais que fazem a diferença
+            </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <MessageCircle className="w-12 h-12 text-focus-green mx-auto mb-4" />
-                <CardTitle className="text-lg text-focus-gray font-semibold">Atendimento rápido via WhatsApp</CardTitle>
-              </CardHeader>
-            </Card>
-
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <FileText className="w-12 h-12 text-focus-blue mx-auto mb-4" />
-                <CardTitle className="text-lg text-focus-gray font-semibold">Documentos 100% digitais e na nuvem</CardTitle>
-              </CardHeader>
-            </Card>
-
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <Zap className="w-12 h-12 text-focus-green mx-auto mb-4" />
-                <CardTitle className="text-lg text-focus-gray font-semibold">Entregamos relatórios e guias com agilidade</CardTitle>
-              </CardHeader>
-            </Card>
-
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <Shield className="w-12 h-12 text-focus-blue mx-auto mb-4" />
-                <CardTitle className="text-lg text-focus-gray font-semibold">Monitoramos sua situação fiscal automaticamente</CardTitle>
-              </CardHeader>
-            </Card>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {advantages.map((advantage, index) => (
+              <div key={index} className="text-center">
+                <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <advantage.icon className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-xl font-semibold text-blue-100 mb-1">{advantage.title}</div>
+                <div className="text-blue-200 text-sm">{advantage.description}</div>
+              </div>
+            ))}
           </div>
 
-          <div className="mt-12 bg-gray-50 rounded-lg p-8">
+          <div className="mt-12 bg-white/10 rounded-lg p-8">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold text-focus-gray mb-4">✅ Nossos diferenciais:</h4>
-                <ul className="space-y-2 text-focus-gray/80">
+                <h4 className="font-semibold text-white mb-4">✅ Nossos diferenciais:</h4>
+                <ul className="space-y-2 text-blue-100">
                   <li>• Envie tudo de forma prática, até pelo celular</li>
                   <li>• Contadores com cabeça aberta para a nova geração</li>
                   <li>• Linguagem simples, sem termos complicados</li>
@@ -119,8 +130,8 @@ const Index = () => {
               </div>
               <div className="flex items-center justify-center">
                 <div className="text-center">
-                  <Clock className="w-16 h-16 text-focus-blue mx-auto mb-4" />
-                  <p className="text-focus-gray/80">Economia de tempo e praticidade em cada processo</p>
+                  <Clock className="w-16 h-16 text-white mx-auto mb-4" />
+                  <p className="text-blue-100">Economia de tempo e praticidade em cada processo</p>
                 </div>
               </div>
             </div>

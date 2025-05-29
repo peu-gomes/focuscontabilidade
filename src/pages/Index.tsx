@@ -317,7 +317,7 @@ const Index = () => {
                   <li>• Monitoramento contínuo da saúde fiscal</li>
                   <li>• Relatórios personalizados e orientações mensais</li>
                 </ul>
-                <p className="text-xs text-focus-gray/60 mt-4">*Folha de pagamento à parte. Suporte completo, direto no WhatsApp.</p>
+                <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
                 <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.proPlan), '_blank')}>
                   Escolher Plano
                 </Button>

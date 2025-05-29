@@ -2,17 +2,25 @@ import React from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import StatsSection from '@/components/StatsSection';
+import HowItWorksSection from '@/components/HowItWorksSection';
+import FAQSection from '@/components/FAQSection';
+import TrustBadgesSection from '@/components/TrustBadgesSection';
+
 const Index = () => {
   const whatsappNumber = "5511999999999"; // Substituir pelo número real
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
       behavior: 'smooth'
     });
   };
-  return <div className="min-h-screen bg-white font-sans">
+
+  return (
+    <div className="min-h-screen bg-white font-sans">
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div className="container mx-auto px-4 py-4">
@@ -57,6 +65,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Stats Section */}
+      <StatsSection />
 
       {/* Vantagens */}
       <section id="vantagens" className="py-16 bg-white">
@@ -116,6 +127,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* How It Works */}
+      <HowItWorksSection />
 
       {/* Serviços */}
       <section id="servicos" className="py-16 bg-gray-50">
@@ -219,6 +233,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <FAQSection />
+
       {/* Quem Somos */}
       <section id="quem-somos" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -278,6 +295,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Trust Badges */}
+      <TrustBadgesSection />
+
       {/* CTA Final */}
       <section className="py-16 bg-gradient-to-r from-focus-blue to-focus-green">
         <div className="container mx-auto px-4 text-center">
@@ -329,6 +349,8 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;

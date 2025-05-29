@@ -1,8 +1,8 @@
+
 import React from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import StatsSection from '@/components/StatsSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import FAQSection from '@/components/FAQSection';
 import TrustBadgesSection from '@/components/TrustBadgesSection';
@@ -66,17 +66,14 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <StatsSection />
-
-      {/* Vantagens */}
+      {/* Vantagens Unificadas */}
       <section id="vantagens" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-focus-gray mb-4">🔧 Por que escolher a Focus?</h3>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <Card className="text-center hover:shadow-lg transition-shadow">
               <CardHeader>
                 <MessageCircle className="w-12 h-12 text-focus-green mx-auto mb-4" />
@@ -106,21 +103,33 @@ const Index = () => {
             </Card>
           </div>
 
-          <div className="mt-12 bg-gray-50 rounded-lg p-8">
-            <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-gray-50 rounded-lg p-8">
+            <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h4 className="font-semibold text-focus-gray mb-4">✅ Nossos diferenciais:</h4>
-                <ul className="space-y-2 text-focus-gray/80">
-                  <li>• Envie tudo de forma prática, até pelo celular</li>
-                  <li>• Contadores com cabeça aberta para a nova geração</li>
-                  <li>• Linguagem simples, sem termos complicados</li>
-                  <li>• Ideal para MEIs, prestadores de serviço e pequenas empresas</li>
+                <ul className="space-y-3 text-focus-gray/80">
+                  <li className="flex items-center space-x-3">
+                    <Check className="w-5 h-5 text-focus-green flex-shrink-0" />
+                    <span>Envie tudo de forma prática, até pelo celular</span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    <Check className="w-5 h-5 text-focus-green flex-shrink-0" />
+                    <span>Contadores com cabeça aberta para a nova geração</span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    <Check className="w-5 h-5 text-focus-green flex-shrink-0" />
+                    <span>Linguagem simples, sem termos complicados</span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    <Check className="w-5 h-5 text-focus-green flex-shrink-0" />
+                    <span>Ideal para MEIs, prestadores de serviço e pequenas empresas</span>
+                  </li>
                 </ul>
               </div>
               <div className="flex items-center justify-center">
                 <div className="text-center">
                   <Clock className="w-16 h-16 text-focus-blue mx-auto mb-4" />
-                  <p className="text-focus-gray/80">Economia de tempo e praticidade em cada processo</p>
+                  <p className="text-focus-gray/80 font-medium">Economia de tempo e praticidade em cada processo</p>
                 </div>
               </div>
             </div>

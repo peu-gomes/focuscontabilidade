@@ -250,7 +250,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50/30 via-transparent to-green-50/30"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div id="planos-title" data-animate className={getSectionClasses('planos-title', 'text-center mb-16')}>
-            <h3 className="text-4xl font-bold text-focus-gray mb-4">📦 Planos simples e transparentes</h3>
+            <h3 className="text-4xl font-bold text-focus-gray mb-4">📦 Planos honestos e transparentes</h3>
             <div className="w-24 h-1 bg-gradient-to-r from-focus-blue to-focus-green mx-auto rounded-full"></div>
           </div>
           

@@ -1,18 +1,30 @@
-
 import React, { useState, useEffect } from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
-import LoadingAnimation from '@/components/LoadingAnimation';
+import AnimatedCounter from '@/components/AnimatedCounter';
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   
-  const whatsappNumber = "5511999999999";
-  const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappNumber = "5577815226832";
+  
+  // Mensagens personalizadas para cada botão
+  const whatsappMessages = {
+    header: "Olá! Gostaria de falar com um contador.",
+    hero: "Olá! Gostaria de falar com um contador.",
+    meiPlan: "Olá! Quero saber mais sobre o Plano MEI.",
+    essentialPlan: "Oi! Quero saber mais sobre o Plano Essencial.",
+    proPlan: "Olá! Quero saber mais sobre o Plano PRO.",
+    customPlan: "Oi! Quero entender como funciona o Plano Personalizado.",
+    footer: "Olá! Gostaria de falar com um contador."
+  };
+
+  const createWhatsAppUrl = (message: string) => {
+    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  };
 
   // Intersection Observer para animar elementos quando entram na tela
   useEffect(() => {
@@ -59,8 +71,6 @@ const Index = () => {
 
   return (
     <>
-      <LoadingAnimation />
-      
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-4">
@@ -70,18 +80,18 @@ const Index = () => {
               <img alt="Focus Contabilidade" className="h-10 w-auto" src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png" />
             </button>
             
-            {/* Menu Desktop */}
-            <nav className="hidden md:flex items-center space-x-6">
+            {/* Menu Desktop - com margem nas laterais */}
+            <nav className="hidden md:flex items-center space-x-6 mx-8">
               <button onClick={() => scrollToSection('vantagens')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Vantagens</button>
               <button onClick={() => scrollToSection('servicos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Serviços</button>
               <button onClick={() => scrollToSection('planos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Planos</button>
               <button onClick={() => scrollToSection('quem-somos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Quem Somos</button>
-              <button onClick={() => scrollToSection('contato')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Contato</button>
+              <button onClick={() => scrollToSection('cta-final')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Contato</button>
             </nav>
 
             <div className="flex items-center space-x-3">
               {/* WhatsApp Button - texto completo no desktop, só ícone no mobile */}
-              <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-focus-green hover:bg-focus-green/90 text-white font-medium">
+              <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.header), '_blank')} className="bg-focus-green hover:bg-focus-green/90 text-white font-medium">
                 <MessageCircle className="w-4 h-4 sm:mr-2" />
                 <span className="hidden sm:inline">Fale no WhatsApp</span>
               </Button>
@@ -110,7 +120,7 @@ const Index = () => {
                     <button onClick={() => scrollToSection('quem-somos')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
                       Quem Somos
                     </button>
-                    <button onClick={() => scrollToSection('contato')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
+                    <button onClick={() => scrollToSection('cta-final')} className="w-full text-left py-3 px-4 text-focus-gray hover:text-focus-blue hover:bg-gray-50 rounded-lg transition-colors font-medium">
                       Contato
                     </button>
                   </div>
@@ -134,13 +144,13 @@ const Index = () => {
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-6xl font-bold text-focus-gray mb-6 leading-tight">
               🚀 Contabilidade moderna,
-              <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent"> ágil e 100% digital</span>
+              <span className="bg-gradient-to-r from-focus-blue to-focus-green bg-clip-text text-transparent"> ágil e <AnimatedCounter end={100} duration={800} suffix="%" /> digital</span>
             </h2>
             <p className="text-xl text-focus-gray/80 mb-8 leading-relaxed font-medium max-w-3xl mx-auto">
               Aqui você resolve tudo pelo celular: documentação na nuvem, atendimento via WhatsApp e nada de complicação. 
               A gente cuida de tudo, você foca no seu negócio.
             </p>
-            <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+            <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.hero), '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
               <MessageCircle className="w-5 h-5 mr-2" />
               Fale com um contador agora
             </Button>
@@ -307,7 +317,7 @@ const Index = () => {
                   <li>• Consultoria básica</li>
                   <li>• Suporte via WhatsApp</li>
                 </ul>
-                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
+                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.meiPlan), '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
@@ -333,7 +343,7 @@ const Index = () => {
                   <li>• Relatórios mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
-                <Button className="w-full mt-6 bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
+                <Button className="w-full mt-6 bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.essentialPlan), '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
@@ -356,7 +366,7 @@ const Index = () => {
                   <li>• Relatórios personalizados e orientações mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Folha de pagamento à parte. Suporte completo, direto no WhatsApp.</p>
-                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
+                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(createWhatsAppUrl(whatsappMessages.proPlan), '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
@@ -368,7 +378,7 @@ const Index = () => {
             data-animate 
             className={getSectionClasses('planos-cta', 'text-center')}
           >
-            <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 text-lg font-semibold py-8 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+            <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.customPlan), '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 text-lg font-semibold py-8 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
               Quero um plano personalizado
             </Button>
           </div>
@@ -406,7 +416,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Depoimentos */}
       <section className="py-20 bg-white relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/10 to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -451,28 +460,26 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Final */}
-      <section className="py-20 bg-gradient-to-r from-focus-blue to-focus-green relative overflow-hidden">
+      <section id="cta-final" className="py-20 bg-gradient-to-r from-focus-blue to-focus-green relative overflow-hidden">
         <div className="absolute inset-0" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
         }}></div>
         <div 
-          id="cta-final" 
+          id="cta-final-content" 
           data-animate 
-          className={getSectionClasses('cta-final', 'container mx-auto px-4 text-center relative z-10')}
+          className={getSectionClasses('cta-final-content', 'container mx-auto px-4 text-center relative z-10')}
         >
           <h3 className="text-3xl font-bold text-white mb-4">📞 Pronto para descomplicar sua contabilidade?</h3>
           <p className="text-xl text-blue-100 mb-8 font-medium">
             Fale agora com a Focus e tenha um contador no seu bolso, direto pelo WhatsApp.
           </p>
-          <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-white text-focus-blue hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
+          <Button onClick={() => window.open(createWhatsAppUrl(whatsappMessages.footer), '_blank')} className="bg-white text-focus-blue hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
             <MessageCircle className="w-5 h-5 mr-2" />
             Falar agora via WhatsApp
           </Button>
         </div>
       </section>
 
-      {/* Footer */}
       <footer id="contato" className="py-16 bg-focus-gray text-white relative">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -489,9 +496,8 @@ const Index = () => {
             <div>
               <h5 className="font-semibold mb-4">Contato</h5>
               <div className="space-y-2 text-gray-300">
-                <p>WhatsApp: (11) 99999-9999</p>
+                <p>WhatsApp: (77) 8152-2683</p>
                 <p>E-mail: contato@focuscontabilidade.com.br</p>
-                
               </div>
             </div>
             
@@ -499,7 +505,7 @@ const Index = () => {
               <h5 className="font-semibold mb-4">Redes Sociais</h5>
               <div className="space-y-2">
                 <a href="#" className="text-gray-300 hover:text-white transition-colors block">Instagram</a>
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors block">WhatsApp</a>
+                <a href={createWhatsAppUrl(whatsappMessages.footer)} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors block">WhatsApp</a>
                 <a href="#" className="text-gray-300 hover:text-white transition-colors block">LinkedIn</a>
               </div>
             </div>
@@ -510,6 +516,28 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      <style>{`
+        @keyframes rocketBounce {
+          0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+          }
+          40% {
+            transform: translateY(-10px);
+          }
+          60% {
+            transform: translateY(-5px);
+          }
+        }
+
+        .rocket-bounce {
+          animation: rocketBounce 2s infinite;
+        }
+
+        .rocket-bounce:hover {
+          animation: rocketBounce 0.5s infinite;
+        }
+      `}</style>
     </>
   );
 };

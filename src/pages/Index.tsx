@@ -261,7 +261,7 @@ const Index = () => {
                 </p>
                 <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-4 sm:px-8 py-4 text-sm sm:text-lg font-semibold">
                   <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  <span className="whitespace-nowrap">Quero plano personalizado</span>
+                  <span className="whitespace-nowrap">Quero um plano personalizado</span>
                 </Button>
               </div>
             </div>

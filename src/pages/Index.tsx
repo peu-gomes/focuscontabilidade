@@ -2,67 +2,51 @@ import React from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-
 const Index = () => {
   const whatsappNumber = "5511999999999"; // Substituir pelo número real
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
       behavior: 'smooth'
     });
   };
-
-  const advantages = [
-    {
-      icon: MessageCircle,
-      title: "Atendimento rápido via WhatsApp",
-      description: "Resolva tudo direto pelo celular"
-    },
-    {
-      icon: FileText,
-      title: "Documentos 100% digitais e na nuvem",
-      description: "Acesse de qualquer lugar, a qualquer hora"
-    },
-    {
-      icon: Zap,
-      title: "Entregamos relatórios e guias com agilidade",
-      description: "Processos otimizados para sua empresa"
-    },
-    {
-      icon: Shield,
-      title: "Monitoramos sua situação fiscal automaticamente",
-      description: "Fique sempre em dia com suas obrigações"
-    }
-  ];
-
-  const steps = [
-    {
-      icon: MessageCircle,
-      title: "1. Entre em contato",
-      description: "Mande uma mensagem no WhatsApp e conte sobre sua empresa"
-    },
-    {
-      icon: FileText,
-      title: "2. Envie os documentos",
-      description: "Compartilhe os documentos necessários pelo próprio WhatsApp"
-    },
-    {
-      icon: CheckCircle,
-      title: "3. Deixe com a gente",
-      description: "Cuidamos de toda a parte contábil e fiscal da sua empresa"
-    },
-    {
-      icon: Smartphone,
-      title: "4. Acompanhe pelo celular",
-      description: "Receba relatórios e documentos direto no seu WhatsApp"
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-white font-sans">
+  const advantages = [{
+    icon: MessageCircle,
+    title: "Atendimento rápido via WhatsApp",
+    description: "Resolva tudo direto pelo celular"
+  }, {
+    icon: FileText,
+    title: "Documentos 100% digitais e na nuvem",
+    description: "Acesse de qualquer lugar, a qualquer hora"
+  }, {
+    icon: Zap,
+    title: "Entregamos relatórios e guias com agilidade",
+    description: "Processos otimizados para sua empresa"
+  }, {
+    icon: Shield,
+    title: "Monitoramos sua situação fiscal automaticamente",
+    description: "Fique sempre em dia com suas obrigações"
+  }];
+  const steps = [{
+    icon: MessageCircle,
+    title: "1. Entre em contato",
+    description: "Mande uma mensagem no WhatsApp e conte sobre sua empresa"
+  }, {
+    icon: FileText,
+    title: "2. Envie os documentos",
+    description: "Compartilhe os documentos necessários pelo próprio WhatsApp"
+  }, {
+    icon: CheckCircle,
+    title: "3. Deixe com a gente",
+    description: "Cuidamos de toda a parte contábil e fiscal da sua empresa"
+  }, {
+    icon: Smartphone,
+    title: "4. Acompanhe pelo celular",
+    description: "Receba relatórios e documentos direto no seu WhatsApp"
+  }];
+  return <div className="min-h-screen bg-white font-sans">
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div className="container mx-auto px-4 py-4">
@@ -89,7 +73,7 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section id="inicio" className="pt-20 pb-16 bg-gradient-to-br from-blue-50 via-white to-gray-50">
+      <section id="inicio" className="pt-20 pb-8 bg-gradient-to-br from-blue-50 via-white to-gray-50">
         <div className="container mx-auto px-4 py-16">
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-6xl font-bold text-focus-gray mb-6">
@@ -121,15 +105,13 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {advantages.map((advantage, index) => (
-              <div key={index} className="text-center">
+            {advantages.map((advantage, index) => <div key={index} className="text-center">
                 <div className="bg-focus-blue/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <advantage.icon className="w-8 h-8 text-focus-blue" />
                 </div>
                 <div className="text-xl font-semibold text-focus-gray mb-2">{advantage.title}</div>
                 <div className="text-focus-gray/80 text-sm">{advantage.description}</div>
-              </div>
-            ))}
+              </div>)}
           </div>
 
           <div className="mt-12 bg-gray-50 rounded-lg p-8">
@@ -170,15 +152,13 @@ const Index = () => {
           <div className="mb-16">
             <h4 className="text-2xl font-bold text-white text-center mb-8">Como funciona nosso processo</h4>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {steps.map((step, index) => (
-                <div key={index} className="text-center">
+              {steps.map((step, index) => <div key={index} className="text-center">
                   <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <step.icon className="w-8 h-8 text-white" />
                   </div>
                   <div className="text-xl font-semibold text-blue-100 mb-1">{step.title}</div>
                   <div className="text-blue-200 text-sm">{step.description}</div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
 
@@ -186,12 +166,10 @@ const Index = () => {
           <div>
             <h4 className="text-2xl font-bold text-white text-center mb-8">Nossos Serviços</h4>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => (
-                <div key={index} className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
+              {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => <div key={index} className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
                   <Check className="w-5 h-5 text-white flex-shrink-0" />
                   <span className="text-blue-100">{servico}</span>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -393,8 +371,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;

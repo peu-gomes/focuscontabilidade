@@ -99,9 +99,7 @@ const Index = () => {
             <h3 className="text-3xl font-bold text-focus-gray mb-4">
               🔧 Por que escolher a Focus?
             </h3>
-            <p className="text-focus-gray/80 text-lg">
-              Nossos diferenciais que fazem a diferença
-            </p>
+            
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">

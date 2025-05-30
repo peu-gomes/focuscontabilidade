@@ -255,19 +255,16 @@ const Index = () => {
           </div>
 
           {/* Plano Personalizado - Destaque */}
-          <div className="mt-12 max-w-2xl mx-auto">
+          <div className="mt-12 max-w-6xl mx-auto">
             <div className="bg-gradient-to-r from-focus-blue to-focus-green p-1 rounded-xl">
               <div className="bg-white rounded-lg p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-focus-blue to-focus-green rounded-full flex items-center justify-center mx-auto mb-6">
-                  <MessageCircle className="w-8 h-8 text-white" />
-                </div>
                 <h4 className="text-2xl font-bold text-focus-gray mb-4">Precisa de algo específico?</h4>
                 <p className="text-focus-gray/80 mb-6">
                   Montamos um plano sob medida para as necessidades da sua empresa
                 </p>
-                <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 py-4 text-lg font-semibold">
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  Quero um plano personalizado
+                <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-4 sm:px-8 py-4 text-sm sm:text-lg font-semibold">
+                  <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  <span className="whitespace-nowrap">Quero plano personalizado</span>
                 </Button>
               </div>
             </div>

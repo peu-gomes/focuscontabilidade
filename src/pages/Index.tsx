@@ -149,7 +149,7 @@ const Index = () => {
           {/* Como funciona */}
           <div className="mb-16">
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               {steps.map((step, index) => <div key={index} className="text-center">
                   <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <step.icon className="w-8 h-8 text-white" />

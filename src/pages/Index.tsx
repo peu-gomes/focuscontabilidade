@@ -2,10 +2,21 @@ import React from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+
 const Index = () => {
-  const whatsappNumber = "5511999999999"; // Substituir pelo número real
-  const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappNumber = "5577981522683"; // Número correto
+  const defaultWhatsappMessage = "Olá, quero falar com um contador.";
+  const meiWhatsappMessage = "Olá! Quero o plano MEI";
+  const essencialWhatsappMessage = "Olá! Quero o plano Essencial";
+  const proWhatsappMessage = "Olá! Quero o plano PRO";
+  const personalizadoWhatsappMessage = "Olá, Quero um plano personalizado.";
+  
+  const defaultWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(defaultWhatsappMessage)}`;
+  const meiWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(meiWhatsappMessage)}`;
+  const essencialWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(essencialWhatsappMessage)}`;
+  const proWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(proWhatsappMessage)}`;
+  const personalizadoWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(personalizadoWhatsappMessage)}`;
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
@@ -64,7 +75,7 @@ const Index = () => {
               <button onClick={() => scrollToSection('contato')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Contato</button>
             </nav>
 
-            <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-focus-green hover:bg-focus-green/90 text-white font-medium">
+            <Button onClick={() => window.open(defaultWhatsappUrl, '_blank')} className="bg-focus-green hover:bg-focus-green/90 text-white font-medium">
               <MessageCircle className="w-4 h-4 mr-2" />
               Fale no WhatsApp
             </Button>
@@ -84,7 +95,7 @@ const Index = () => {
               Aqui você resolve tudo pelo celular: documentação na nuvem, atendimento via WhatsApp e nada de complicação. 
               A gente cuida de tudo, você foca no seu negócio.
             </p>
-            <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 py-4 text-lg font-semibold">
+            <Button onClick={() => window.open(defaultWhatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 py-4 text-lg font-semibold">
               <MessageCircle className="w-5 h-5 mr-2" />
               Fale com um contador agora
             </Button>
@@ -177,7 +188,10 @@ const Index = () => {
       <section id="planos" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-focus-gray mb-4">📦 Planos simples e transparentes</h3>
+            <h3 className="text-3xl font-bold text-focus-gray mb-4">Planos</h3>
+            <p className="text-focus-gray/80 text-lg">
+              Feitos para acompanhar seu ritmo e impulsionar seu sucesso.
+            </p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -195,7 +209,7 @@ const Index = () => {
                   <li>• Consultoria básica</li>
                   <li>• Suporte via WhatsApp</li>
                 </ul>
-                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
+                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
@@ -221,7 +235,7 @@ const Index = () => {
                   <li>• Relatórios mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
-                <Button className="w-full mt-6 bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
+                <Button className="w-full mt-6 bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
@@ -244,7 +258,7 @@ const Index = () => {
                   <li>• Relatórios personalizados e orientações mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
-                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
+                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
@@ -259,8 +273,7 @@ const Index = () => {
                 <p className="text-focus-gray/80 mb-6">
                   Montamos um plano sob medida para as necessidades da sua empresa
                 </p>
-                <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-4 sm:px-8 py-4 text-sm sm:text-lg font-semibold">
-                  <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                <Button onClick={() => window.open(personalizadoWhatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-4 sm:px-8 py-4 text-sm sm:text-lg font-semibold">
                   <span className="whitespace-nowrap">Quero plano personalizado</span>
                 </Button>
               </div>
@@ -333,7 +346,7 @@ const Index = () => {
           <p className="text-xl text-blue-100 mb-8 font-medium">
             Fale agora com a Focus e tenha um contador no seu bolso, direto pelo WhatsApp.
           </p>
-          <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-white text-focus-blue hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
+          <Button onClick={() => window.open(defaultWhatsappUrl, '_blank')} className="bg-white text-focus-blue hover:bg-gray-100 px-8 py-4 text-lg font-semibold">
             <MessageCircle className="w-5 h-5 mr-2" />
             Falar agora via WhatsApp
           </Button>
@@ -379,4 +392,5 @@ const Index = () => {
       </footer>
     </div>;
 };
+
 export default Index;

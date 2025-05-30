@@ -115,10 +115,10 @@ const Index = () => {
           <div className="mt-12 bg-gray-50 rounded-lg p-8">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold text-focus-gray mb-4">Nossos diferenciais:</h4>
+                
                 <ul className="space-y-2 text-focus-gray/80">
                   <li>• Envie tudo de forma prática, pelo celular</li>
-                  <li>• Contadores com mentalidade moderna e foco em soluções práticas</li>
+                  
                   <li>• Linguagem simples, sem termos complicados</li>
                   <li>• Do MEI à empresa em expansão, estamos ao seu lado em cada fase do crescimento</li>
                 </ul>

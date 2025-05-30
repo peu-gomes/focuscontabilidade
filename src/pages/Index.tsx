@@ -119,7 +119,7 @@ const Index = () => {
               <div>
                 <h4 className="font-semibold text-focus-gray mb-4">✅ Nossos diferenciais:</h4>
                 <ul className="space-y-2 text-focus-gray/80">
-                  <li>• Envie tudo de forma prática, até pelo celular</li>
+                  <li>• Envie tudo de forma prática, pelo celular</li>
                   <li>• Contadores com cabeça aberta para a nova geração</li>
                   <li>• Linguagem simples, sem termos complicados</li>
                   <li>• Ideal para MEIs, prestadores de serviço e pequenas empresas</li>

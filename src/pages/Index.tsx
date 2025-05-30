@@ -1,9 +1,7 @@
 import React from 'react';
-import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap } from 'lucide-react';
+import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import HowItWorksSection from '@/components/HowItWorksSection';
-import FAQSection from '@/components/FAQSection';
 
 const Index = () => {
   const whatsappNumber = "5511999999999"; // Substituir pelo número real
@@ -40,6 +38,29 @@ const Index = () => {
     }
   ];
 
+  const steps = [
+    {
+      icon: MessageCircle,
+      title: "1. Entre em contato",
+      description: "Mande uma mensagem no WhatsApp e conte sobre sua empresa"
+    },
+    {
+      icon: FileText,
+      title: "2. Envie os documentos",
+      description: "Compartilhe os documentos necessários pelo próprio WhatsApp"
+    },
+    {
+      icon: CheckCircle,
+      title: "3. Deixe com a gente",
+      description: "Cuidamos de toda a parte contábil e fiscal da sua empresa"
+    },
+    {
+      icon: Smartphone,
+      title: "4. Acompanhe pelo celular",
+      description: "Receba relatórios e documentos direto no seu WhatsApp"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white font-sans">
       {/* Header */}
@@ -53,7 +74,7 @@ const Index = () => {
             <nav className="hidden md:flex items-center space-x-6">
               <button onClick={() => scrollToSection('inicio')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Início</button>
               <button onClick={() => scrollToSection('vantagens')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Vantagens</button>
-              <button onClick={() => scrollToSection('servicos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Serviços</button>
+              <button onClick={() => scrollToSection('como-funciona')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Como Funciona</button>
               <button onClick={() => scrollToSection('planos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Planos</button>
               <button onClick={() => scrollToSection('quem-somos')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Quem Somos</button>
               <button onClick={() => scrollToSection('contato')} className="text-focus-gray hover:text-focus-blue transition-colors font-medium">Contato</button>
@@ -88,13 +109,13 @@ const Index = () => {
       </section>
 
       {/* Vantagens */}
-      <section id="vantagens" className="py-16 bg-gradient-to-br from-focus-blue to-focus-green">
+      <section id="vantagens" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-white mb-4">
+            <h3 className="text-3xl font-bold text-focus-gray mb-4">
               🔧 Por que escolher a Focus?
             </h3>
-            <p className="text-blue-100 text-lg">
+            <p className="text-focus-gray/80 text-lg">
               Nossos diferenciais que fazem a diferença
             </p>
           </div>
@@ -102,20 +123,20 @@ const Index = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {advantages.map((advantage, index) => (
               <div key={index} className="text-center">
-                <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <advantage.icon className="w-8 h-8 text-white" />
+                <div className="bg-focus-blue/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <advantage.icon className="w-8 h-8 text-focus-blue" />
                 </div>
-                <div className="text-xl font-semibold text-blue-100 mb-1">{advantage.title}</div>
-                <div className="text-blue-200 text-sm">{advantage.description}</div>
+                <div className="text-xl font-semibold text-focus-gray mb-2">{advantage.title}</div>
+                <div className="text-focus-gray/80 text-sm">{advantage.description}</div>
               </div>
             ))}
           </div>
 
-          <div className="mt-12 bg-white/10 rounded-lg p-8">
+          <div className="mt-12 bg-gray-50 rounded-lg p-8">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold text-white mb-4">✅ Nossos diferenciais:</h4>
-                <ul className="space-y-2 text-blue-100">
+                <h4 className="font-semibold text-focus-gray mb-4">✅ Nossos diferenciais:</h4>
+                <ul className="space-y-2 text-focus-gray/80">
                   <li>• Envie tudo de forma prática, até pelo celular</li>
                   <li>• Contadores com cabeça aberta para a nova geração</li>
                   <li>• Linguagem simples, sem termos complicados</li>
@@ -124,8 +145,8 @@ const Index = () => {
               </div>
               <div className="flex items-center justify-center">
                 <div className="text-center">
-                  <Clock className="w-16 h-16 text-white mx-auto mb-4" />
-                  <p className="text-blue-100">Economia de tempo e praticidade em cada processo</p>
+                  <Clock className="w-16 h-16 text-focus-blue mx-auto mb-4" />
+                  <p className="text-focus-gray/80">Economia de tempo e praticidade em cada processo</p>
                 </div>
               </div>
             </div>
@@ -133,21 +154,45 @@ const Index = () => {
         </div>
       </section>
 
-      {/* How It Works */}
-      <HowItWorksSection />
-
-      {/* Serviços */}
-      <section id="servicos" className="py-16 bg-gray-50">
+      {/* Como funciona e o que oferecemos */}
+      <section id="como-funciona" className="py-16 bg-gradient-to-br from-focus-blue to-focus-green">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-focus-gray mb-4">Nossos Serviços</h3>
+            <h3 className="text-3xl font-bold text-white mb-4">
+              Como funciona e o que oferecemos
+            </h3>
+            <p className="text-blue-100 text-lg">
+              Processo simples e serviços completos
+            </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => <div key={index} className="flex items-center space-x-3 bg-white p-4 rounded-lg shadow-sm">
-                <Check className="w-5 h-5 text-focus-green flex-shrink-0" />
-                <span className="text-focus-gray">{servico}</span>
-              </div>)}
+          {/* Como funciona */}
+          <div className="mb-16">
+            <h4 className="text-2xl font-bold text-white text-center mb-8">Como funciona nosso processo</h4>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {steps.map((step, index) => (
+                <div key={index} className="text-center">
+                  <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <step.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="text-xl font-semibold text-blue-100 mb-1">{step.title}</div>
+                  <div className="text-blue-200 text-sm">{step.description}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Nossos Serviços */}
+          <div>
+            <h4 className="text-2xl font-bold text-white text-center mb-8">Nossos Serviços</h4>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => (
+                <div key={index} className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
+                  <Check className="w-5 h-5 text-white flex-shrink-0" />
+                  <span className="text-blue-100">{servico}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -237,9 +282,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* FAQ Section */}
-      <FAQSection />
 
       {/* Quem Somos */}
       <section id="quem-somos" className="py-16 bg-gray-50">

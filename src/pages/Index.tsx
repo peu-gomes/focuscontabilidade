@@ -2,7 +2,6 @@ import React from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-
 const Index = () => {
   const whatsappNumber = "5511999999999"; // Substituir pelo número real
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
@@ -53,7 +52,7 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <img alt="Focus Contabilidade" className="h-10 w-auto" src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png" />
+              <img alt="Focus Contabilidade" src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png" className="h-10 w-auto object-contain" />
             </div>
             
             <nav className="hidden md:flex items-center space-x-6">
@@ -384,5 +383,4 @@ const Index = () => {
       </footer>
     </div>;
 };
-
 export default Index;

@@ -3,7 +3,7 @@ import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckC
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 const Index = () => {
-  const whatsappNumber = "5511999999999"; // Substituir pelo número real
+  const whatsappNumber = "5577981522683"; // Substituir pelo número real
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
   const scrollToSection = (sectionId: string) => {
@@ -354,7 +354,7 @@ const Index = () => {
             <div>
               <h5 className="font-semibold mb-4">Contato</h5>
               <div className="space-y-2 text-gray-300">
-                <p>WhatsApp: (11) 99999-9999</p>
+                <p>WhatsApp: (77) 98152-2683</p>
                 <p>E-mail: contato@focuscontabilidade.com.br</p>
                 <p>Atendimento online para todo o Brasil</p>
               </div>

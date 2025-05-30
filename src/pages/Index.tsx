@@ -150,7 +150,7 @@ const Index = () => {
           
           {/* Como funciona */}
           <div className="mb-16">
-            <h4 className="text-2xl font-bold text-white text-center mb-8">Como funciona nosso processo</h4>
+            
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {steps.map((step, index) => <div key={index} className="text-center">
                   <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
@@ -164,7 +164,7 @@ const Index = () => {
 
           {/* Nossos Serviços */}
           <div>
-            <h4 className="text-2xl font-bold text-white text-center mb-8">Nossos Serviços</h4>
+            
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => <div key={index} className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
                   <Check className="w-5 h-5 text-white flex-shrink-0" />

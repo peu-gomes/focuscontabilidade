@@ -2,6 +2,7 @@ import React from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+
 const Index = () => {
   const whatsappNumber = "5511999999999"; // Substituir pelo número real
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
@@ -253,10 +254,23 @@ const Index = () => {
             </Card>
           </div>
 
-          <div className="text-center mt-12">
-            <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 py-4 text-lg font-semibold">
-              Quero um plano personalizado
-            </Button>
+          {/* Plano Personalizado - Destaque */}
+          <div className="mt-12 max-w-2xl mx-auto">
+            <div className="bg-gradient-to-r from-focus-blue to-focus-green p-1 rounded-xl">
+              <div className="bg-white rounded-lg p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-focus-blue to-focus-green rounded-full flex items-center justify-center mx-auto mb-6">
+                  <MessageCircle className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="text-2xl font-bold text-focus-gray mb-4">Precisa de algo específico?</h4>
+                <p className="text-focus-gray/80 mb-6">
+                  Montamos um plano sob medida para as necessidades da sua empresa
+                </p>
+                <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 py-4 text-lg font-semibold">
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Quero um plano personalizado
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -373,4 +387,5 @@ const Index = () => {
       </footer>
     </div>;
 };
+
 export default Index;

@@ -112,7 +112,7 @@ const Index = () => {
               </div>)}
           </div>
 
-          <div className="mt-12 bg-gray-50 rounded-lg p-8">
+          <div className="mt-12 bg-gray-600/[0.15] rounded-lg p-8">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 

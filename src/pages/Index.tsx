@@ -1,12 +1,9 @@
-
 import React from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import StatsSection from '@/components/StatsSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import FAQSection from '@/components/FAQSection';
-import TrustBadgesSection from '@/components/TrustBadgesSection';
 
 const Index = () => {
   const whatsappNumber = "5511999999999"; // Substituir pelo número real
@@ -89,9 +86,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* Stats Section */}
-      <StatsSection />
 
       {/* Vantagens */}
       <section id="vantagens" className="py-16 bg-gradient-to-br from-focus-blue to-focus-green">
@@ -305,9 +299,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* Trust Badges */}
-      <TrustBadgesSection />
 
       {/* CTA Final */}
       <section className="py-16 bg-gradient-to-r from-focus-blue to-focus-green">

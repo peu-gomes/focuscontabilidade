@@ -355,7 +355,7 @@ const Index = () => {
               <h5 className="font-semibold mb-4">Contato</h5>
               <div className="space-y-2 text-gray-300">
                 <p>WhatsApp: (77) 98152-2683</p>
-                <p>E-mail: contato@focuscontabilidade.com.br</p>
+                <p>E-mail: contato@contabilfocus.com.br</p>
                 <p>Atendimento online para todo o Brasil</p>
               </div>
             </div>

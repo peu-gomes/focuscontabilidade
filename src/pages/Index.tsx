@@ -276,9 +276,7 @@ const Index = () => {
             <h3 className="text-3xl font-bold text-focus-gray mb-8">Quem Somos</h3>
             <div className="bg-white rounded-lg p-8 shadow-sm">
               <Users className="w-16 h-16 text-focus-blue mx-auto mb-6" />
-              <p className="text-lg text-focus-gray/80 mb-6 font-medium">
-                Somos uma contabilidade feita por contadores jovens e conectados com o presente.
-              </p>
+              <p className="text-lg text-focus-gray/80 mb-6 font-medium">Somos uma contabilidade feita por contadores conectados com o presente.</p>
               <p className="text-focus-gray/80 mb-6">
                 Aqui você não precisa imprimir nada. Tudo é resolvido de forma prática, online, e com linguagem que você entende.
               </p>

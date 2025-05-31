@@ -350,7 +350,7 @@ const Index = () => {
       {/* Footer */}
       <footer id="contato" className="py-12 bg-focus-gray text-white">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <div>
               <div className="flex items-center space-x-3 mb-4">
                 <img alt="Focus Contabilidade" className="h-8 w-auto brightness-0 invert" src="/lovable-uploads/7e766620-115f-42c5-b8f9-90b895b6862e.png" />

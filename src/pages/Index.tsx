@@ -104,9 +104,7 @@ const Index = () => {
       <section id="vantagens" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-focus-gray mb-4">
-              🔧 Por que escolher a Focus?
-            </h3>
+            <h3 className="text-3xl font-bold text-focus-gray mb-4">Por que escolher a Focus?</h3>
             
           </div>
           
@@ -338,7 +336,7 @@ const Index = () => {
       {/* CTA Final */}
       <section className="py-16 bg-gradient-to-r from-focus-blue to-focus-green">
         <div className="container mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold text-white mb-4">📞 Pronto para descomplicar sua contabilidade?</h3>
+          <h3 className="text-3xl font-bold text-white mb-4">Pronto para descomplicar sua contabilidade?</h3>
           <p className="text-xl text-blue-100 mb-8 font-medium">
             Fale agora com a Focus e tenha um contador no seu bolso, direto pelo WhatsApp.
           </p>

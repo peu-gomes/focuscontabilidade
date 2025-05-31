@@ -2,18 +2,24 @@ import React from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+
 const Index = () => {
   const whatsappNumber = "5577981522683"; // Substituir pelo número real
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  
   const meiWhatsappMessage = "Olá! Quero o plano MEI";
   const meiWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(meiWhatsappMessage)}`;
+  
   const essencialWhatsappMessage = "Olá! Quero o plano Essencial";
   const essencialWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(essencialWhatsappMessage)}`;
+  
   const proWhatsappMessage = "Olá! Quero o plano PRO";
   const proWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(proWhatsappMessage)}`;
+  
   const personalizadoWhatsappMessage = "Olá, Quero um plano personalizado.";
   const personalizadoWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(personalizadoWhatsappMessage)}`;
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
@@ -110,7 +116,7 @@ const Index = () => {
             
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {advantages.map((advantage, index) => <div key={index} className="text-center">
                 <div className="bg-focus-blue/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <advantage.icon className="w-8 h-8 text-focus-blue" />
@@ -120,7 +126,7 @@ const Index = () => {
               </div>)}
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="mt-12 rounded-lg p-8 bg-[#000a00]/[0.04]">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 
@@ -157,23 +163,27 @@ const Index = () => {
           {/* Como funciona */}
           <div className="mb-16">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {steps.map((step, index) => <div key={index} className="text-center">
+              {steps.map((step, index) => (
+                <div key={index} className="text-center">
                   <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <step.icon className="w-8 h-8 text-white" />
                   </div>
                   <div className="text-xl font-semibold text-blue-100 mb-1">{step.title}</div>
                   <div className="text-blue-200 text-sm">{step.description}</div>
-                </div>)}
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Nossos Serviços */}
           <div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => <div key={index} className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
+              {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => (
+                <div key={index} className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
                   <Check className="w-5 h-5 text-white flex-shrink-0" />
                   <span className="text-blue-100">{servico}</span>
-                </div>)}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -388,4 +398,5 @@ const Index = () => {
       </footer>
     </div>;
 };
+
 export default Index;

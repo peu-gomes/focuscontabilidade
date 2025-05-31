@@ -193,7 +193,12 @@ const Index = () => {
       <section id="planos" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-focus-gray mb-4">📦 Planos simples e transparentes</h3>
+            <h3 className="text-3xl font-bold text-focus-gray mb-4">
+              Planos simples e transparentes
+            </h3>
+            <p className="text-lg text-focus-gray/80">
+              Escolha o plano ideal para o seu negócio
+            </p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">

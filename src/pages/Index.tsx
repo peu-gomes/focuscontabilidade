@@ -2,10 +2,24 @@ import React from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+
 const Index = () => {
   const whatsappNumber = "5577981522683"; // Substituir pelo número real
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  
+  const meiWhatsappMessage = "Olá! Quero o plano MEI";
+  const meiWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(meiWhatsappMessage)}`;
+  
+  const essencialWhatsappMessage = "Olá! Quero o plano Essencial";
+  const essencialWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(essencialWhatsappMessage)}`;
+  
+  const proWhatsappMessage = "Olá! Quero o plano PRO";
+  const proWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(proWhatsappMessage)}`;
+  
+  const personalizadoWhatsappMessage = "Olá, Quero um plano personalizado.";
+  const personalizadoWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(personalizadoWhatsappMessage)}`;
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
@@ -148,26 +162,28 @@ const Index = () => {
           
           {/* Como funciona */}
           <div className="mb-16">
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {steps.map((step, index) => <div key={index} className="text-center">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {steps.map((step, index) => (
+                <div key={index} className="text-center">
                   <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <step.icon className="w-8 h-8 text-white" />
                   </div>
                   <div className="text-xl font-semibold text-blue-100 mb-1">{step.title}</div>
                   <div className="text-blue-200 text-sm">{step.description}</div>
-                </div>)}
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Nossos Serviços */}
           <div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => <div key={index} className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => (
+                <div key={index} className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
                   <Check className="w-5 h-5 text-white flex-shrink-0" />
                   <span className="text-blue-100">{servico}</span>
-                </div>)}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -195,7 +211,7 @@ const Index = () => {
                   <li>• Consultoria básica</li>
                   <li>• Suporte via WhatsApp</li>
                 </ul>
-                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
+                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
@@ -221,7 +237,7 @@ const Index = () => {
                   <li>• Relatórios mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
-                <Button className="w-full mt-6 bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
+                <Button className="w-full mt-6 bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
@@ -244,7 +260,7 @@ const Index = () => {
                   <li>• Relatórios personalizados e orientações mensais</li>
                 </ul>
                 <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
-                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(whatsappUrl, '_blank')}>
+                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
                   Escolher Plano
                 </Button>
               </CardContent>
@@ -259,7 +275,7 @@ const Index = () => {
                 <p className="text-focus-gray/80 mb-6">
                   Montamos um plano sob medida para as necessidades da sua empresa
                 </p>
-                <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-4 sm:px-8 py-4 text-sm sm:text-lg font-semibold">
+                <Button onClick={() => window.open(personalizadoWhatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-4 sm:px-8 py-4 text-sm sm:text-lg font-semibold">
                   <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   <span className="whitespace-nowrap">Quero um plano personalizado</span>
                 </Button>
@@ -377,4 +393,5 @@ const Index = () => {
       </footer>
     </div>;
 };
+
 export default Index;

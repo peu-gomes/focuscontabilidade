@@ -2,6 +2,7 @@ import React from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import ProcessSteps from '@/components/ProcessSteps';
 
 const Index = () => {
   const whatsappNumber = "5577981522683"; // Substituir pelo número real
@@ -27,7 +28,6 @@ const Index = () => {
     });
   };
 
-  // ... keep existing code (advantages array)
   const advantages = [{
     icon: MessageCircle,
     title: "Atendimento rápido via WhatsApp",
@@ -44,25 +44,6 @@ const Index = () => {
     icon: Shield,
     title: "Monitoramos sua situação fiscal automaticamente",
     description: "Fique sempre em dia com suas obrigações"
-  }];
-
-  // ... keep existing code (steps array)
-  const steps = [{
-    icon: MessageCircle,
-    title: "1. Entre em contato",
-    description: "Mande uma mensagem no WhatsApp e conte sobre sua empresa"
-  }, {
-    icon: FileText,
-    title: "2. Envie os documentos",
-    description: "Compartilhe os documentos necessários pelo próprio WhatsApp"
-  }, {
-    icon: CheckCircle,
-    title: "3. Deixe com a gente",
-    description: "Cuidamos de toda a parte contábil e fiscal da sua empresa"
-  }, {
-    icon: Smartphone,
-    title: "4. Acompanhe pelo celular",
-    description: "Receba relatórios e documentos direto no seu WhatsApp"
   }];
 
   return (
@@ -151,34 +132,21 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Como funciona e o que oferecemos */}
+      {/* Process Steps - New Component */}
+      <ProcessSteps />
+
+      {/* Nossos Serviços */}
       <section id="como-funciona" className="py-16 bg-gradient-to-br from-focus-blue to-focus-green">
         <div className="w-full max-w-[1280px] mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-white mb-4">
-              Como funciona e o que oferecemos
+              O que oferecemos
             </h3>
             <p className="text-blue-100 text-lg">
-              Processo simples e serviços completos
+              Serviços completos para sua empresa
             </p>
           </div>
           
-          {/* Como funciona */}
-          <div className="mb-16">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {steps.map((step, index) => (
-                <div key={index} className="text-center">
-                  <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                    <step.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="text-xl font-semibold text-blue-100 mb-1">{step.title}</div>
-                  <div className="text-blue-200 text-sm">{step.description}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Nossos Serviços */}
           <div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => (

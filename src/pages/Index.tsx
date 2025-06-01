@@ -3,7 +3,6 @@ import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckC
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import ProcessSteps from '@/components/ProcessSteps';
-
 const Index = () => {
   const whatsappNumber = "5577981522683";
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
@@ -16,16 +15,13 @@ const Index = () => {
   const proWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(proWhatsappMessage)}`;
   const personalizadoWhatsappMessage = "Olá, Quero um plano personalizado.";
   const personalizadoWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(personalizadoWhatsappMessage)}`;
-
   const [expandedService, setExpandedService] = useState<number | null>(null);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
       behavior: 'smooth'
     });
   };
-
   const advantages = [{
     icon: MessageCircle,
     title: "Atendimento rápido via WhatsApp",
@@ -43,48 +39,35 @@ const Index = () => {
     title: "Monitoramos sua situação fiscal automaticamente",
     description: "Fique sempre em dia com suas obrigações"
   }];
-
-  const services = [
-    {
-      title: 'Abertura de empresa',
-      description: 'Processo completo de abertura, incluindo escolha do regime tributário mais adequado e todas as documentações necessárias.'
-    },
-    {
-      title: 'Contabilidade mensal',
-      description: 'Escrituração contábil completa, demonstrações financeiras e relatórios gerenciais personalizados.'
-    },
-    {
-      title: 'Emissão de notas fiscais e obrigações',
-      description: 'Suporte na emissão de notas fiscais e cumprimento de todas as obrigações fiscais e acessórias.'
-    },
-    {
-      title: 'Folha de pagamento (serviço adicional)',
-      description: 'Gestão completa da folha de pagamento, incluindo admissões, demissões e cálculos trabalhistas.'
-    },
-    {
-      title: 'Imposto de Renda Pessoa Física',
-      description: 'Declaração completa do IRPF, incluindo análise de documentos e planejamento tributário pessoal.'
-    },
-    {
-      title: 'Consultoria e planejamento tributário',
-      description: 'Análise estratégica para otimização fiscal e escolha do melhor regime tributário.'
-    },
-    {
-      title: 'Regularização de CNPJ e parcelamentos',
-      description: 'Auxílio na regularização de pendências e negociação de débitos com órgãos públicos.'
-    },
-    {
-      title: 'Monitoramento de certidões e pendências fiscais',
-      description: 'Acompanhamento proativo de certidões e resolução de pendências antes que se tornem problemas.'
-    }
-  ];
-
+  const services = [{
+    title: 'Abertura de empresa',
+    description: 'Processo completo de abertura, incluindo escolha do regime tributário mais adequado e todas as documentações necessárias.'
+  }, {
+    title: 'Contabilidade mensal',
+    description: 'Escrituração contábil completa, demonstrações financeiras e relatórios gerenciais personalizados.'
+  }, {
+    title: 'Emissão de notas fiscais e obrigações',
+    description: 'Suporte na emissão de notas fiscais e cumprimento de todas as obrigações fiscais e acessórias.'
+  }, {
+    title: 'Folha de pagamento (serviço adicional)',
+    description: 'Gestão completa da folha de pagamento, incluindo admissões, demissões e cálculos trabalhistas.'
+  }, {
+    title: 'Imposto de Renda Pessoa Física',
+    description: 'Declaração completa do IRPF, incluindo análise de documentos e planejamento tributário pessoal.'
+  }, {
+    title: 'Consultoria e planejamento tributário',
+    description: 'Análise estratégica para otimização fiscal e escolha do melhor regime tributário.'
+  }, {
+    title: 'Regularização de CNPJ e parcelamentos',
+    description: 'Auxílio na regularização de pendências e negociação de débitos com órgãos públicos.'
+  }, {
+    title: 'Monitoramento de certidões e pendências fiscais',
+    description: 'Acompanhamento proativo de certidões e resolução de pendências antes que se tornem problemas.'
+  }];
   const toggleService = (index: number) => {
     setExpandedService(expandedService === index ? null : index);
   };
-
-  return (
-    <div className="min-h-screen bg-white font-sans">
+  return <div className="min-h-screen bg-white font-sans">
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div className="w-full max-w-[1280px] mx-auto px-4 py-4">
@@ -146,15 +129,13 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {advantages.map((advantage, index) => (
-              <div key={index} className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300 border border-white/20">
+            {advantages.map((advantage, index) => <div key={index} className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300 border border-white/20">
                 <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <advantage.icon className="w-8 h-8 text-white" />
                 </div>
                 <div className="text-xl font-semibold mb-2">{advantage.title}</div>
                 <div className="text-blue-100 text-sm">{advantage.description}</div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -176,30 +157,18 @@ const Index = () => {
           
           <div>
             <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-              {services.map((service, index) => (
-                <div
-                  key={index}
-                  className="bg-white/10 rounded-lg overflow-hidden cursor-pointer transition-all duration-300"
-                  onClick={() => toggleService(index)}
-                >
+              {services.map((service, index) => <div key={index} className="bg-white/10 rounded-lg overflow-hidden cursor-pointer transition-all duration-300" onClick={() => toggleService(index)}>
                   <div className="flex items-center justify-between p-4">
                     <div className="flex items-center space-x-3 text-white">
                       <Check className="w-5 h-5 flex-shrink-0" />
                       <span>{service.title}</span>
                     </div>
-                    {expandedService === index ? (
-                      <ChevronUp className="w-5 h-5 text-white" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5 text-white" />
-                    )}
+                    {expandedService === index ? <ChevronUp className="w-5 h-5 text-white" /> : <ChevronDown className="w-5 h-5 text-white" />}
                   </div>
-                  {expandedService === index && (
-                    <div className="px-4 pb-4 text-blue-100 text-sm">
+                  {expandedService === index && <div className="px-4 pb-4 text-blue-100 text-sm">
                       {service.description}
-                    </div>
-                  )}
-                </div>
-              ))}
+                    </div>}
+                </div>)}
             </div>
           </div>
         </div>
@@ -305,10 +274,10 @@ const Index = () => {
       </section>
 
       {/* Quem Somos */}
-      <section id="quem-somos" className="py-16 bg-[#000a00]/[0.04] mt-12 rounded-lg p-8">
+      <section id="quem-somos" className="py-16 mt-12 rounded-lg p-8 bg-blue-900">
         <div className="w-full max-w-[1280px] mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h3 className="text-3xl font-bold text-focus-gray mb-8">Quem Somos</h3>
+            <h3 className="text-3xl font-bold text-white mb-8">Quem Somos</h3>
             <div className="bg-white rounded-lg p-8 shadow-sm">
               <Users className="w-16 h-16 text-focus-blue mx-auto mb-6" />
               <p className="text-lg text-focus-gray/80 mb-6 font-medium">Somos uma contabilidade feita por contadores conectados com o presente.</p>
@@ -409,8 +378,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;

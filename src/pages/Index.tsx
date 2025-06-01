@@ -258,7 +258,7 @@ const Index = () => {
           {/* Plano Personalizado - Destaque */}
           <div className="mt-12 max-w-6xl mx-auto">
             <Card className="bg-focus-gray text-white">
-              <CardContent className="p-8 text-center">
+              <CardContent className="relative hover:shadow-lg transition-shadow">
                 <h4 className="text-2xl font-bold mb-4">Precisa de algo específico?</h4>
                 <p className="text-gray-200 mb-6">
                   Montamos um plano sob medida para as necessidades da sua empresa

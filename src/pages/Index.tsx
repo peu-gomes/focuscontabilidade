@@ -93,16 +93,23 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Vantagens */}
-      <section id="vantagens" className="py-16 bg-white">
-        <div className="w-full max-w-[1280px] mx-auto px-4">
+      {/* Vantagens - com background diferenciado */}
+      <section id="vantagens" className="py-16 bg-gradient-to-br from-slate-50 via-blue-50/30 to-green-50/30 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-focus-blue/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-focus-green/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-focus-blue/5 to-focus-green/5 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="w-full max-w-[1280px] mx-auto px-4 relative">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-focus-gray mb-4">Por que escolher a Focus?</h3>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {advantages.map((advantage, index) => (
-              <div key={index} className="text-center">
+              <div key={index} className="text-center bg-white/60 backdrop-blur-sm rounded-xl p-6 hover:bg-white/80 transition-all duration-300 border border-white/20 shadow-sm hover:shadow-md">
                 <div className="bg-focus-blue/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <advantage.icon className="w-8 h-8 text-focus-blue" />
                 </div>
@@ -112,7 +119,7 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="mt-12 rounded-lg p-8 bg-[#000a00]/[0.04] max-w-6xl mx-auto">
+          <div className="mt-12 rounded-lg p-8 bg-white/60 backdrop-blur-sm max-w-6xl mx-auto border border-white/20">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <ul className="space-y-2 text-focus-gray/80">

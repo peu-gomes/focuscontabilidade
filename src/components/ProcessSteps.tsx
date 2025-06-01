@@ -10,7 +10,7 @@ const ProcessSteps = () => {
       title: "Entre em contato",
       step: "01",
       description: "Mande uma mensagem no WhatsApp e conte sobre sua empresa",
-      color: "from-blue-500 to-blue-600",
+      color: "from-focus-blue to-blue-600",
       bgColor: "bg-blue-50",
       borderColor: "border-blue-200"
     },
@@ -37,7 +37,7 @@ const ProcessSteps = () => {
       title: "Acompanhe pelo celular",
       step: "04",
       description: "Receba relatórios e documentos direto no seu WhatsApp",
-      color: "from-green-500 to-green-600", 
+      color: "from-focus-green to-green-600", 
       bgColor: "bg-green-50",
       borderColor: "border-green-200"
     }
@@ -62,7 +62,7 @@ const ProcessSteps = () => {
         </div>
 
         {/* Desktop View - Connected Cards */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <div className="flex items-center justify-center gap-4 max-w-6xl mx-auto">
             {steps.map((step, index) => (
               <React.Fragment key={index}>
@@ -100,33 +100,58 @@ const ProcessSteps = () => {
           </div>
         </div>
 
+        {/* Tablet View - Grid */}
+        <div className="hidden md:grid lg:hidden grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {steps.map((step, index) => (
+            <div key={index} className={`relative ${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-6 h-72 flex flex-col items-center text-center group hover:scale-105 transition-all duration-300 hover:shadow-xl overflow-visible`}>
+              {/* Step number badge - ajustado para não cortar */}
+              <div className={`absolute -top-3 left-6 w-10 h-10 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center text-white font-bold text-base shadow-lg z-10`}>
+                {step.step}
+              </div>
+              
+              {/* Icon */}
+              <div className={`w-14 h-14 bg-gradient-to-r ${step.color} rounded-xl flex items-center justify-center mb-4 mt-3 group-hover:scale-110 transition-transform duration-300`}>
+                <step.icon className="w-7 h-7 text-white" />
+              </div>
+              
+              {/* Content */}
+              <h4 className="text-lg font-bold text-focus-gray mb-3 leading-tight">
+                {step.title}
+              </h4>
+              <p className="text-focus-gray/70 text-sm leading-relaxed flex-1">
+                {step.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
         {/* Mobile View - Carousel */}
         <div className="md:hidden">
           <Carousel className="w-full max-w-sm mx-auto" opts={{ align: "start", loop: false }}>
             <CarouselContent className="-ml-2 md:-ml-4">
               {steps.map((step, index) => (
                 <CarouselItem key={index} className="pl-2 md:pl-4 basis-[85%]">
-                  <div className={`${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-6 h-80 flex flex-col items-center text-center relative overflow-hidden`}>
+                  <div className={`${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-4 h-72 flex flex-col items-center text-center relative overflow-visible mt-4`}>
                     {/* Background pattern */}
-                    <div className="absolute top-0 right-0 w-20 h-20 opacity-10">
+                    <div className="absolute top-0 right-0 w-16 h-16 opacity-10">
                       <div className={`w-full h-full bg-gradient-to-br ${step.color} rounded-bl-full`}></div>
                     </div>
                     
-                    {/* Step number badge */}
-                    <div className={`absolute -top-4 left-6 w-12 h-12 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10`}>
+                    {/* Step number badge - corrigido para mobile */}
+                    <div className={`absolute -top-3 left-4 w-10 h-10 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center text-white font-bold text-base shadow-lg z-10`}>
                       {step.step}
                     </div>
                     
                     {/* Icon */}
-                    <div className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-2xl flex items-center justify-center mb-6 mt-4 shadow-lg`}>
-                      <step.icon className="w-8 h-8 text-white" />
+                    <div className={`w-12 h-12 bg-gradient-to-r ${step.color} rounded-xl flex items-center justify-center mb-4 mt-3 shadow-lg`}>
+                      <step.icon className="w-6 h-6 text-white" />
                     </div>
                     
                     {/* Content */}
-                    <h4 className="text-xl font-bold text-focus-gray mb-4 leading-tight">
+                    <h4 className="text-lg font-bold text-focus-gray mb-3 leading-tight px-2">
                       {step.title}
                     </h4>
-                    <p className="text-focus-gray/70 text-sm leading-relaxed flex-1">
+                    <p className="text-focus-gray/70 text-sm leading-relaxed flex-1 px-2">
                       {step.description}
                     </p>
                   </div>

@@ -3,31 +3,24 @@ import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckC
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import ProcessSteps from '@/components/ProcessSteps';
-
 const Index = () => {
   const whatsappNumber = "5577981522683"; // Substituir pelo número real
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-  
   const meiWhatsappMessage = "Olá! Quero o plano MEI";
   const meiWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(meiWhatsappMessage)}`;
-  
   const essencialWhatsappMessage = "Olá! Quero o plano Essencial";
   const essencialWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(essencialWhatsappMessage)}`;
-  
   const proWhatsappMessage = "Olá! Quero o plano PRO";
   const proWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(proWhatsappMessage)}`;
-  
   const personalizadoWhatsappMessage = "Olá, Quero um plano personalizado.";
   const personalizadoWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(personalizadoWhatsappMessage)}`;
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
       behavior: 'smooth'
     });
   };
-
   const advantages = [{
     icon: MessageCircle,
     title: "Atendimento rápido via WhatsApp",
@@ -45,9 +38,7 @@ const Index = () => {
     title: "Monitoramos sua situação fiscal automaticamente",
     description: "Fique sempre em dia com suas obrigações"
   }];
-
-  return (
-    <div className="min-h-screen bg-white font-sans">
+  return <div className="min-h-screen bg-white font-sans">
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div className="w-full max-w-[1280px] mx-auto px-4 py-4">
@@ -108,34 +99,16 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {advantages.map((advantage, index) => (
-              <div key={index} className="text-center bg-white/60 backdrop-blur-sm rounded-xl p-6 hover:bg-white/80 transition-all duration-300 border border-white/20 shadow-sm hover:shadow-md">
+            {advantages.map((advantage, index) => <div key={index} className="text-center bg-white/60 backdrop-blur-sm rounded-xl p-6 hover:bg-white/80 transition-all duration-300 border border-white/20 shadow-sm hover:shadow-md">
                 <div className="bg-focus-blue/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <advantage.icon className="w-8 h-8 text-focus-blue" />
                 </div>
                 <div className="text-xl font-semibold text-focus-gray mb-2">{advantage.title}</div>
                 <div className="text-focus-gray/80 text-sm">{advantage.description}</div>
-              </div>
-            ))}
+              </div>)}
           </div>
 
-          <div className="mt-12 rounded-lg p-8 bg-white/60 backdrop-blur-sm max-w-6xl mx-auto border border-white/20">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <ul className="space-y-2 text-focus-gray/80">
-                  <li>• Envie tudo de forma prática, pelo celular</li>
-                  <li>• Linguagem simples, sem termos complicados</li>
-                  <li>• Do MEI à empresa em expansão, estamos ao seu lado em cada fase do crescimento</li>
-                </ul>
-              </div>
-              <div className="flex items-center justify-center">
-                <div className="text-center">
-                  <Clock className="w-16 h-16 text-focus-blue mx-auto mb-4" />
-                  <p className="text-focus-gray/80">Economia de tempo e praticidade em cada processo</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </section>
 
@@ -156,12 +129,10 @@ const Index = () => {
           
           <div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => (
-                <div key={index} className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
+              {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => <div key={index} className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
                   <Check className="w-5 h-5 text-white flex-shrink-0" />
                   <span className="text-blue-100">{servico}</span>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -295,9 +266,7 @@ const Index = () => {
             <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
                 </div>
                 <p className="text-focus-gray/80 mb-4">
                   "Comecei com a Focus porque queria simplicidade. Hoje não me preocupo mais com nada, eles cuidam de tudo."
@@ -309,9 +278,7 @@ const Index = () => {
             <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
                 </div>
                 <p className="text-focus-gray/80 mb-4">
                   "Toda a documentação chega no meu WhatsApp. Rápido e simples, do jeito que eu precisava."
@@ -373,8 +340,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;

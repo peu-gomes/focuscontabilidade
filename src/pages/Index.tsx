@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone } from 'lucide-react';
+import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -45,6 +45,38 @@ const Index = () => {
     title: "Monitoramos sua situação fiscal automaticamente",
     description: "Fique sempre em dia com suas obrigações"
   }];
+
+  // Process steps for the new section
+  const processSteps = [
+    {
+      step: "01",
+      icon: MessageCircle,
+      title: "Primeiro Contato",
+      description: "Entre em contato via WhatsApp e conte sobre sua necessidade contábil",
+      color: "from-blue-500 to-blue-600"
+    },
+    {
+      step: "02", 
+      icon: FileText,
+      title: "Análise Personalizada",
+      description: "Analisamos sua situação e criamos uma proposta sob medida",
+      color: "from-green-500 to-green-600"
+    },
+    {
+      step: "03",
+      icon: CheckCircle,
+      title: "Implementação",
+      description: "Colocamos tudo em funcionamento de forma rápida e eficiente",
+      color: "from-purple-500 to-purple-600"
+    },
+    {
+      step: "04",
+      icon: Smartphone,
+      title: "Acompanhamento",
+      description: "Suporte contínuo e relatórios direto no seu WhatsApp",
+      color: "from-orange-500 to-orange-600"
+    }
+  ];
 
   // ... keep existing code (steps array)
   const steps = [{
@@ -147,6 +179,77 @@ const Index = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Steps Section */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="w-full max-w-[1280px] mx-auto px-4">
+          <div className="text-center mb-16">
+            <h3 className="text-3xl font-bold text-focus-gray mb-4">
+              Como funciona nosso processo
+            </h3>
+            <p className="text-lg text-focus-gray/80 max-w-2xl mx-auto">
+              Um processo simples e transparente para cuidar da contabilidade da sua empresa
+            </p>
+          </div>
+          
+          <div className="relative">
+            {/* Desktop Layout */}
+            <div className="hidden lg:block">
+              <div className="grid lg:grid-cols-4 gap-8">
+                {processSteps.map((step, index) => (
+                  <div key={index} className="relative">
+                    {/* Connecting line */}
+                    {index < processSteps.length - 1 && (
+                      <div className="absolute top-16 left-full w-8 h-0.5 bg-gradient-to-r from-focus-blue/30 to-focus-green/30 z-0 transform -translate-x-4">
+                        <ArrowRight className="absolute -right-2 -top-2 w-4 h-4 text-focus-blue/60" />
+                      </div>
+                    )}
+                    
+                    <div className="relative z-10 text-center">
+                      <div className={`w-32 h-32 mx-auto mb-6 rounded-2xl bg-gradient-to-br ${step.color} p-1`}>
+                        <div className="w-full h-full bg-white rounded-xl flex flex-col items-center justify-center">
+                          <div className="text-2xl font-bold text-gray-600 mb-2">{step.step}</div>
+                          <step.icon className="w-8 h-8 text-focus-blue" />
+                        </div>
+                      </div>
+                      <h4 className="text-xl font-bold text-focus-gray mb-3">{step.title}</h4>
+                      <p className="text-focus-gray/80 text-sm leading-relaxed">{step.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile Layout */}
+            <div className="lg:hidden space-y-8">
+              {processSteps.map((step, index) => (
+                <div key={index} className="flex items-start space-x-4">
+                  <div className={`flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br ${step.color} p-1`}>
+                    <div className="w-full h-full bg-white rounded-lg flex flex-col items-center justify-center">
+                      <div className="text-sm font-bold text-gray-600">{step.step}</div>
+                      <step.icon className="w-5 h-5 text-focus-blue" />
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-bold text-focus-gray mb-2">{step.title}</h4>
+                    <p className="text-focus-gray/80 text-sm leading-relaxed">{step.description}</p>
+                  </div>
+                  {index < processSteps.length - 1 && (
+                    <div className="absolute left-8 mt-16 w-0.5 h-8 bg-gradient-to-b from-focus-blue/30 to-focus-green/30"></div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <Button onClick={() => window.open(whatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-8 py-4 text-lg font-semibold">
+              <MessageCircle className="w-5 h-5 mr-2" />
+              Começar agora
+            </Button>
           </div>
         </div>
       </section>

@@ -73,7 +73,7 @@ const Index = () => {
         <div className="w-full max-w-[1280px] mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <img alt="Focus Contabilidade" src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png" className="h-10 w-auto object-contain" />
+              <img alt="Focus Contabilidade" className="h-10 w-auto object-contain" src="/lovable-uploads/d46b0f3f-634a-4ba4-9b52-234af8bbba8b.png" />
             </div>
             
             <nav className="hidden md:flex items-center space-x-6">
@@ -348,7 +348,7 @@ const Index = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <img alt="Focus Contabilidade" className="h-8 w-auto brightness-0 invert" src="/lovable-uploads/7e766620-115f-42c5-b8f9-90b895b6862e.png" />
+                <img alt="Focus Contabilidade" className="h-8 w-auto brightness-0 invert" src="/lovable-uploads/72dd4e0c-c190-431c-b465-e6f21689b198.png" />
               </div>
               <p className="text-gray-300">
                 Contabilidade moderna, ágil e 100% digital para todo o Brasil.

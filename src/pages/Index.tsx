@@ -2,24 +2,32 @@ import React from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+
 const Index = () => {
   const whatsappNumber = "5577981522683"; // Substituir pelo número real
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  
   const meiWhatsappMessage = "Olá! Quero o plano MEI";
   const meiWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(meiWhatsappMessage)}`;
+  
   const essencialWhatsappMessage = "Olá! Quero o plano Essencial";
   const essencialWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(essencialWhatsappMessage)}`;
+  
   const proWhatsappMessage = "Olá! Quero o plano PRO";
   const proWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(proWhatsappMessage)}`;
+  
   const personalizadoWhatsappMessage = "Olá, Quero um plano personalizado.";
   const personalizadoWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(personalizadoWhatsappMessage)}`;
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
       behavior: 'smooth'
     });
   };
+
+  // ... keep existing code (advantages array)
   const advantages = [{
     icon: MessageCircle,
     title: "Atendimento rápido via WhatsApp",
@@ -37,6 +45,8 @@ const Index = () => {
     title: "Monitoramos sua situação fiscal automaticamente",
     description: "Fique sempre em dia com suas obrigações"
   }];
+
+  // ... keep existing code (steps array)
   const steps = [{
     icon: MessageCircle,
     title: "1. Entre em contato",
@@ -54,10 +64,12 @@ const Index = () => {
     title: "4. Acompanhe pelo celular",
     description: "Receba relatórios e documentos direto no seu WhatsApp"
   }];
-  return <div className="min-h-screen bg-white font-sans">
+
+  return (
+    <div className="min-h-screen bg-white font-sans">
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
-        <div className="container mx-auto px-4 py-4">
+        <div className="w-full max-w-[1280px] mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <img alt="Focus Contabilidade" src="/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png" className="h-10 w-auto object-contain" />
@@ -82,7 +94,7 @@ const Index = () => {
 
       {/* Hero Section */}
       <section id="inicio" className="pt-20 pb-0 bg-gradient-to-br from-blue-50 via-white to-gray-50">
-        <div className="container mx-auto px-4 py-16">
+        <div className="w-full max-w-[1280px] mx-auto px-4 py-16">
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-6xl font-bold text-focus-gray mb-6">
               🚀 Contabilidade moderna,
@@ -102,29 +114,28 @@ const Index = () => {
 
       {/* Vantagens */}
       <section id="vantagens" className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="w-full max-w-[1280px] mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-focus-gray mb-4">Por que escolher a Focus?</h3>
-            
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {advantages.map((advantage, index) => <div key={index} className="text-center">
+            {advantages.map((advantage, index) => (
+              <div key={index} className="text-center">
                 <div className="bg-focus-blue/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <advantage.icon className="w-8 h-8 text-focus-blue" />
                 </div>
                 <div className="text-xl font-semibold text-focus-gray mb-2">{advantage.title}</div>
                 <div className="text-focus-gray/80 text-sm">{advantage.description}</div>
-              </div>)}
+              </div>
+            ))}
           </div>
 
           <div className="mt-12 rounded-lg p-8 bg-[#000a00]/[0.04] max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                
                 <ul className="space-y-2 text-focus-gray/80">
                   <li>• Envie tudo de forma prática, pelo celular</li>
-                  
                   <li>• Linguagem simples, sem termos complicados</li>
                   <li>• Do MEI à empresa em expansão, estamos ao seu lado em cada fase do crescimento</li>
                 </ul>
@@ -142,7 +153,7 @@ const Index = () => {
 
       {/* Como funciona e o que oferecemos */}
       <section id="como-funciona" className="py-16 bg-gradient-to-br from-focus-blue to-focus-green">
-        <div className="container mx-auto px-4">
+        <div className="w-full max-w-[1280px] mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-white mb-4">
               Como funciona e o que oferecemos
@@ -155,23 +166,27 @@ const Index = () => {
           {/* Como funciona */}
           <div className="mb-16">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {steps.map((step, index) => <div key={index} className="text-center">
+              {steps.map((step, index) => (
+                <div key={index} className="text-center">
                   <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <step.icon className="w-8 h-8 text-white" />
                   </div>
                   <div className="text-xl font-semibold text-blue-100 mb-1">{step.title}</div>
                   <div className="text-blue-200 text-sm">{step.description}</div>
-                </div>)}
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Nossos Serviços */}
           <div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => <div key={index} className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
+              {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => (
+                <div key={index} className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
                   <Check className="w-5 h-5 text-white flex-shrink-0" />
                   <span className="text-blue-100">{servico}</span>
-                </div>)}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -179,7 +194,7 @@ const Index = () => {
 
       {/* Planos */}
       <section id="planos" className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="w-full max-w-[1280px] mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-focus-gray mb-4">Planos</h3>
             <p className="text-lg text-focus-gray/80">Soluções que acompanham o crescimento da sua empresa</p>
@@ -275,8 +290,8 @@ const Index = () => {
       </section>
 
       {/* Quem Somos */}
-      <section id="quem-somos" className="py-16 bg-[#000a00]/[0.04] mt-12 rounded-lg p-8 ">
-        <div className="container mx-auto px-4">
+      <section id="quem-somos" className="py-16 bg-[#000a00]/[0.04] mt-12 rounded-lg p-8">
+        <div className="w-full max-w-[1280px] mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-3xl font-bold text-focus-gray mb-8">Quem Somos</h3>
             <div className="bg-white rounded-lg p-8 shadow-sm">
@@ -296,7 +311,7 @@ const Index = () => {
 
       {/* Depoimentos */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="w-full max-w-[1280px] mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-focus-gray mb-4">O que nossos clientes dizem</h3>
           </div>
@@ -305,7 +320,9 @@ const Index = () => {
             <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
                 </div>
                 <p className="text-focus-gray/80 mb-4">
                   "Comecei com a Focus porque queria simplicidade. Hoje não me preocupo mais com nada, eles cuidam de tudo."
@@ -317,7 +334,9 @@ const Index = () => {
             <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
                 </div>
                 <p className="text-focus-gray/80 mb-4">
                   "Toda a documentação chega no meu WhatsApp. Rápido e simples, do jeito que eu precisava."
@@ -331,7 +350,7 @@ const Index = () => {
 
       {/* CTA Final */}
       <section className="py-16 bg-gradient-to-r from-focus-blue to-focus-green">
-        <div className="container mx-auto px-4 text-center">
+        <div className="w-full max-w-[1280px] mx-auto px-4 text-center">
           <h3 className="text-3xl font-bold text-white mb-4">Pronto para descomplicar sua contabilidade?</h3>
           <p className="text-xl text-blue-100 mb-8 font-medium">
             Fale agora com a Focus e tenha um contador no seu bolso, direto pelo WhatsApp.
@@ -345,7 +364,7 @@ const Index = () => {
 
       {/* Footer */}
       <footer id="contato" className="py-12 bg-focus-gray text-white">
-        <div className="container mx-auto px-4">
+        <div className="w-full max-w-[1280px] mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <div>
               <div className="flex items-center space-x-3 mb-4">
@@ -361,7 +380,6 @@ const Index = () => {
               <div className="space-y-2 text-gray-300">
                 <p>WhatsApp: (77) 98152-2683</p>
                 <p>E-mail: contato@contabilfocus.com.br</p>
-                
               </div>
             </div>
             
@@ -380,6 +398,8 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;

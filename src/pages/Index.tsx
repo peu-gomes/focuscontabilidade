@@ -1,10 +1,11 @@
-import React from 'react';
-import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone } from 'lucide-react';
+import React, { useState } from 'react';
+import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import ProcessSteps from '@/components/ProcessSteps';
+
 const Index = () => {
-  const whatsappNumber = "5577981522683"; // Substituir pelo número real
+  const whatsappNumber = "5577981522683";
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
   const meiWhatsappMessage = "Olá! Quero o plano MEI";
@@ -15,12 +16,16 @@ const Index = () => {
   const proWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(proWhatsappMessage)}`;
   const personalizadoWhatsappMessage = "Olá, Quero um plano personalizado.";
   const personalizadoWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(personalizadoWhatsappMessage)}`;
+
+  const [expandedService, setExpandedService] = useState<number | null>(null);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
       behavior: 'smooth'
     });
   };
+
   const advantages = [{
     icon: MessageCircle,
     title: "Atendimento rápido via WhatsApp",
@@ -38,7 +43,48 @@ const Index = () => {
     title: "Monitoramos sua situação fiscal automaticamente",
     description: "Fique sempre em dia com suas obrigações"
   }];
-  return <div className="min-h-screen bg-white font-sans">
+
+  const services = [
+    {
+      title: 'Abertura de empresa',
+      description: 'Processo completo de abertura, incluindo escolha do regime tributário mais adequado e todas as documentações necessárias.'
+    },
+    {
+      title: 'Contabilidade mensal',
+      description: 'Escrituração contábil completa, demonstrações financeiras e relatórios gerenciais personalizados.'
+    },
+    {
+      title: 'Emissão de notas fiscais e obrigações',
+      description: 'Suporte na emissão de notas fiscais e cumprimento de todas as obrigações fiscais e acessórias.'
+    },
+    {
+      title: 'Folha de pagamento (serviço adicional)',
+      description: 'Gestão completa da folha de pagamento, incluindo admissões, demissões e cálculos trabalhistas.'
+    },
+    {
+      title: 'Imposto de Renda Pessoa Física',
+      description: 'Declaração completa do IRPF, incluindo análise de documentos e planejamento tributário pessoal.'
+    },
+    {
+      title: 'Consultoria e planejamento tributário',
+      description: 'Análise estratégica para otimização fiscal e escolha do melhor regime tributário.'
+    },
+    {
+      title: 'Regularização de CNPJ e parcelamentos',
+      description: 'Auxílio na regularização de pendências e negociação de débitos com órgãos públicos.'
+    },
+    {
+      title: 'Monitoramento de certidões e pendências fiscais',
+      description: 'Acompanhamento proativo de certidões e resolução de pendências antes que se tornem problemas.'
+    }
+  ];
+
+  const toggleService = (index: number) => {
+    setExpandedService(expandedService === index ? null : index);
+  };
+
+  return (
+    <div className="min-h-screen bg-white font-sans">
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div className="w-full max-w-[1280px] mx-auto px-4 py-4">
@@ -85,30 +131,31 @@ const Index = () => {
       </section>
 
       {/* Vantagens - com background diferenciado */}
-      <section id="vantagens" className="py-16 bg-gradient-to-br from-slate-50 via-blue-50/30 to-green-50/30 relative overflow-hidden">
+      <section id="vantagens" className="py-16 bg-focus-blue text-white relative overflow-hidden">
         {/* Background decoration */}
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-focus-blue/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-40 h-40 bg-focus-green/10 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-focus-blue/5 to-focus-green/5 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white rounded-full blur-3xl"></div>
         </div>
         
         <div className="w-full max-w-[1280px] mx-auto px-4 relative">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-focus-gray mb-4">Por que escolher a Focus?</h3>
+            <h3 className="text-3xl font-bold mb-4">Por que escolher a Focus?</h3>
+            <p className="text-blue-100 text-lg">Soluções modernas para sua empresa</p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {advantages.map((advantage, index) => <div key={index} className="text-center bg-white/60 backdrop-blur-sm rounded-xl p-6 hover:bg-white/80 transition-all duration-300 border border-white/20 shadow-sm hover:shadow-md">
-                <div className="bg-focus-blue/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <advantage.icon className="w-8 h-8 text-focus-blue" />
+            {advantages.map((advantage, index) => (
+              <div key={index} className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300 border border-white/20">
+                <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <advantage.icon className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-xl font-semibold text-focus-gray mb-2">{advantage.title}</div>
-                <div className="text-focus-gray/80 text-sm">{advantage.description}</div>
-              </div>)}
+                <div className="text-xl font-semibold mb-2">{advantage.title}</div>
+                <div className="text-blue-100 text-sm">{advantage.description}</div>
+              </div>
+            ))}
           </div>
-
-          
         </div>
       </section>
 
@@ -128,11 +175,31 @@ const Index = () => {
           </div>
           
           <div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {['Abertura de empresa', 'Contabilidade mensal', 'Emissão de notas fiscais e obrigações', 'Folha de pagamento (serviço adicional)', 'Imposto de Renda Pessoa Física', 'Consultoria e planejamento tributário', 'Regularização de CNPJ e parcelamentos', 'Monitoramento de certidões e pendências fiscais'].map((servico, index) => <div key={index} className="flex items-center space-x-3 bg-white/10 p-4 rounded-lg">
-                  <Check className="w-5 h-5 text-white flex-shrink-0" />
-                  <span className="text-blue-100">{servico}</span>
-                </div>)}
+            <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="bg-white/10 rounded-lg overflow-hidden cursor-pointer transition-all duration-300"
+                  onClick={() => toggleService(index)}
+                >
+                  <div className="flex items-center justify-between p-4">
+                    <div className="flex items-center space-x-3 text-white">
+                      <Check className="w-5 h-5 flex-shrink-0" />
+                      <span>{service.title}</span>
+                    </div>
+                    {expandedService === index ? (
+                      <ChevronUp className="w-5 h-5 text-white" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-white" />
+                    )}
+                  </div>
+                  {expandedService === index && (
+                    <div className="px-4 pb-4 text-blue-100 text-sm">
+                      {service.description}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -167,7 +234,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="relative hover:shadow-lg transition-shadow border-2 border-focus-green/20">
+            <Card className="relative hover:shadow-lg transition-shadow">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-4 py-1 rounded-full text-sm font-medium">
                 Mais Popular
               </div>
@@ -193,44 +260,46 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="relative hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-focus-blue font-bold">PRO</span>
-                </div>
-                <CardTitle className="text-xl text-focus-gray">Pro Digital</CardTitle>
-                <CardDescription className="text-3xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-focus-gray/80">
-                  <li>• Tudo do plano Essencial +</li>
-                  <li>• Análise mensal da situação fiscal</li>
-                  <li>• Envio automático de certidões negativas</li>
-                  <li>• Monitoramento contínuo da saúde fiscal</li>
-                  <li>• Relatórios personalizados e orientações mensais</li>
-                </ul>
-                <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
-                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
-                  Escolher Plano
-                </Button>
-              </CardContent>
-            </Card>
+            <div className="bg-gradient-to-r from-focus-blue to-focus-green p-[2px] rounded-xl hover:scale-105 transition-transform duration-300">
+              <Card className="h-full bg-white">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center mb-4">
+                    <span className="text-white font-bold">PRO</span>
+                  </div>
+                  <CardTitle className="text-xl text-focus-gray">Pro Digital</CardTitle>
+                  <CardDescription className="text-3xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm text-focus-gray/80">
+                    <li>• Tudo do plano Essencial +</li>
+                    <li>• Análise mensal da situação fiscal</li>
+                    <li>• Envio automático de certidões negativas</li>
+                    <li>• Monitoramento contínuo da saúde fiscal</li>
+                    <li>• Relatórios personalizados e orientações mensais</li>
+                  </ul>
+                  <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
+                  <Button className="w-full mt-6 bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
+                    Escolher Plano
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
           {/* Plano Personalizado - Destaque */}
           <div className="mt-12 max-w-6xl mx-auto">
-            <div className="bg-gradient-to-r from-focus-blue to-focus-green p-1 rounded-xl">
-              <div className="bg-white rounded-lg p-8 text-center">
-                <h4 className="text-2xl font-bold text-focus-gray mb-4">Precisa de algo específico?</h4>
-                <p className="text-focus-gray/80 mb-6">
+            <Card className="bg-focus-gray text-white">
+              <CardContent className="p-8 text-center">
+                <h4 className="text-2xl font-bold mb-4">Precisa de algo específico?</h4>
+                <p className="text-gray-200 mb-6">
                   Montamos um plano sob medida para as necessidades da sua empresa
                 </p>
-                <Button onClick={() => window.open(personalizadoWhatsappUrl, '_blank')} className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white px-4 sm:px-8 py-4 text-sm sm:text-lg font-semibold">
+                <Button onClick={() => window.open(personalizadoWhatsappUrl, '_blank')} className="bg-white text-focus-gray hover:bg-gray-100 px-4 sm:px-8 py-4 text-sm sm:text-lg font-semibold">
                   <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   <span className="whitespace-nowrap">Quero um plano personalizado</span>
                 </Button>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -340,6 +409,8 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;

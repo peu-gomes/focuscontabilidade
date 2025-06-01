@@ -1,45 +1,44 @@
 import React from 'react';
 import { MessageCircle, FileText, CheckCircle, Smartphone } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+
 const ProcessSteps = () => {
   const steps = [{
     icon: MessageCircle,
     title: "Entre em contato",
     step: "01",
     description: "Mande uma mensagem no WhatsApp e conte sobre sua empresa",
-    color: "from-focus-blue to-blue-600",
-    bgColor: "bg-blue-50",
-    borderColor: "border-blue-200"
+    bgColor: "bg-focus-blue/5",
+    borderColor: "border-focus-blue/20"
   }, {
     icon: FileText,
     title: "Envie os documentos",
     step: "02",
     description: "Compartilhe os documentos necessários pelo próprio WhatsApp",
-    color: "from-cyan-500 to-cyan-600",
-    bgColor: "bg-cyan-50",
-    borderColor: "border-cyan-200"
+    bgColor: "bg-focus-blue/5",
+    borderColor: "border-focus-blue/20"
   }, {
     icon: CheckCircle,
     title: "Deixe com a gente",
     step: "03",
     description: "Cuidamos de toda a parte contábil e fiscal da sua empresa",
-    color: "from-orange-500 to-orange-600",
-    bgColor: "bg-orange-50",
-    borderColor: "border-orange-200"
+    bgColor: "bg-focus-blue/5",
+    borderColor: "border-focus-blue/20"
   }, {
     icon: Smartphone,
     title: "Acompanhe pelo celular",
     step: "04",
     description: "Receba relatórios e documentos direto no seu WhatsApp",
-    color: "from-focus-green to-green-600",
-    bgColor: "bg-green-50",
-    borderColor: "border-green-200"
+    bgColor: "bg-focus-blue/5",
+    borderColor: "border-focus-blue/20"
   }];
-  return <section className="py-16 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+
+  return (
+    <section className="py-16 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-32 h-32 bg-focus-blue rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-focus-green rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-focus-blue rounded-full blur-3xl"></div>
       </div>
       
       <div className="w-full max-w-[1280px] mx-auto px-4 relative">
@@ -55,15 +54,16 @@ const ProcessSteps = () => {
         {/* Desktop View - Connected Cards */}
         <div className="hidden lg:block">
           <div className="flex items-center justify-center gap-4 max-w-6xl mx-auto">
-            {steps.map((step, index) => <React.Fragment key={index}>
+            {steps.map((step, index) => (
+              <React.Fragment key={index}>
                 <div className={`relative ${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-6 w-64 h-80 flex flex-col items-center text-center group hover:scale-105 transition-all duration-300 hover:shadow-xl`}>
                   {/* Step number badge */}
-                  <div className={`absolute -top-4 left-6 w-12 h-12 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg`}>
+                  <div className="absolute -top-4 left-6 w-12 h-12 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
                     {step.step}
                   </div>
                   
                   {/* Icon */}
-                  <div className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-2xl flex items-center justify-center mb-6 mt-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="w-16 h-16 bg-focus-blue rounded-2xl flex items-center justify-center mb-6 mt-4 group-hover:scale-110 transition-transform duration-300">
                     <step.icon className="w-8 h-8 text-white" />
                   </div>
                   
@@ -77,26 +77,30 @@ const ProcessSteps = () => {
                 </div>
                 
                 {/* Arrow connector */}
-                {index < steps.length - 1 && <div className="flex-shrink-0">
+                {index < steps.length - 1 && (
+                  <div className="flex-shrink-0">
                     <svg width="40" height="24" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-focus-blue/30">
                       <path d="M28 4L36 12L28 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       <path d="M4 12H36" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                     </svg>
-                  </div>}
-              </React.Fragment>)}
+                  </div>
+                )}
+              </React.Fragment>
+            ))}
           </div>
         </div>
 
         {/* Tablet View - Grid */}
         <div className="hidden md:grid lg:hidden grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {steps.map((step, index) => <div key={index} className={`relative ${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-6 h-72 flex flex-col items-center text-center group hover:scale-105 transition-all duration-300 hover:shadow-xl overflow-visible`}>
+          {steps.map((step, index) => (
+            <div key={index} className={`relative ${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-6 h-72 flex flex-col items-center text-center group hover:scale-105 transition-all duration-300 hover:shadow-xl overflow-visible`}>
               {/* Step number badge - ajustado para não cortar */}
-              <div className={`absolute -top-3 left-6 w-10 h-10 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center text-white font-bold text-base shadow-lg z-10`}>
+              <div className="absolute -top-3 left-6 w-10 h-10 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-base shadow-lg z-10">
                 {step.step}
               </div>
               
               {/* Icon */}
-              <div className={`w-14 h-14 bg-gradient-to-r ${step.color} rounded-xl flex items-center justify-center mb-4 mt-3 group-hover:scale-110 transition-transform duration-300`}>
+              <div className="w-14 h-14 bg-focus-blue rounded-xl flex items-center justify-center mb-4 mt-3 group-hover:scale-110 transition-transform duration-300">
                 <step.icon className="w-7 h-7 text-white" />
               </div>
               
@@ -107,30 +111,32 @@ const ProcessSteps = () => {
               <p className="text-focus-gray/70 text-sm leading-relaxed flex-1">
                 {step.description}
               </p>
-            </div>)}
+            </div>
+          ))}
         </div>
 
         {/* Mobile View - Carousel */}
         <div className="md:hidden">
           <Carousel className="w-full max-w-sm mx-auto" opts={{
-          align: "start",
-          loop: false
-        }}>
+            align: "start",
+            loop: false
+          }}>
             <CarouselContent className="-ml-2 md:-ml-4">
-              {steps.map((step, index) => <CarouselItem key={index} className="pl-2 md:pl-4 basis-[85%]">
+              {steps.map((step, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 basis-[85%]">
                   <div className={`${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-4 h-72 flex flex-col items-center text-center relative overflow-visible mt-4`}>
                     {/* Background pattern */}
                     <div className="absolute top-0 right-0 w-16 h-16 opacity-10">
-                      <div className={`w-full h-full bg-gradient-to-br ${step.color} rounded-bl-full`}></div>
+                      <div className="w-full h-full bg-gradient-to-br from-focus-blue to-focus-blue rounded-bl-full"></div>
                     </div>
                     
                     {/* Step number badge - corrigido para mobile */}
-                    <div className={`absolute -top-3 left-4 w-10 h-10 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center text-white font-bold text-base shadow-lg z-10`}>
+                    <div className="absolute -top-3 left-4 w-10 h-10 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-base shadow-lg z-10">
                       {step.step}
                     </div>
                     
                     {/* Icon */}
-                    <div className={`w-12 h-12 bg-gradient-to-r ${step.color} rounded-xl flex items-center justify-center mb-4 mt-3 shadow-lg`}>
+                    <div className="w-12 h-12 bg-focus-blue rounded-xl flex items-center justify-center mb-4 mt-3 shadow-lg">
                       <step.icon className="w-6 h-6 text-white" />
                     </div>
                     
@@ -142,7 +148,8 @@ const ProcessSteps = () => {
                       {step.description}
                     </p>
                   </div>
-                </CarouselItem>)}
+                </CarouselItem>
+              ))}
             </CarouselContent>
             <CarouselPrevious className="hidden" />
             <CarouselNext className="hidden" />
@@ -160,6 +167,8 @@ const ProcessSteps = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default ProcessSteps;

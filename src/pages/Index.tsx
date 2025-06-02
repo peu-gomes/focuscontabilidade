@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import ProcessSteps from '@/components/ProcessSteps';
-
 const Index = () => {
   const whatsappNumber = "5577981522683";
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
@@ -18,14 +17,12 @@ const Index = () => {
   const personalizadoWhatsappMessage = "Olá, Quero um plano personalizado.";
   const personalizadoWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(personalizadoWhatsappMessage)}`;
   const [expandedService, setExpandedService] = useState<number | null>(null);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
       behavior: 'smooth'
     });
   };
-
   const advantages = [{
     icon: MessageCircle,
     title: "Atendimento rápido via WhatsApp",
@@ -43,7 +40,6 @@ const Index = () => {
     title: "Monitoramos sua situação fiscal automaticamente",
     description: "Fique sempre em dia com suas obrigações"
   }];
-
   const services = [{
     title: 'Abertura de empresa',
     description: 'Processo completo de abertura, incluindo escolha do regime tributário mais adequado e todas as documentações necessárias.'
@@ -69,11 +65,9 @@ const Index = () => {
     title: 'Monitoramento de certidões e pendências fiscais',
     description: 'Acompanhamento proativo de certidões e resolução de pendências antes que se tornem problemas.'
   }];
-
   const toggleService = (index: number) => {
     setExpandedService(expandedService === index ? null : index);
   };
-
   return <div className="min-h-screen bg-white font-sans">
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
@@ -132,7 +126,7 @@ const Index = () => {
         <div className="w-full max-w-[1280px] mx-auto px-4 relative">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold mb-4">Por que escolher a Focus?</h3>
-            <p className="text-blue-100 text-lg">Soluções modernas para sua empresa</p>
+            <p className="text-blue-100 text-base">Soluções modernas para sua empresa</p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -157,7 +151,7 @@ const Index = () => {
             <h3 className="text-3xl font-bold text-white mb-4">
               O que oferecemos
             </h3>
-            <p className="text-blue-100 text-lg">
+            <p className="text-blue-100 text-base">
               Serviços completos para sua empresa
             </p>
           </div>
@@ -185,8 +179,8 @@ const Index = () => {
       <section id="planos" className="py-16 bg-white">
         <div className="w-full max-w-[1280px] mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-focus-gray mb-4">Planos</h3>
-            <p className="text-lg text-focus-gray/80">Soluções que acompanham o crescimento da sua empresa</p>
+            <h3 className="font-bold text-focus-gray mb-4 text-3xl">Planos</h3>
+            <p className="text-focus-gray/80 text-base">Soluções que acompanham o crescimento da sua empresa</p>
           </div>
           
           <TooltipProvider>
@@ -429,5 +423,4 @@ const Index = () => {
       </footer>
     </div>;
 };
-
 export default Index;

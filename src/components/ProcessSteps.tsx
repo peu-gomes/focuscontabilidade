@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { MessageCircle, FileText, CheckCircle, Smartphone } from 'lucide-react';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+
 const ProcessSteps = () => {
   const steps = [{
     icon: MessageCircle,
@@ -31,6 +32,7 @@ const ProcessSteps = () => {
     bgColor: "bg-focus-blue/5",
     borderColor: "border-focus-blue/20"
   }];
+
   return <section className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-5">
@@ -52,14 +54,14 @@ const ProcessSteps = () => {
         <div className="hidden lg:block">
           <div className="flex items-center justify-center gap-4 max-w-6xl mx-auto">
             {steps.map((step, index) => <React.Fragment key={index}>
-                <div className={`relative ${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-8 w-72 h-96 flex flex-col items-center text-center group hover:scale-105 transition-all duration-300 hover:shadow-xl`}>
-                  {/* Step number badge */}
-                  <div className="absolute -top-5 left-8 w-14 h-14 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                <div className={`relative ${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-8 w-72 h-96 flex flex-col items-center text-center group hover:scale-105 transition-all duration-300 hover:shadow-xl overflow-visible`}>
+                  {/* Step number badge - ajustado para não cortar */}
+                  <div className="absolute -top-6 left-8 w-14 h-14 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg z-10">
                     {step.step}
                   </div>
                   
                   {/* Icon */}
-                  <div className="w-20 h-20 bg-focus-blue rounded-2xl flex items-center justify-center mb-8 mt-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-20 h-20 bg-focus-blue rounded-2xl flex items-center justify-center mb-8 mt-8 group-hover:scale-110 transition-transform duration-300">
                     <step.icon className="w-10 h-10 text-white" />
                   </div>
                   
@@ -84,15 +86,15 @@ const ProcessSteps = () => {
         </div>
 
         {/* Tablet View - Grid 2x2 */}
-        <div className="hidden md:grid lg:hidden grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="hidden md:grid lg:hidden grid-cols-2 gap-8 max-w-5xl mx-auto pt-8">
           {steps.map((step, index) => <div key={index} className={`relative ${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-8 h-80 flex flex-col items-center text-center group hover:scale-105 transition-all duration-300 hover:shadow-xl overflow-visible`}>
-              {/* Step number badge */}
-              <div className="absolute -top-4 left-8 w-12 h-12 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
+              {/* Step number badge - ajustado para não cortar */}
+              <div className="absolute -top-5 left-8 w-12 h-12 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
                 {step.step}
               </div>
               
               {/* Icon */}
-              <div className="w-16 h-16 bg-focus-blue rounded-xl flex items-center justify-center mb-6 mt-4 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 bg-focus-blue rounded-xl flex items-center justify-center mb-6 mt-6 group-hover:scale-110 transition-transform duration-300">
                 <step.icon className="w-8 h-8 text-white" />
               </div>
               
@@ -107,7 +109,7 @@ const ProcessSteps = () => {
         </div>
 
         {/* Small screens - horizontal scroll without carousel cutting */}
-        <div className="md:hidden">
+        <div className="md:hidden pt-8">
           <div className="flex gap-4 overflow-x-auto pb-6 px-4 -mx-4 snap-x snap-mandatory scrollbar-hide">
             {steps.map((step, index) => <div key={index} className={`${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-6 h-80 flex flex-col items-center text-center relative overflow-visible flex-shrink-0 w-[280px] snap-center`}>
                 {/* Background pattern */}
@@ -115,13 +117,13 @@ const ProcessSteps = () => {
                   <div className="w-full h-full bg-gradient-to-br from-focus-blue to-focus-blue rounded-bl-full"></div>
                 </div>
                 
-                {/* Step number badge */}
-                <div className="absolute -top-4 left-6 w-12 h-12 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
+                {/* Step number badge - ajustado para não cortar */}
+                <div className="absolute -top-5 left-6 w-12 h-12 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
                   {step.step}
                 </div>
                 
                 {/* Icon */}
-                <div className="w-16 h-16 bg-focus-blue rounded-xl flex items-center justify-center mb-6 mt-6 shadow-lg">
+                <div className="w-16 h-16 bg-focus-blue rounded-xl flex items-center justify-center mb-6 mt-8 shadow-lg">
                   <step.icon className="w-8 h-8 text-white" />
                 </div>
                 
@@ -149,4 +151,5 @@ const ProcessSteps = () => {
       </div>
     </section>;
 };
+
 export default ProcessSteps;

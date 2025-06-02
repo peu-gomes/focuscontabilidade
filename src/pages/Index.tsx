@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone, ChevronDown, ChevronUp, X } from 'lucide-react';
+import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone, ChevronDown, ChevronUp, X, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -19,6 +18,8 @@ const Index = () => {
   const personalizadoWhatsappMessage = "Olá, Quero um plano personalizado.";
   const personalizadoWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(personalizadoWhatsappMessage)}`;
   const [expandedService, setExpandedService] = useState<number | null>(null);
+  const [showMobileFeatures, setShowMobileFeatures] = useState(false);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
@@ -198,192 +199,283 @@ const Index = () => {
             <p className="text-focus-gray/80 text-base">Soluções que acompanham o crescimento da sua empresa</p>
           </div>
           
-          {/* Planos Desktop/Tablet */}
+          {/* Planos Desktop/Tablet - Layout de tabela lado a lado */}
           <div className="hidden md:block">
             <div className="max-w-6xl mx-auto">
-              {/* Headers dos Planos */}
-              <div className="grid grid-cols-4 gap-6 mb-8">
-                <div className="text-center">
-                  <h4 className="text-xl font-bold text-focus-gray mb-2">Recursos</h4>
+              <div className="grid grid-cols-5 gap-6">
+                {/* Coluna de recursos */}
+                <div className="space-y-4">
+                  <div className="h-32 flex items-end pb-4">
+                    <h4 className="text-lg font-bold text-focus-gray">Recursos</h4>
+                  </div>
+                  {planFeatures.map((feature, index) => (
+                    <div key={index} className="h-12 flex items-center">
+                      <span className="text-focus-gray font-medium">{feature.name}</span>
+                    </div>
+                  ))}
+                  <div className="h-16"></div>
                 </div>
-                <Card className="text-center">
-                  <CardHeader className="pb-4">
-                    <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                      <span className="text-focus-blue font-bold">MEI</span>
-                    </div>
-                    <CardTitle className="text-lg text-focus-gray">MEI Digital</CardTitle>
-                    <CardDescription className="text-2xl font-bold text-focus-gray">R$ 79<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
-                  </CardHeader>
-                </Card>
-                <Card className="text-center relative">
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-3 py-1 rounded-full text-xs font-medium">
-                    Mais Popular
-                  </div>
-                  <CardHeader className="pb-4">
-                    <div className="w-12 h-12 bg-focus-green/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                      <span className="text-focus-green font-bold">ESS</span>
-                    </div>
-                    <CardTitle className="text-lg text-focus-gray">Essencial</CardTitle>
-                    <CardDescription className="text-2xl font-bold text-focus-gray">R$ 199<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
-                  </CardHeader>
-                </Card>
-                <Card className="text-center">
-                  <CardHeader className="pb-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center mx-auto mb-2">
-                      <span className="text-white font-bold">PRO</span>
-                    </div>
-                    <CardTitle className="text-lg text-focus-gray">Pro Digital</CardTitle>
-                    <CardDescription className="text-2xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
-                  </CardHeader>
-                </Card>
-              </div>
 
-              {/* Tabela de Recursos */}
-              <div className="bg-gray-50 rounded-lg overflow-hidden">
-                {planFeatures.map((feature, index) => (
-                  <div key={index} className={`grid grid-cols-4 gap-6 py-4 px-6 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
-                    <div className="text-focus-gray font-medium">{feature.name}</div>
-                    <div className="text-center">
+                {/* Plano MEI */}
+                <div className="space-y-4">
+                  <Card className="h-32">
+                    <CardHeader className="text-center pb-4 h-full flex flex-col justify-center">
+                      <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <span className="text-focus-blue font-bold text-sm">MEI</span>
+                      </div>
+                      <CardTitle className="text-lg text-focus-gray">MEI Digital</CardTitle>
+                      <CardDescription className="text-xl font-bold text-focus-gray">R$ 79<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
+                    </CardHeader>
+                  </Card>
+                  {planFeatures.map((feature, index) => (
+                    <div key={index} className="h-12 flex items-center justify-center">
                       {feature.mei ? (
-                        <Check className="w-5 h-5 text-focus-green mx-auto" />
+                        <Check className="w-5 h-5 text-focus-green" />
                       ) : (
-                        <X className="w-5 h-5 text-gray-400 mx-auto" />
+                        <X className="w-5 h-5 text-gray-400" />
                       )}
                     </div>
-                    <div className="text-center">
-                      {feature.essencial ? (
-                        <Check className="w-5 h-5 text-focus-green mx-auto" />
-                      ) : (
-                        <X className="w-5 h-5 text-gray-400 mx-auto" />
-                      )}
-                    </div>
-                    <div className="text-center">
-                      {feature.pro ? (
-                        <Check className="w-5 h-5 text-focus-green mx-auto" />
-                      ) : (
-                        <X className="w-5 h-5 text-gray-400 mx-auto" />
-                      )}
-                    </div>
+                  ))}
+                  <div className="h-16 flex items-center">
+                    <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
+                      Escolher Plano
+                    </Button>
                   </div>
-                ))}
-              </div>
+                </div>
 
-              {/* Botões de Ação */}
-              <div className="grid grid-cols-4 gap-6 mt-8">
-                <div></div>
-                <Button className="bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
-                  Escolher Plano
-                </Button>
-                <Button className="bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
-                  Escolher Plano
-                </Button>
-                <Button className="bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
-                  Escolher Plano
-                </Button>
+                {/* Plano Essencial */}
+                <div className="space-y-4">
+                  <Card className="h-32 relative">
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-3 py-1 rounded-full text-xs font-medium z-10">
+                      Mais Popular
+                    </div>
+                    <CardHeader className="text-center pb-4 h-full flex flex-col justify-center">
+                      <div className="w-12 h-12 bg-focus-green/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <span className="text-focus-green font-bold text-sm">ESS</span>
+                      </div>
+                      <CardTitle className="text-lg text-focus-gray">Essencial</CardTitle>
+                      <CardDescription className="text-xl font-bold text-focus-gray">R$ 199<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
+                    </CardHeader>
+                  </Card>
+                  {planFeatures.map((feature, index) => (
+                    <div key={index} className="h-12 flex items-center justify-center">
+                      {feature.essencial ? (
+                        <Check className="w-5 h-5 text-focus-green" />
+                      ) : (
+                        <X className="w-5 h-5 text-gray-400" />
+                      )}
+                    </div>
+                  ))}
+                  <div className="h-16 flex items-center">
+                    <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
+                      Escolher Plano
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Plano Pro */}
+                <div className="space-y-4">
+                  <Card className="h-32">
+                    <CardHeader className="text-center pb-4 h-full flex flex-col justify-center">
+                      <div className="w-12 h-12 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <span className="text-white font-bold text-sm">PRO</span>
+                      </div>
+                      <CardTitle className="text-lg text-focus-gray">Pro Digital</CardTitle>
+                      <CardDescription className="text-xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
+                    </CardHeader>
+                  </Card>
+                  {planFeatures.map((feature, index) => (
+                    <div key={index} className="h-12 flex items-center justify-center">
+                      {feature.pro ? (
+                        <Check className="w-5 h-5 text-focus-green" />
+                      ) : (
+                        <X className="w-5 h-5 text-gray-400" />
+                      )}
+                    </div>
+                  ))}
+                  <div className="h-16 flex items-center">
+                    <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
+                      Escolher Plano
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Plano Personalizado */}
+                <div className="space-y-4">
+                  <Card className="h-32">
+                    <CardHeader className="text-center pb-4 h-full flex flex-col justify-center">
+                      <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <span className="text-focus-blue font-bold text-xs">PERS</span>
+                      </div>
+                      <CardTitle className="text-lg text-focus-gray">Personalizado</CardTitle>
+                      <CardDescription className="text-xl font-bold text-focus-gray">Sob consulta</CardDescription>
+                    </CardHeader>
+                  </Card>
+                  {planFeatures.map((feature, index) => (
+                    <div key={index} className="h-12 flex items-center justify-center">
+                      <span className="text-focus-blue font-medium text-sm">✓</span>
+                    </div>
+                  ))}
+                  <div className="h-16 flex items-center">
+                    <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(personalizadoWhatsappUrl, '_blank')}>
+                      Solicitar
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Planos Mobile - Tabela com scroll horizontal */}
+          {/* Planos Mobile - com scroll horizontal e seta para recursos */}
           <div className="block md:hidden">
-            <div className="overflow-x-auto -mx-4 px-4">
-              <div className="inline-block min-w-full">
-                {/* Headers dos Planos Mobile */}
-                <div className="flex gap-0 mb-6 min-w-[800px]">
-                  <div className="w-48 text-left px-4 py-6">
-                    <h4 className="text-lg font-bold text-focus-gray">Recursos</h4>
+            <div className="relative">
+              {/* Botão para mostrar/esconder recursos */}
+              <div className="mb-4">
+                <Button
+                  onClick={() => setShowMobileFeatures(!showMobileFeatures)}
+                  variant="outline"
+                  className="w-full flex items-center justify-center gap-2"
+                >
+                  <ArrowLeft className={`w-4 h-4 transition-transform ${showMobileFeatures ? 'rotate-90' : '-rotate-90'}`} />
+                  {showMobileFeatures ? 'Ocultar recursos' : 'Ver recursos'}
+                </Button>
+              </div>
+
+              {/* Lista de recursos (quando expandida) */}
+              {showMobileFeatures && (
+                <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+                  <h4 className="font-bold text-focus-gray mb-3">Recursos dos planos:</h4>
+                  <div className="space-y-2">
+                    {planFeatures.map((feature, index) => (
+                      <div key={index} className="text-focus-gray text-sm">
+                        {feature.name}
+                      </div>
+                    ))}
                   </div>
-                  <div className="w-48 text-center">
+                </div>
+              )}
+
+              {/* Scroll horizontal dos planos */}
+              <div className="overflow-x-auto pb-6 -mx-4 px-4">
+                <div className="flex gap-4 min-w-max">
+                  {/* Plano MEI */}
+                  <div className="flex-shrink-0 w-64">
                     <Card className="h-full">
-                      <CardHeader className="pb-4">
+                      <CardHeader className="text-center pb-4">
                         <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                          <span className="text-focus-blue font-bold">MEI</span>
+                          <span className="text-focus-blue font-bold text-sm">MEI</span>
                         </div>
                         <CardTitle className="text-lg text-focus-gray">MEI Digital</CardTitle>
                         <CardDescription className="text-xl font-bold text-focus-gray">R$ 79<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
                       </CardHeader>
+                      <CardContent className="space-y-2 pb-4">
+                        {planFeatures.map((feature, index) => (
+                          <div key={index} className="flex items-center justify-between text-sm">
+                            <span className="text-focus-gray">{feature.name}</span>
+                            {feature.mei ? (
+                              <Check className="w-4 h-4 text-focus-green" />
+                            ) : (
+                              <X className="w-4 h-4 text-gray-400" />
+                            )}
+                          </div>
+                        ))}
+                        <div className="pt-4">
+                          <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
+                            Escolher Plano
+                          </Button>
+                        </div>
+                      </CardContent>
                     </Card>
                   </div>
-                  <div className="w-48 text-center">
+
+                  {/* Plano Essencial */}
+                  <div className="flex-shrink-0 w-64">
                     <Card className="h-full relative">
                       <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-3 py-1 rounded-full text-xs font-medium z-10">
                         Mais Popular
                       </div>
-                      <CardHeader className="pb-4">
+                      <CardHeader className="text-center pb-4">
                         <div className="w-12 h-12 bg-focus-green/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                          <span className="text-focus-green font-bold">ESS</span>
+                          <span className="text-focus-green font-bold text-sm">ESS</span>
                         </div>
                         <CardTitle className="text-lg text-focus-gray">Essencial</CardTitle>
                         <CardDescription className="text-xl font-bold text-focus-gray">R$ 199<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
                       </CardHeader>
+                      <CardContent className="space-y-2 pb-4">
+                        {planFeatures.map((feature, index) => (
+                          <div key={index} className="flex items-center justify-between text-sm">
+                            <span className="text-focus-gray">{feature.name}</span>
+                            {feature.essencial ? (
+                              <Check className="w-4 h-4 text-focus-green" />
+                            ) : (
+                              <X className="w-4 h-4 text-gray-400" />
+                            )}
+                          </div>
+                        ))}
+                        <div className="pt-4">
+                          <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
+                            Escolher Plano
+                          </Button>
+                        </div>
+                      </CardContent>
                     </Card>
                   </div>
-                  <div className="w-48 text-center">
+
+                  {/* Plano Pro */}
+                  <div className="flex-shrink-0 w-64">
                     <Card className="h-full">
-                      <CardHeader className="pb-4">
+                      <CardHeader className="text-center pb-4">
                         <div className="w-12 h-12 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center mx-auto mb-2">
-                          <span className="text-white font-bold">PRO</span>
+                          <span className="text-white font-bold text-sm">PRO</span>
                         </div>
                         <CardTitle className="text-lg text-focus-gray">Pro Digital</CardTitle>
                         <CardDescription className="text-xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
                       </CardHeader>
+                      <CardContent className="space-y-2 pb-4">
+                        {planFeatures.map((feature, index) => (
+                          <div key={index} className="flex items-center justify-between text-sm">
+                            <span className="text-focus-gray">{feature.name}</span>
+                            {feature.pro ? (
+                              <Check className="w-4 h-4 text-focus-green" />
+                            ) : (
+                              <X className="w-4 h-4 text-gray-400" />
+                            )}
+                          </div>
+                        ))}
+                        <div className="pt-4">
+                          <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
+                            Escolher Plano
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Plano Personalizado */}
+                  <div className="flex-shrink-0 w-64">
+                    <Card className="h-full">
+                      <CardHeader className="text-center pb-4">
+                        <CardTitle className="text-lg text-focus-gray">Personalizado</CardTitle>
+                        <CardDescription className="text-xl font-bold text-focus-gray">Sob consulta</CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-2 pb-4">
+                        <div className="text-center text-focus-gray/70 text-sm mb-4">
+                          Plano sob medida para as necessidades específicas da sua empresa
+                        </div>
+                        <div className="pt-4">
+                          <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(personalizadoWhatsappUrl, '_blank')}>
+                            <MessageCircle className="w-4 h-4 mr-2" />
+                            Solicitar Orçamento
+                          </Button>
+                        </div>
+                      </CardContent>
                     </Card>
                   </div>
                 </div>
-
-                {/* Tabela de Recursos Mobile */}
-                <div className="bg-gray-50 rounded-lg overflow-hidden min-w-[800px]">
-                  {planFeatures.map((feature, index) => (
-                    <div key={index} className={`flex gap-0 py-4 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
-                      <div className="w-48 text-focus-gray font-medium px-4 flex items-center">{feature.name}</div>
-                      <div className="w-48 text-center flex items-center justify-center">
-                        {feature.mei ? (
-                          <Check className="w-5 h-5 text-focus-green" />
-                        ) : (
-                          <X className="w-5 h-5 text-gray-400" />
-                        )}
-                      </div>
-                      <div className="w-48 text-center flex items-center justify-center">
-                        {feature.essencial ? (
-                          <Check className="w-5 h-5 text-focus-green" />
-                        ) : (
-                          <X className="w-5 h-5 text-gray-400" />
-                        )}
-                      </div>
-                      <div className="w-48 text-center flex items-center justify-center">
-                        {feature.pro ? (
-                          <Check className="w-5 h-5 text-focus-green" />
-                        ) : (
-                          <X className="w-5 h-5 text-gray-400" />
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Botões de Ação Mobile */}
-                <div className="flex gap-0 mt-6 min-w-[800px]">
-                  <div className="w-48"></div>
-                  <div className="w-48 px-2">
-                    <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium text-sm" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
-                      Escolher Plano
-                    </Button>
-                  </div>
-                  <div className="w-48 px-2">
-                    <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium text-sm" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
-                      Escolher Plano
-                    </Button>
-                  </div>
-                  <div className="w-48 px-2">
-                    <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium text-sm" onClick={() => window.open(proWhatsappUrl, '_blank')}>
-                      Escolher Plano
-                    </Button>
-                  </div>
-                </div>
               </div>
-              
+
               {/* Dica de scroll para mobile */}
-              <div className="text-center mt-6">
+              <div className="text-center mt-4">
                 <p className="text-sm text-focus-gray/60 flex items-center justify-center gap-2">
                   <span>Deslize para ver todos os planos</span>
                   <svg width="20" height="12" viewBox="0 0 20 12" fill="none" className="animate-pulse">
@@ -393,27 +485,6 @@ const Index = () => {
                 </p>
               </div>
             </div>
-          </div>
-
-          {/* Plano Personalizado */}
-          <div className="mt-12 max-w-2xl mx-auto">
-            <Card className="relative hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <CardTitle className="text-xl text-focus-gray">Precisa de algo específico?</CardTitle>
-                <CardDescription className="text-focus-gray/70 text-base">
-                  Montamos um plano sob medida para as necessidades da sua empresa
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center pb-6">
-                <Button 
-                  onClick={() => window.open(personalizadoWhatsappUrl, '_blank')} 
-                  className="bg-focus-blue hover:bg-focus-blue/90 text-white px-6 py-3 text-base font-medium w-full max-w-sm mx-auto"
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Quero um plano personalizado
-                </Button>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { MessageCircle, FileText, CheckCircle, Smartphone } from 'lucide-react';
 
@@ -32,8 +33,6 @@ const ProcessSteps = () => {
     borderColor: "border-focus-blue/20"
   }];
 
-  const [currentStep, setCurrentStep] = React.useState(0);
-
   return <section className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-5">
@@ -56,8 +55,8 @@ const ProcessSteps = () => {
           <div className="flex items-center justify-center gap-4 max-w-6xl mx-auto">
             {steps.map((step, index) => <React.Fragment key={index}>
                 <div className={`relative ${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-8 w-72 h-96 flex flex-col items-center text-center group hover:scale-105 transition-all duration-300 hover:shadow-xl overflow-visible`}>
-                  {/* Step number badge - fixed positioning */}
-                  <div className="absolute -top-6 left-8 w-14 h-14 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                  {/* Step number badge - ajustado para não cortar */}
+                  <div className="absolute -top-6 left-8 w-14 h-14 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg z-10">
                     {step.step}
                   </div>
                   
@@ -89,13 +88,13 @@ const ProcessSteps = () => {
         {/* Tablet View - Grid 2x2 */}
         <div className="hidden md:grid lg:hidden grid-cols-2 gap-8 max-w-5xl mx-auto pt-8">
           {steps.map((step, index) => <div key={index} className={`relative ${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-8 h-80 flex flex-col items-center text-center group hover:scale-105 transition-all duration-300 hover:shadow-xl overflow-visible`}>
-              {/* Step number badge - fixed positioning */}
-              <div className="absolute -top-6 left-8 w-14 h-14 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+              {/* Step number badge - ajustado para não cortar */}
+              <div className="absolute -top-5 left-8 w-12 h-12 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
                 {step.step}
               </div>
               
               {/* Icon */}
-              <div className="w-16 h-16 bg-focus-blue rounded-xl flex items-center justify-center mb-6 mt-8 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 bg-focus-blue rounded-xl flex items-center justify-center mb-6 mt-6 group-hover:scale-110 transition-transform duration-300">
                 <step.icon className="w-8 h-8 text-white" />
               </div>
               
@@ -109,21 +108,17 @@ const ProcessSteps = () => {
             </div>)}
         </div>
 
-        {/* Small screens - horizontal scroll with pagination */}
+        {/* Small screens - horizontal scroll without carousel cutting */}
         <div className="md:hidden pt-8">
           <div className="flex gap-4 overflow-x-auto pb-6 px-4 -mx-4 snap-x snap-mandatory scrollbar-hide">
-            {steps.map((step, index) => <div 
-                key={index} 
-                className={`${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-6 h-80 flex flex-col items-center text-center relative overflow-visible flex-shrink-0 w-[280px] snap-center`}
-                onClick={() => setCurrentStep(index)}
-              >
+            {steps.map((step, index) => <div key={index} className={`${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-6 h-80 flex flex-col items-center text-center relative overflow-visible flex-shrink-0 w-[280px] snap-center`}>
                 {/* Background pattern */}
                 <div className="absolute top-0 right-0 w-16 h-16 opacity-10">
                   <div className="w-full h-full bg-gradient-to-br from-focus-blue to-focus-blue rounded-bl-full"></div>
                 </div>
                 
-                {/* Step number badge - fixed positioning */}
-                <div className="absolute -top-6 left-6 w-14 h-14 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                {/* Step number badge - ajustado para não cortar */}
+                <div className="absolute -top-5 left-6 w-12 h-12 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
                   {step.step}
                 </div>
                 
@@ -142,21 +137,8 @@ const ProcessSteps = () => {
               </div>)}
           </div>
           
-          {/* Pagination dots */}
-          <div className="flex justify-center gap-2 mt-4">
-            {steps.map((_, index) => (
-              <button
-                key={index}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  currentStep === index ? 'bg-focus-blue w-4' : 'bg-focus-blue/30'
-                }`}
-                onClick={() => setCurrentStep(index)}
-              />
-            ))}
-          </div>
-          
           {/* Mobile hint */}
-          <div className="text-center mt-4">
+          <div className="text-center mt-8">
             <p className="text-base text-focus-gray/60 flex items-center justify-center gap-2">
               <span>Deslize para ver todos os passos</span>
               <svg width="24" height="14" viewBox="0 0 20 12" fill="none" className="animate-pulse">

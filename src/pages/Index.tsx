@@ -3,6 +3,7 @@ import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckC
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import ProcessSteps from '@/components/ProcessSteps';
+
 const Index = () => {
   const whatsappNumber = "5577981522683";
   const whatsappMessage = "Olá! Gostaria de conhecer os serviços da Focus Contabilidade.";
@@ -16,12 +17,14 @@ const Index = () => {
   const personalizadoWhatsappMessage = "Olá, Quero um plano personalizado.";
   const personalizadoWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(personalizadoWhatsappMessage)}`;
   const [expandedService, setExpandedService] = useState<number | null>(null);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
       behavior: 'smooth'
     });
   };
+
   const advantages = [{
     icon: MessageCircle,
     title: "Atendimento rápido via WhatsApp",
@@ -39,6 +42,7 @@ const Index = () => {
     title: "Monitoramos sua situação fiscal automaticamente",
     description: "Fique sempre em dia com suas obrigações"
   }];
+
   const services = [{
     title: 'Abertura de empresa',
     description: 'Processo completo de abertura, incluindo escolha do regime tributário mais adequado e todas as documentações necessárias.'
@@ -64,9 +68,11 @@ const Index = () => {
     title: 'Monitoramento de certidões e pendências fiscais',
     description: 'Acompanhamento proativo de certidões e resolução de pendências antes que se tornem problemas.'
   }];
+
   const toggleService = (index: number) => {
     setExpandedService(expandedService === index ? null : index);
   };
+
   return <div className="min-h-screen bg-white font-sans">
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
@@ -229,43 +235,46 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <div className="bg-gradient-to-r from-focus-blue to-focus-green p-[2px] rounded-xl hover:scale-105 transition-transform duration-300">
-              <Card className="h-full bg-white">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center mb-4">
-                    <span className="text-white font-bold">PRO</span>
-                  </div>
-                  <CardTitle className="text-xl text-focus-gray">Pro Digital</CardTitle>
-                  <CardDescription className="text-3xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 text-sm text-focus-gray/80">
-                    <li>• Tudo do plano Essencial +</li>
-                    <li>• Análise mensal da situação fiscal</li>
-                    <li>• Envio automático de certidões negativas</li>
-                    <li>• Monitoramento contínuo da saúde fiscal</li>
-                    <li>• Relatórios personalizados e orientações mensais</li>
-                  </ul>
-                  <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
-                  <Button className="w-full mt-6 bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
-                    Escolher Plano
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
+            <Card className="relative hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <div className="w-12 h-12 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center mb-4">
+                  <span className="text-white font-bold">PRO</span>
+                </div>
+                <CardTitle className="text-xl text-focus-gray">Pro Digital</CardTitle>
+                <CardDescription className="text-3xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm text-focus-gray/80">
+                  <li>• Tudo do plano Essencial +</li>
+                  <li>• Análise mensal da situação fiscal</li>
+                  <li>• Envio automático de certidões negativas</li>
+                  <li>• Monitoramento contínuo da saúde fiscal</li>
+                  <li>• Relatórios personalizados e orientações mensais</li>
+                </ul>
+                <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
+                <Button className="w-full mt-6 bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
+                  Escolher Plano
+                </Button>
+              </CardContent>
+            </Card>
           </div>
 
-          {/* Plano Personalizado - Destaque */}
-          <div className="mt-12 max-w-6xl mx-auto">
-            <Card className="bg-focus-gray text-white">
-              <CardContent className="p-8 text-center">
-                <h4 className="text-2xl font-bold mb-4">Precisa de algo específico?</h4>
-                <p className="text-gray-200 mb-6">
+          {/* Plano Personalizado - Mesma estrutura do MEI */}
+          <div className="mt-12 max-w-2xl mx-auto">
+            <Card className="relative hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <span className="text-focus-blue font-bold">PERS</span>
+                </div>
+                <CardTitle className="text-xl text-focus-gray">Precisa de algo específico?</CardTitle>
+                <CardDescription className="text-focus-gray/70">
                   Montamos um plano sob medida para as necessidades da sua empresa
-                </p>
-                <Button onClick={() => window.open(personalizadoWhatsappUrl, '_blank')} className="bg-white text-focus-gray hover:bg-gray-100 px-4 sm:px-8 py-4 text-sm sm:text-lg font-semibold">
-                  <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  <span className="whitespace-nowrap">Quero um plano personalizado</span>
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <Button onClick={() => window.open(personalizadoWhatsappUrl, '_blank')} className="bg-focus-blue hover:bg-focus-blue/90 text-white px-8 py-3 text-lg font-medium">
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Quero um plano personalizado
                 </Button>
               </CardContent>
             </Card>
@@ -274,7 +283,7 @@ const Index = () => {
       </section>
 
       {/* Quem Somos */}
-      <section id="quem-somos" className="py-16 mt-12 rounded-lg p-8 bg-gradient-to-br from-focus-blue to-white">
+      <section id="quem-somos" className="py-16 bg-gradient-to-b from-focus-blue via-focus-blue/30 to-white">
         <div className="w-full max-w-[1280px] mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-3xl font-bold text-white mb-8">Quem Somos</h3>
@@ -380,4 +389,5 @@ const Index = () => {
       </footer>
     </div>;
 };
+
 export default Index;

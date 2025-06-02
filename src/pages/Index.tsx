@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone, ChevronDown, ChevronUp, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -283,119 +284,133 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Planos Mobile - Cards individuais */}
+          {/* Planos Mobile - Tabela com scroll horizontal */}
           <div className="block md:hidden">
-            <div className="space-y-6">
-              <Card className="relative hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center">
-                      <span className="text-focus-blue font-bold">MEI</span>
-                    </div>
+            <div className="overflow-x-auto -mx-4 px-4">
+              <div className="inline-block min-w-full">
+                {/* Headers dos Planos Mobile */}
+                <div className="flex gap-0 mb-6 min-w-[800px]">
+                  <div className="w-48 text-left px-4 py-6">
+                    <h4 className="text-lg font-bold text-focus-gray">Recursos</h4>
                   </div>
-                  <CardTitle className="text-xl text-focus-gray">MEI Digital</CardTitle>
-                  <CardDescription className="text-3xl font-bold text-focus-gray">R$ 79<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2 text-sm text-focus-gray/80 mb-6">
-                    {planFeatures.map((feature, index) => (
-                      <div key={index} className="flex items-center justify-between">
-                        <span>{feature.name}</span>
-                        {feature.mei ? (
-                          <Check className="w-4 h-4 text-focus-green" />
-                        ) : (
-                          <X className="w-4 h-4 text-gray-400" />
-                        )}
+                  <div className="w-48 text-center">
+                    <Card className="h-full">
+                      <CardHeader className="pb-4">
+                        <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                          <span className="text-focus-blue font-bold">MEI</span>
+                        </div>
+                        <CardTitle className="text-lg text-focus-gray">MEI Digital</CardTitle>
+                        <CardDescription className="text-xl font-bold text-focus-gray">R$ 79<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
+                      </CardHeader>
+                    </Card>
+                  </div>
+                  <div className="w-48 text-center">
+                    <Card className="h-full relative">
+                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-3 py-1 rounded-full text-xs font-medium z-10">
+                        Mais Popular
                       </div>
-                    ))}
+                      <CardHeader className="pb-4">
+                        <div className="w-12 h-12 bg-focus-green/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                          <span className="text-focus-green font-bold">ESS</span>
+                        </div>
+                        <CardTitle className="text-lg text-focus-gray">Essencial</CardTitle>
+                        <CardDescription className="text-xl font-bold text-focus-gray">R$ 199<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
+                      </CardHeader>
+                    </Card>
                   </div>
-                  <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
-                    Escolher Plano
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="relative hover:shadow-lg transition-shadow">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-4 py-1 rounded-full text-sm font-medium">
-                  Mais Popular
+                  <div className="w-48 text-center">
+                    <Card className="h-full">
+                      <CardHeader className="pb-4">
+                        <div className="w-12 h-12 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center mx-auto mb-2">
+                          <span className="text-white font-bold">PRO</span>
+                        </div>
+                        <CardTitle className="text-lg text-focus-gray">Pro Digital</CardTitle>
+                        <CardDescription className="text-xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
+                      </CardHeader>
+                    </Card>
+                  </div>
                 </div>
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 bg-focus-green/10 rounded-lg flex items-center justify-center">
-                      <span className="text-focus-green font-bold">ESS</span>
-                    </div>
-                  </div>
-                  <CardTitle className="text-xl text-focus-gray">Essencial</CardTitle>
-                  <CardDescription className="text-3xl font-bold text-focus-gray">R$ 199<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2 text-sm text-focus-gray/80 mb-6">
-                    {planFeatures.map((feature, index) => (
-                      <div key={index} className="flex items-center justify-between">
-                        <span>{feature.name}</span>
-                        {feature.essencial ? (
-                          <Check className="w-4 h-4 text-focus-green" />
-                        ) : (
-                          <X className="w-4 h-4 text-gray-400" />
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                  <p className="text-xs text-focus-gray/60 mb-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
-                  <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
-                    Escolher Plano
-                  </Button>
-                </CardContent>
-              </Card>
 
-              <Card className="relative hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold">PRO</span>
-                    </div>
-                  </div>
-                  <CardTitle className="text-xl text-focus-gray">Pro Digital</CardTitle>
-                  <CardDescription className="text-3xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2 text-sm text-focus-gray/80 mb-6">
-                    {planFeatures.map((feature, index) => (
-                      <div key={index} className="flex items-center justify-between">
-                        <span>{feature.name}</span>
-                        {feature.pro ? (
-                          <Check className="w-4 h-4 text-focus-green" />
+                {/* Tabela de Recursos Mobile */}
+                <div className="bg-gray-50 rounded-lg overflow-hidden min-w-[800px]">
+                  {planFeatures.map((feature, index) => (
+                    <div key={index} className={`flex gap-0 py-4 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
+                      <div className="w-48 text-focus-gray font-medium px-4 flex items-center">{feature.name}</div>
+                      <div className="w-48 text-center flex items-center justify-center">
+                        {feature.mei ? (
+                          <Check className="w-5 h-5 text-focus-green" />
                         ) : (
-                          <X className="w-4 h-4 text-gray-400" />
+                          <X className="w-5 h-5 text-gray-400" />
                         )}
                       </div>
-                    ))}
+                      <div className="w-48 text-center flex items-center justify-center">
+                        {feature.essencial ? (
+                          <Check className="w-5 h-5 text-focus-green" />
+                        ) : (
+                          <X className="w-5 h-5 text-gray-400" />
+                        )}
+                      </div>
+                      <div className="w-48 text-center flex items-center justify-center">
+                        {feature.pro ? (
+                          <Check className="w-5 h-5 text-focus-green" />
+                        ) : (
+                          <X className="w-5 h-5 text-gray-400" />
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Botões de Ação Mobile */}
+                <div className="flex gap-0 mt-6 min-w-[800px]">
+                  <div className="w-48"></div>
+                  <div className="w-48 px-2">
+                    <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium text-sm" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
+                      Escolher Plano
+                    </Button>
                   </div>
-                  <p className="text-xs text-focus-gray/60 mb-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
-                  <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
-                    Escolher Plano
-                  </Button>
-                </CardContent>
-              </Card>
+                  <div className="w-48 px-2">
+                    <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium text-sm" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
+                      Escolher Plano
+                    </Button>
+                  </div>
+                  <div className="w-48 px-2">
+                    <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium text-sm" onClick={() => window.open(proWhatsappUrl, '_blank')}>
+                      Escolher Plano
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Dica de scroll para mobile */}
+              <div className="text-center mt-6">
+                <p className="text-sm text-focus-gray/60 flex items-center justify-center gap-2">
+                  <span>Deslize para ver todos os planos</span>
+                  <svg width="20" height="12" viewBox="0 0 20 12" fill="none" className="animate-pulse">
+                    <path d="M14 2L18 6L14 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M2 6H18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Plano Personalizado - Melhor responsividade */}
-          <div className="mt-12 max-w-2xl mx-auto px-2 sm:px-4">
+          {/* Plano Personalizado */}
+          <div className="mt-12 max-w-2xl mx-auto">
             <Card className="relative hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center px-4 sm:px-6">
-                <CardTitle className="text-lg sm:text-xl text-focus-gray">Precisa de algo específico?</CardTitle>
-                <CardDescription className="text-focus-gray/70 text-sm sm:text-base">
+              <CardHeader className="text-center">
+                <CardTitle className="text-xl text-focus-gray">Precisa de algo específico?</CardTitle>
+                <CardDescription className="text-focus-gray/70 text-base">
                   Montamos um plano sob medida para as necessidades da sua empresa
                 </CardDescription>
               </CardHeader>
-              <CardContent className="text-center px-4 sm:px-6 pb-6">
+              <CardContent className="text-center pb-6">
                 <Button 
                   onClick={() => window.open(personalizadoWhatsappUrl, '_blank')} 
-                  className="bg-focus-blue hover:bg-focus-blue/90 text-white px-4 sm:px-8 py-3 text-sm sm:text-lg font-medium w-full sm:w-auto"
+                  className="bg-focus-blue hover:bg-focus-blue/90 text-white px-6 py-3 text-base font-medium w-full max-w-sm mx-auto"
                 >
-                  <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  <span className="whitespace-nowrap">Quero um plano personalizado</span>
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Quero um plano personalizado
                 </Button>
               </CardContent>
             </Card>

@@ -44,7 +44,7 @@ const ProcessSteps = () => {
       
       <div className="w-full max-w-[1280px] mx-auto px-4 relative">
         <div className="text-center mb-16">
-          <h3 className="text-4xl font-bold text-focus-gray mb-6 md:text-4xl">
+          <h3 className="text-4xl font-bold text-focus-gray mb-6 md:text-5xl">
             Como funciona nosso processo
           </h3>
           <p className="text-focus-gray/70 max-w-2xl mx-auto text-lg">
@@ -116,45 +116,36 @@ const ProcessSteps = () => {
           ))}
         </div>
 
-        {/* Mobile View - Carousel */}
+        {/* Small screens - horizontal scroll without carousel cutting */}
         <div className="md:hidden">
-          <Carousel className="w-full max-w-sm mx-auto" opts={{
-            align: "start",
-            loop: false
-          }}>
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {steps.map((step, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 basis-[85%]">
-                  <div className={`${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-6 h-80 flex flex-col items-center text-center relative overflow-visible mt-6`}>
-                    {/* Background pattern */}
-                    <div className="absolute top-0 right-0 w-16 h-16 opacity-10">
-                      <div className="w-full h-full bg-gradient-to-br from-focus-blue to-focus-blue rounded-bl-full"></div>
-                    </div>
-                    
-                    {/* Step number badge - posicionamento corrigido */}
-                    <div className="absolute -top-4 left-6 w-12 h-12 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
-                      {step.step}
-                    </div>
-                    
-                    {/* Icon */}
-                    <div className="w-16 h-16 bg-focus-blue rounded-xl flex items-center justify-center mb-6 mt-6 shadow-lg">
-                      <step.icon className="w-8 h-8 text-white" />
-                    </div>
-                    
-                    {/* Content */}
-                    <h4 className="text-xl font-bold text-focus-gray mb-4 leading-tight px-2">
-                      {step.title}
-                    </h4>
-                    <p className="text-focus-gray/70 text-base leading-relaxed flex-1 px-2">
-                      {step.description}
-                    </p>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden" />
-            <CarouselNext className="hidden" />
-          </Carousel>
+          <div className="flex gap-4 overflow-x-auto pb-6 px-4 -mx-4 snap-x snap-mandatory scrollbar-hide">
+            {steps.map((step, index) => (
+              <div key={index} className={`${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-6 h-80 flex flex-col items-center text-center relative overflow-visible flex-shrink-0 w-[280px] snap-center`}>
+                {/* Background pattern */}
+                <div className="absolute top-0 right-0 w-16 h-16 opacity-10">
+                  <div className="w-full h-full bg-gradient-to-br from-focus-blue to-focus-blue rounded-bl-full"></div>
+                </div>
+                
+                {/* Step number badge */}
+                <div className="absolute -top-4 left-6 w-12 h-12 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
+                  {step.step}
+                </div>
+                
+                {/* Icon */}
+                <div className="w-16 h-16 bg-focus-blue rounded-xl flex items-center justify-center mb-6 mt-6 shadow-lg">
+                  <step.icon className="w-8 h-8 text-white" />
+                </div>
+                
+                {/* Content */}
+                <h4 className="text-xl font-bold text-focus-gray mb-4 leading-tight px-2">
+                  {step.title}
+                </h4>
+                <p className="text-focus-gray/70 text-base leading-relaxed flex-1 px-2">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
           
           {/* Mobile hint */}
           <div className="text-center mt-8">

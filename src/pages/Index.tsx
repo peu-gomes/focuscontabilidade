@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone, ChevronDown, ChevronUp } from 'lucide-react';
+import { Check, Star, MessageCircle, FileText, Shield, Clock, Users, Zap, CheckCircle, Smartphone, ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import ProcessSteps from '@/components/ProcessSteps';
 
 const Index = () => {
@@ -188,97 +189,136 @@ const Index = () => {
             <p className="text-lg text-focus-gray/80">Soluções que acompanham o crescimento da sua empresa</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Card className="relative hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-focus-blue font-bold">MEI</span>
-                </div>
-                <CardTitle className="text-xl text-focus-gray">MEI Digital</CardTitle>
-                <CardDescription className="text-3xl font-bold text-focus-gray">R$ 79<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-focus-gray/80">
-                  <li>• Envio de guias e folha</li>
-                  <li>• Consultoria básica</li>
-                  <li>• Suporte via WhatsApp</li>
-                </ul>
-                <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
-                  Escolher Plano
-                </Button>
-              </CardContent>
-            </Card>
+          <TooltipProvider>
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <Card className="relative hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center">
+                      <span className="text-focus-blue font-bold">MEI</span>
+                    </div>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <HelpCircle className="w-4 h-4 text-focus-gray/60 hover:text-focus-blue transition-colors" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Ideal para Microempreendedor Individual</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                  <CardTitle className="text-xl text-focus-gray">MEI Digital</CardTitle>
+                  <CardDescription className="text-3xl font-bold text-focus-gray">R$ 79<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm text-focus-gray/80">
+                    <li>• Envio de guias e folha</li>
+                    <li>• Consultoria básica</li>
+                    <li>• Suporte via WhatsApp</li>
+                  </ul>
+                  <Button className="w-full mt-6 bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
+                    Escolher Plano
+                  </Button>
+                </CardContent>
+              </Card>
 
-            <Card className="relative hover:shadow-lg transition-shadow">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-4 py-1 rounded-full text-sm font-medium">
-                Mais Popular
-              </div>
-              <CardHeader>
-                <div className="w-12 h-12 bg-focus-green/10 rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-focus-green font-bold">ESS</span>
+              <Card className="relative hover:shadow-lg transition-shadow">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-4 py-1 rounded-full text-sm font-medium">
+                  Mais Popular
                 </div>
-                <CardTitle className="text-xl text-focus-gray">Essencial</CardTitle>
-                <CardDescription className="text-3xl font-bold text-focus-gray">R$ 199<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-focus-gray/80">
-                  <li>• Ideal para Simples Nacional</li>
-                  <li>• Escrituração contábil e fiscal</li>
-                  <li>• Emissão de guias e entrega de obrigações</li>
-                  <li>• Suporte via WhatsApp e e-mail</li>
-                  <li>• Relatórios mensais</li>
-                </ul>
-                <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
-                <Button className="w-full mt-6 bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
-                  Escolher Plano
-                </Button>
-              </CardContent>
-            </Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-focus-green/10 rounded-lg flex items-center justify-center">
+                      <span className="text-focus-green font-bold">ESS</span>
+                    </div>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <HelpCircle className="w-4 h-4 text-focus-gray/60 hover:text-focus-blue transition-colors" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Perfeito para empresas do Simples Nacional</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                  <CardTitle className="text-xl text-focus-gray">Essencial</CardTitle>
+                  <CardDescription className="text-3xl font-bold text-focus-gray">R$ 199<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm text-focus-gray/80">
+                    <li>• Ideal para Simples Nacional</li>
+                    <li>• Escrituração contábil e fiscal</li>
+                    <li>• Emissão de guias e entrega de obrigações</li>
+                    <li>• Suporte via WhatsApp e e-mail</li>
+                    <li>• Relatórios mensais</li>
+                  </ul>
+                  <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
+                  <Button className="w-full mt-6 bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
+                    Escolher Plano
+                  </Button>
+                </CardContent>
+              </Card>
 
-            <Card className="relative hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-white font-bold">PRO</span>
-                </div>
-                <CardTitle className="text-xl text-focus-gray">Pro Digital</CardTitle>
-                <CardDescription className="text-3xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-focus-gray/80">
-                  <li>• Tudo do plano Essencial +</li>
-                  <li>• Análise mensal da situação fiscal</li>
-                  <li>• Envio automático de certidões negativas</li>
-                  <li>• Monitoramento contínuo da saúde fiscal</li>
-                  <li>• Relatórios personalizados e orientações mensais</li>
-                </ul>
-                <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
-                <Button className="w-full mt-6 bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
-                  Escolher Plano
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
+              <Card className="relative hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center">
+                      <span className="text-white font-bold">PRO</span>
+                    </div>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <HelpCircle className="w-4 h-4 text-focus-gray/60 hover:text-focus-blue transition-colors" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Completo com monitoramento fiscal avançado</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                  <CardTitle className="text-xl text-focus-gray">Pro Digital</CardTitle>
+                  <CardDescription className="text-3xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm text-focus-gray/80">
+                    <li>• Tudo do plano Essencial +</li>
+                    <li>• Análise mensal da situação fiscal</li>
+                    <li>• Envio automático de certidões negativas</li>
+                    <li>• Monitoramento contínuo da saúde fiscal</li>
+                    <li>• Relatórios personalizados e orientações mensais</li>
+                  </ul>
+                  <p className="text-xs text-focus-gray/60 mt-4">*Serviços de folha de pagamento podem ser contratados à parte.</p>
+                  <Button className="w-full mt-6 bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
+                    Escolher Plano
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
 
-          {/* Plano Personalizado - Mesma estrutura do MEI */}
-          <div className="mt-12 max-w-2xl mx-auto">
-            <Card className="relative hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-focus-blue font-bold">PERS</span>
-                </div>
-                <CardTitle className="text-xl text-focus-gray">Precisa de algo específico?</CardTitle>
-                <CardDescription className="text-focus-gray/70">
-                  Montamos um plano sob medida para as necessidades da sua empresa
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <Button onClick={() => window.open(personalizadoWhatsappUrl, '_blank')} className="bg-focus-blue hover:bg-focus-blue/90 text-white px-8 py-3 text-lg font-medium">
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  Quero um plano personalizado
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
+            {/* Plano Personalizado - Sem ícone PERS */}
+            <div className="mt-12 max-w-2xl mx-auto">
+              <Card className="relative hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <div className="flex items-center justify-center mb-4">
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <HelpCircle className="w-5 h-5 text-focus-gray/60 hover:text-focus-blue transition-colors" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Criamos um plano específico para suas necessidades</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                  <CardTitle className="text-xl text-focus-gray">Precisa de algo específico?</CardTitle>
+                  <CardDescription className="text-focus-gray/70">
+                    Montamos um plano sob medida para as necessidades da sua empresa
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <Button onClick={() => window.open(personalizadoWhatsappUrl, '_blank')} className="bg-focus-blue hover:bg-focus-blue/90 text-white px-8 py-3 text-lg font-medium">
+                    <MessageCircle className="w-5 h-5 mr-2" />
+                    Quero um plano personalizado
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </TooltipProvider>
         </div>
       </section>
 

@@ -18,7 +18,6 @@ const Index = () => {
   const personalizadoWhatsappMessage = "Olá, Quero um plano personalizado.";
   const personalizadoWhatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(personalizadoWhatsappMessage)}`;
   const [expandedService, setExpandedService] = useState<number | null>(null);
-  const [showMobileFeatures, setShowMobileFeatures] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -26,6 +25,7 @@ const Index = () => {
       behavior: 'smooth'
     });
   };
+
   const advantages = [{
     icon: MessageCircle,
     title: "Atendimento rápido via WhatsApp",
@@ -43,6 +43,7 @@ const Index = () => {
     title: "Monitoramos sua situação fiscal automaticamente",
     description: "Fique sempre em dia com suas obrigações"
   }];
+
   const services = [{
     title: 'Abertura de empresa',
     description: 'Processo completo de abertura, incluindo escolha do regime tributário mais adequado e todas as documentações necessárias.'
@@ -68,6 +69,7 @@ const Index = () => {
     title: 'Monitoramento de certidões e pendências fiscais',
     description: 'Acompanhamento proativo de certidões e resolução de pendências antes que se tornem problemas.'
   }];
+
   const planFeatures = [
     { name: "Abertura de empresa", mei: true, essencial: true, pro: true },
     { name: "Contabilidade mensal", mei: false, essencial: true, pro: true },
@@ -81,9 +83,38 @@ const Index = () => {
     { name: "Monitoramento fiscal", mei: false, essencial: false, pro: true },
   ];
 
+  const testimonials = [
+    {
+      text: "Comecei com a Focus porque queria simplicidade. Hoje não me preocupo mais com nada, eles cuidam de tudo.",
+      author: "Luana M., Designer Freelancer",
+      rating: 5
+    },
+    {
+      text: "Toda a documentação chega no meu WhatsApp. Rápido e simples, do jeito que eu precisava.",
+      author: "Carlos A., Prestador de Serviços",
+      rating: 5
+    },
+    {
+      text: "A Focus transformou minha relação com a contabilidade. Agora é tudo digital e sem complicação.",
+      author: "Marina S., Consultora",
+      rating: 5
+    },
+    {
+      text: "Migrei para a Focus e foi a melhor decisão. Atendimento excepcional e preços justos.",
+      author: "Roberto L., Comerciante",
+      rating: 5
+    },
+    {
+      text: "Nunca imaginei que contabilidade poderia ser tão fácil. Recomendo de olhos fechados!",
+      author: "Ana P., Arquiteta",
+      rating: 5
+    }
+  ];
+
   const toggleService = (index: number) => {
     setExpandedService(expandedService === index ? null : index);
   };
+
   return <div className="min-h-screen bg-white font-sans">
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
@@ -130,9 +161,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Vantagens - com background diferenciado */}
+      {/* Vantagens */}
       <section id="vantagens" className="py-16 bg-focus-blue text-white relative overflow-hidden">
-        {/* Background decoration */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
@@ -326,164 +356,146 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Planos Mobile - com scroll horizontal e seta para recursos */}
+          {/* Planos Mobile - com scroll horizontal */}
           <div className="block md:hidden">
-            <div className="relative">
-              {/* Botão para mostrar/esconder recursos */}
-              <div className="mb-4">
-                <Button
-                  onClick={() => setShowMobileFeatures(!showMobileFeatures)}
-                  variant="outline"
-                  className="w-full flex items-center justify-center gap-2"
-                >
-                  <ArrowLeft className={`w-4 h-4 transition-transform ${showMobileFeatures ? 'rotate-90' : '-rotate-90'}`} />
-                  {showMobileFeatures ? 'Ocultar recursos' : 'Ver recursos'}
-                </Button>
-              </div>
-
-              {/* Lista de recursos (quando expandida) */}
-              {showMobileFeatures && (
-                <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-                  <h4 className="font-bold text-focus-gray mb-3">Recursos dos planos:</h4>
-                  <div className="space-y-2">
+            <div className="overflow-x-auto pb-6 -mx-4 px-4">
+              <div className="flex gap-4 min-w-max">
+                {/* Coluna de recursos sempre visível */}
+                <div className="flex-shrink-0 w-48 bg-gray-50 rounded-lg p-4">
+                  <h4 className="text-lg font-bold text-focus-gray mb-4">Recursos</h4>
+                  <div className="space-y-4">
                     {planFeatures.map((feature, index) => (
-                      <div key={index} className="text-focus-gray text-sm">
+                      <div key={index} className="text-focus-gray text-sm font-medium h-8 flex items-center">
                         {feature.name}
                       </div>
                     ))}
                   </div>
                 </div>
-              )}
 
-              {/* Scroll horizontal dos planos */}
-              <div className="overflow-x-auto pb-6 -mx-4 px-4">
-                <div className="flex gap-4 min-w-max">
-                  {/* Plano MEI */}
-                  <div className="flex-shrink-0 w-64">
-                    <Card className="h-full">
-                      <CardHeader className="text-center pb-4">
-                        <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                          <span className="text-focus-blue font-bold text-sm">MEI</span>
-                        </div>
-                        <CardTitle className="text-lg text-focus-gray">MEI Digital</CardTitle>
-                        <CardDescription className="text-xl font-bold text-focus-gray">R$ 79<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-2 pb-4">
-                        {planFeatures.map((feature, index) => (
-                          <div key={index} className="flex items-center justify-between text-sm">
-                            <span className="text-focus-gray">{feature.name}</span>
-                            {feature.mei ? (
-                              <Check className="w-4 h-4 text-focus-green" />
-                            ) : (
-                              <X className="w-4 h-4 text-gray-400" />
-                            )}
-                          </div>
-                        ))}
-                        <div className="pt-4">
-                          <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
-                            Escolher Plano
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  {/* Plano Essencial */}
-                  <div className="flex-shrink-0 w-64">
-                    <Card className="h-full relative">
-                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-3 py-1 rounded-full text-xs font-medium z-10">
-                        Mais Popular
+                {/* Planos */}
+                {/* Plano MEI */}
+                <div className="flex-shrink-0 w-40">
+                  <Card className="h-full">
+                    <CardHeader className="text-center pb-4">
+                      <div className="w-10 h-10 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <span className="text-focus-blue font-bold text-xs">MEI</span>
                       </div>
-                      <CardHeader className="text-center pb-4">
-                        <div className="w-12 h-12 bg-focus-green/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                          <span className="text-focus-green font-bold text-sm">ESS</span>
+                      <CardTitle className="text-base text-focus-gray">MEI Digital</CardTitle>
+                      <CardDescription className="text-lg font-bold text-focus-gray">R$ 79<span className="text-xs text-focus-gray/60">/mês</span></CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4 pb-4">
+                      {planFeatures.map((feature, index) => (
+                        <div key={index} className="h-8 flex items-center justify-center">
+                          {feature.mei ? (
+                            <Check className="w-4 h-4 text-focus-green" />
+                          ) : (
+                            <X className="w-4 h-4 text-gray-400" />
+                          )}
                         </div>
-                        <CardTitle className="text-lg text-focus-gray">Essencial</CardTitle>
-                        <CardDescription className="text-xl font-bold text-focus-gray">R$ 199<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-2 pb-4">
-                        {planFeatures.map((feature, index) => (
-                          <div key={index} className="flex items-center justify-between text-sm">
-                            <span className="text-focus-gray">{feature.name}</span>
-                            {feature.essencial ? (
-                              <Check className="w-4 h-4 text-focus-green" />
-                            ) : (
-                              <X className="w-4 h-4 text-gray-400" />
-                            )}
-                          </div>
-                        ))}
-                        <div className="pt-4">
-                          <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
-                            Escolher Plano
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
+                      ))}
+                      <div className="pt-4">
+                        <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium text-xs" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
+                          Escolher
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
 
-                  {/* Plano Pro */}
-                  <div className="flex-shrink-0 w-64">
-                    <Card className="h-full">
-                      <CardHeader className="text-center pb-4">
-                        <div className="w-12 h-12 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center mx-auto mb-2">
-                          <span className="text-white font-bold text-sm">PRO</span>
+                {/* Plano Essencial */}
+                <div className="flex-shrink-0 w-40">
+                  <Card className="h-full relative">
+                    <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-2 py-1 rounded-full text-xs font-medium z-10">
+                      Popular
+                    </div>
+                    <CardHeader className="text-center pb-4">
+                      <div className="w-10 h-10 bg-focus-green/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <span className="text-focus-green font-bold text-xs">ESS</span>
+                      </div>
+                      <CardTitle className="text-base text-focus-gray">Essencial</CardTitle>
+                      <CardDescription className="text-lg font-bold text-focus-gray">R$ 199<span className="text-xs text-focus-gray/60">/mês</span></CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4 pb-4">
+                      {planFeatures.map((feature, index) => (
+                        <div key={index} className="h-8 flex items-center justify-center">
+                          {feature.essencial ? (
+                            <Check className="w-4 h-4 text-focus-green" />
+                          ) : (
+                            <X className="w-4 h-4 text-gray-400" />
+                          )}
                         </div>
-                        <CardTitle className="text-lg text-focus-gray">Pro Digital</CardTitle>
-                        <CardDescription className="text-xl font-bold text-focus-gray">R$ 299<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-2 pb-4">
-                        {planFeatures.map((feature, index) => (
-                          <div key={index} className="flex items-center justify-between text-sm">
-                            <span className="text-focus-gray">{feature.name}</span>
-                            {feature.pro ? (
-                              <Check className="w-4 h-4 text-focus-green" />
-                            ) : (
-                              <X className="w-4 h-4 text-gray-400" />
-                            )}
-                          </div>
-                        ))}
-                        <div className="pt-4">
-                          <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
-                            Escolher Plano
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
+                      ))}
+                      <div className="pt-4">
+                        <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium text-xs" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
+                          Escolher
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
 
-                  {/* Plano Personalizado */}
-                  <div className="flex-shrink-0 w-64">
-                    <Card className="h-full">
-                      <CardHeader className="text-center pb-4">
-                        <CardTitle className="text-lg text-focus-gray">Personalizado</CardTitle>
-                        <CardDescription className="text-xl font-bold text-focus-gray">Sob consulta</CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-2 pb-4">
-                        <div className="text-center text-focus-gray/70 text-sm mb-4">
-                          Plano sob medida para as necessidades específicas da sua empresa
+                {/* Plano Pro */}
+                <div className="flex-shrink-0 w-40">
+                  <Card className="h-full">
+                    <CardHeader className="text-center pb-4">
+                      <div className="w-10 h-10 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <span className="text-white font-bold text-xs">PRO</span>
+                      </div>
+                      <CardTitle className="text-base text-focus-gray">Pro Digital</CardTitle>
+                      <CardDescription className="text-lg font-bold text-focus-gray">R$ 299<span className="text-xs text-focus-gray/60">/mês</span></CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4 pb-4">
+                      {planFeatures.map((feature, index) => (
+                        <div key={index} className="h-8 flex items-center justify-center">
+                          {feature.pro ? (
+                            <Check className="w-4 h-4 text-focus-green" />
+                          ) : (
+                            <X className="w-4 h-4 text-gray-400" />
+                          )}
                         </div>
-                        <div className="pt-4">
-                          <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(personalizadoWhatsappUrl, '_blank')}>
-                            <MessageCircle className="w-4 h-4 mr-2" />
-                            Solicitar Orçamento
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
+                      ))}
+                      <div className="pt-4">
+                        <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium text-xs" onClick={() => window.open(proWhatsappUrl, '_blank')}>
+                          Escolher
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
+            </div>
 
-              {/* Dica de scroll para mobile */}
-              <div className="text-center mt-4">
-                <p className="text-sm text-focus-gray/60 flex items-center justify-center gap-2">
-                  <span>Deslize para ver todos os planos</span>
-                  <svg width="20" height="12" viewBox="0 0 20 12" fill="none" className="animate-pulse">
-                    <path d="M14 2L18 6L14 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M2 6H18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                </p>
-              </div>
+            {/* Dica de scroll para mobile */}
+            <div className="text-center mt-4">
+              <p className="text-sm text-focus-gray/60 flex items-center justify-center gap-2">
+                <span>Deslize para ver todos os planos</span>
+                <svg width="20" height="12" viewBox="0 0 20 12" fill="none" className="animate-pulse">
+                  <path d="M14 2L18 6L14 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M2 6H18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </p>
+            </div>
+
+            {/* Plano Personalizado sempre visível em baixo */}
+            <div className="mt-8">
+              <Card className="max-w-sm mx-auto">
+                <CardHeader className="text-center pb-4">
+                  <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <span className="text-focus-blue font-bold text-xs">PERS</span>
+                  </div>
+                  <CardTitle className="text-lg text-focus-gray">Personalizado</CardTitle>
+                  <CardDescription className="text-xl font-bold text-focus-gray">Sob consulta</CardDescription>
+                </CardHeader>
+                <CardContent className="text-center pb-4">
+                  <div className="text-focus-gray/70 text-sm mb-4">
+                    Plano sob medida para as necessidades específicas da sua empresa
+                  </div>
+                  <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(personalizadoWhatsappUrl, '_blank')}>
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Solicitar Orçamento
+                  </Button>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
@@ -516,30 +528,53 @@ const Index = () => {
             <h3 className="text-3xl font-bold text-focus-gray mb-4">O que nossos clientes dizem</h3>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
-                </div>
-                <p className="text-focus-gray/80 mb-4">
-                  "Comecei com a Focus porque queria simplicidade. Hoje não me preocupo mais com nada, eles cuidam de tudo."
-                </p>
-                <p className="font-semibold text-focus-gray">— Luana M., Designer Freelancer</p>
-              </CardContent>
-            </Card>
+          {/* Desktop/Tablet View */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="flex mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
+                  </div>
+                  <p className="text-focus-gray/80 mb-4">
+                    "{testimonial.text}"
+                  </p>
+                  <p className="font-semibold text-focus-gray">— {testimonial.author}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
 
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
-                </div>
-                <p className="text-focus-gray/80 mb-4">
-                  "Toda a documentação chega no meu WhatsApp. Rápido e simples, do jeito que eu precisava."
-                </p>
-                <p className="font-semibold text-focus-gray">— Carlos A., Prestador de Serviços</p>
-              </CardContent>
-            </Card>
+          {/* Mobile View - Horizontal Scroll */}
+          <div className="md:hidden">
+            <div className="overflow-x-auto pb-6 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
+              <div className="flex gap-4 min-w-max">
+                {testimonials.map((testimonial, index) => (
+                  <Card key={index} className="flex-shrink-0 w-[280px] snap-center hover:shadow-lg transition-shadow">
+                    <CardContent className="p-6">
+                      <div className="flex mb-4">
+                        {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />)}
+                      </div>
+                      <p className="text-focus-gray/80 mb-4 text-sm">
+                        "{testimonial.text}"
+                      </p>
+                      <p className="font-semibold text-focus-gray text-sm">— {testimonial.author}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile hint */}
+            <div className="text-center mt-4">
+              <p className="text-sm text-focus-gray/60 flex items-center justify-center gap-2">
+                <span>Deslize para ver mais depoimentos</span>
+                <svg width="20" height="12" viewBox="0 0 20 12" fill="none" className="animate-pulse">
+                  <path d="M14 2L18 6L14 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M2 6H18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -1,8 +1,10 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MessageCircle, FileText, CheckCircle, Smartphone } from 'lucide-react';
 
 const ProcessSteps = () => {
+  const [currentStep, setCurrentStep] = useState(0);
+
   const steps = [{
     icon: MessageCircle,
     title: "Entre em contato",
@@ -32,6 +34,24 @@ const ProcessSteps = () => {
     bgColor: "bg-focus-blue/5",
     borderColor: "border-focus-blue/20"
   }];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = document.getElementById('mobile-steps-container');
+      if (container) {
+        const scrollLeft = container.scrollLeft;
+        const stepWidth = container.offsetWidth * 0.7; // aproximadamente 70% da largura
+        const newStep = Math.round(scrollLeft / stepWidth);
+        setCurrentStep(Math.min(newStep, steps.length - 1));
+      }
+    };
+
+    const container = document.getElementById('mobile-steps-container');
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+      return () => container.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
 
   return <section className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
       {/* Background decoration */}
@@ -86,15 +106,15 @@ const ProcessSteps = () => {
         </div>
 
         {/* Tablet View - Grid 2x2 */}
-        <div className="hidden md:grid lg:hidden grid-cols-2 gap-8 max-w-5xl mx-auto pt-8">
+        <div className="hidden md:grid lg:hidden grid-cols-2 gap-8 max-w-5xl mx-auto pt-12">
           {steps.map((step, index) => <div key={index} className={`relative ${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-8 h-80 flex flex-col items-center text-center group hover:scale-105 transition-all duration-300 hover:shadow-xl overflow-visible`}>
-              {/* Step number badge - ajustado para não cortar */}
-              <div className="absolute -top-5 left-8 w-12 h-12 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
+              {/* Step number badge - com mais margem no topo */}
+              <div className="absolute -top-6 left-8 w-12 h-12 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
                 {step.step}
               </div>
               
               {/* Icon */}
-              <div className="w-16 h-16 bg-focus-blue rounded-xl flex items-center justify-center mb-6 mt-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 bg-focus-blue rounded-xl flex items-center justify-center mb-6 mt-8 group-hover:scale-110 transition-transform duration-300">
                 <step.icon className="w-8 h-8 text-white" />
               </div>
               
@@ -108,22 +128,22 @@ const ProcessSteps = () => {
             </div>)}
         </div>
 
-        {/* Small screens - horizontal scroll without carousel cutting */}
-        <div className="md:hidden pt-8">
-          <div className="flex gap-4 overflow-x-auto pb-6 px-4 -mx-4 snap-x snap-mandatory scrollbar-hide">
+        {/* Small screens - horizontal scroll com indicadores */}
+        <div className="md:hidden pt-12">
+          <div id="mobile-steps-container" className="flex gap-4 overflow-x-auto pb-6 px-4 -mx-4 snap-x snap-mandatory scrollbar-hide">
             {steps.map((step, index) => <div key={index} className={`${step.bgColor} ${step.borderColor} border-2 rounded-2xl p-6 h-80 flex flex-col items-center text-center relative overflow-visible flex-shrink-0 w-[280px] snap-center`}>
                 {/* Background pattern */}
                 <div className="absolute top-0 right-0 w-16 h-16 opacity-10">
                   <div className="w-full h-full bg-gradient-to-br from-focus-blue to-focus-blue rounded-bl-full"></div>
                 </div>
                 
-                {/* Step number badge - ajustado para não cortar */}
-                <div className="absolute -top-5 left-6 w-12 h-12 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
+                {/* Step number badge - com mais margem */}
+                <div className="absolute -top-6 left-6 w-12 h-12 bg-focus-blue rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg z-10">
                   {step.step}
                 </div>
                 
                 {/* Icon */}
-                <div className="w-16 h-16 bg-focus-blue rounded-xl flex items-center justify-center mb-6 mt-8 shadow-lg">
+                <div className="w-16 h-16 bg-focus-blue rounded-xl flex items-center justify-center mb-6 mt-10 shadow-lg">
                   <step.icon className="w-8 h-8 text-white" />
                 </div>
                 
@@ -137,8 +157,20 @@ const ProcessSteps = () => {
               </div>)}
           </div>
           
+          {/* Indicadores de posição */}
+          <div className="flex justify-center mt-6 gap-2">
+            {steps.map((_, index) => (
+              <div 
+                key={index} 
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentStep ? 'bg-focus-blue' : 'bg-focus-blue/30'
+                }`}
+              />
+            ))}
+          </div>
+          
           {/* Mobile hint */}
-          <div className="text-center mt-8">
+          <div className="text-center mt-6">
             <p className="text-base text-focus-gray/60 flex items-center justify-center gap-2">
               <span>Deslize para ver todos os passos</span>
               <svg width="24" height="14" viewBox="0 0 20 12" fill="none" className="animate-pulse">

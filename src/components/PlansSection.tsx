@@ -1,61 +1,162 @@
-
 import React, { useState, useRef } from 'react';
 import { MessageCircle, Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-
 interface PlansSectionProps {
   meiWhatsappUrl: string;
   essencialWhatsappUrl: string;
   proWhatsappUrl: string;
   personalizadoWhatsappUrl: string;
 }
-
-const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, personalizadoWhatsappUrl }: PlansSectionProps) => {
+const PlansSection = ({
+  meiWhatsappUrl,
+  essencialWhatsappUrl,
+  proWhatsappUrl,
+  personalizadoWhatsappUrl
+}: PlansSectionProps) => {
   const [activeTab, setActiveTab] = useState("servico");
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  const servicoPlanFeatures = [
-    { name: "Abertura de empresa", mei: true, essencial: true, pro: true },
-    { name: "Contabilidade mensal", mei: false, essencial: true, pro: true },
-    { name: "Emissão de guias", mei: true, essencial: true, pro: true },
-    { name: "Consultoria básica", mei: true, essencial: true, pro: true },
-    { name: "Suporte via WhatsApp", mei: true, essencial: true, pro: true },
-    { name: "Relatórios mensais", mei: false, essencial: true, pro: true },
-    { name: "Escrituração contábil", mei: false, essencial: true, pro: true },
-    { name: "Análise fiscal mensal", mei: false, essencial: false, pro: true },
-    { name: "Certidões automáticas", mei: false, essencial: false, pro: true },
-    { name: "Monitoramento fiscal", mei: false, essencial: false, pro: true },
-  ];
-
-  const comercioPlanFeatures = [
-    { name: "Abertura de empresa", mei: true, essencial: true, pro: true },
-    { name: "Contabilidade mensal", mei: false, essencial: true, pro: true },
-    { name: "Emissão de guias", mei: true, essencial: true, pro: true },
-    { name: "Consultoria básica", mei: true, essencial: true, pro: true },
-    { name: "Suporte via WhatsApp", mei: true, essencial: true, pro: true },
-    { name: "Relatórios mensais", mei: false, essencial: true, pro: true },
-    { name: "Escrituração contábil", mei: false, essencial: true, pro: true },
-    { name: "Controle de estoque", mei: false, essencial: true, pro: true },
-    { name: "Gestão de vendas", mei: false, essencial: false, pro: true },
-    { name: "Análise de margem", mei: false, essencial: false, pro: true },
-    { name: "Relatório de produtos", mei: false, essencial: false, pro: true },
-    { name: "Monitoramento fiscal", mei: false, essencial: false, pro: true },
-  ];
-
+  const servicoPlanFeatures = [{
+    name: "Abertura de empresa",
+    mei: true,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Contabilidade mensal",
+    mei: false,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Emissão de guias",
+    mei: true,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Consultoria básica",
+    mei: true,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Suporte via WhatsApp",
+    mei: true,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Relatórios mensais",
+    mei: false,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Escrituração contábil",
+    mei: false,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Análise fiscal mensal",
+    mei: false,
+    essencial: false,
+    pro: true
+  }, {
+    name: "Certidões automáticas",
+    mei: false,
+    essencial: false,
+    pro: true
+  }, {
+    name: "Monitoramento fiscal",
+    mei: false,
+    essencial: false,
+    pro: true
+  }];
+  const comercioPlanFeatures = [{
+    name: "Abertura de empresa",
+    mei: true,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Contabilidade mensal",
+    mei: false,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Emissão de guias",
+    mei: true,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Consultoria básica",
+    mei: true,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Suporte via WhatsApp",
+    mei: true,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Relatórios mensais",
+    mei: false,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Escrituração contábil",
+    mei: false,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Controle de estoque",
+    mei: false,
+    essencial: true,
+    pro: true
+  }, {
+    name: "Gestão de vendas",
+    mei: false,
+    essencial: false,
+    pro: true
+  }, {
+    name: "Análise de margem",
+    mei: false,
+    essencial: false,
+    pro: true
+  }, {
+    name: "Relatório de produtos",
+    mei: false,
+    essencial: false,
+    pro: true
+  }, {
+    name: "Monitoramento fiscal",
+    mei: false,
+    essencial: false,
+    pro: true
+  }];
   const servicoPlans = {
-    mei: { price: "R$ 79", features: servicoPlanFeatures.filter(f => f.mei) },
-    essencial: { price: "R$ 199", features: servicoPlanFeatures.filter(f => f.essencial) },
-    pro: { price: "R$ 299", features: servicoPlanFeatures.filter(f => f.pro) }
+    mei: {
+      price: "R$ 79",
+      features: servicoPlanFeatures.filter(f => f.mei)
+    },
+    essencial: {
+      price: "R$ 199",
+      features: servicoPlanFeatures.filter(f => f.essencial)
+    },
+    pro: {
+      price: "R$ 299",
+      features: servicoPlanFeatures.filter(f => f.pro)
+    }
   };
-
   const comercioPlans = {
-    mei: { price: "R$ 79", features: comercioPlanFeatures.filter(f => f.mei) },
-    essencial: { price: "R$ 249", features: comercioPlanFeatures.filter(f => f.essencial) },
-    pro: { price: "R$ 399", features: comercioPlanFeatures.filter(f => f.pro) }
+    mei: {
+      price: "R$ 79",
+      features: comercioPlanFeatures.filter(f => f.mei)
+    },
+    essencial: {
+      price: "R$ 249",
+      features: comercioPlanFeatures.filter(f => f.essencial)
+    },
+    pro: {
+      price: "R$ 399",
+      features: comercioPlanFeatures.filter(f => f.pro)
+    }
   };
-
   const handleTabChange = (value: string) => {
     setActiveTab(value);
     if (scrollContainerRef.current) {
@@ -67,9 +168,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
       }, 0);
     }
   };
-
-  return (
-    <section id="planos" className="py-16 bg-white">
+  return <section id="planos" className="py-16 bg-white">
       <div className="w-full max-w-[1280px] mx-auto px-4">
         <div className="text-center mb-12 animate-fade-in">
           <h3 className="font-bold text-focus-gray mb-4 text-3xl">Planos</h3>
@@ -92,11 +191,9 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                     <div className="h-32 flex items-end pb-4">
                       <h4 className="text-lg font-semibold text-focus-gray">Recursos</h4>
                     </div>
-                    {servicoPlanFeatures.map((feature, index) => (
-                      <div key={index} className="h-12 flex items-center">
+                    {servicoPlanFeatures.map((feature, index) => <div key={index} className="h-12 flex items-center">
                         <span className="text-focus-gray text-sm">{feature.name}</span>
-                      </div>
-                    ))}
+                      </div>)}
                     <div className="h-16"></div>
                   </div>
 
@@ -111,15 +208,9 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                         <CardDescription className="text-xl font-bold text-focus-gray">{servicoPlans.mei.price}<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
                       </CardHeader>
                     </Card>
-                    {servicoPlanFeatures.map((feature, index) => (
-                      <div key={index} className="h-12 flex items-center justify-center">
-                        {feature.mei ? (
-                          <Check className="w-5 h-5 text-focus-green" />
-                        ) : (
-                          <X className="w-5 h-5 text-gray-400" />
-                        )}
-                      </div>
-                    ))}
+                    {servicoPlanFeatures.map((feature, index) => <div key={index} className="h-12 flex items-center justify-center">
+                        {feature.mei ? <Check className="w-5 h-5 text-focus-green" /> : <X className="w-5 h-5 text-gray-400" />}
+                      </div>)}
                     <div className="h-16 flex items-center">
                       <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium hover:scale-105 transition-all duration-200" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
                         Escolher Plano
@@ -141,15 +232,9 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                         <CardDescription className="text-xl font-bold text-focus-gray">{servicoPlans.essencial.price}<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
                       </CardHeader>
                     </Card>
-                    {servicoPlanFeatures.map((feature, index) => (
-                      <div key={index} className="h-12 flex items-center justify-center">
-                        {feature.essencial ? (
-                          <Check className="w-5 h-5 text-focus-green" />
-                        ) : (
-                          <X className="w-5 h-5 text-gray-400" />
-                        )}
-                      </div>
-                    ))}
+                    {servicoPlanFeatures.map((feature, index) => <div key={index} className="h-12 flex items-center justify-center">
+                        {feature.essencial ? <Check className="w-5 h-5 text-focus-green" /> : <X className="w-5 h-5 text-gray-400" />}
+                      </div>)}
                     <div className="h-16 flex items-center">
                       <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium hover:scale-105 transition-all duration-200" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
                         Escolher Plano
@@ -168,15 +253,9 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                         <CardDescription className="text-xl font-bold text-focus-gray">{servicoPlans.pro.price}<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
                       </CardHeader>
                     </Card>
-                    {servicoPlanFeatures.map((feature, index) => (
-                      <div key={index} className="h-12 flex items-center justify-center">
-                        {feature.pro ? (
-                          <Check className="w-5 h-5 text-focus-green" />
-                        ) : (
-                          <X className="w-5 h-5 text-gray-400" />
-                        )}
-                      </div>
-                    ))}
+                    {servicoPlanFeatures.map((feature, index) => <div key={index} className="h-12 flex items-center justify-center">
+                        {feature.pro ? <Check className="w-5 h-5 text-focus-green" /> : <X className="w-5 h-5 text-gray-400" />}
+                      </div>)}
                     <div className="h-16 flex items-center">
                       <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium hover:scale-105 transition-all duration-200" onClick={() => window.open(proWhatsappUrl, '_blank')}>
                         Escolher Plano
@@ -203,12 +282,10 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                       </CardHeader>
                       <CardContent className="pb-4">
                         <div className="space-y-2 mb-4">
-                          {servicoPlans.mei.features.map((feature, index) => (
-                            <div key={index} className="flex items-center gap-2 text-sm">
+                          {servicoPlans.mei.features.map((feature, index) => <div key={index} className="flex items-center gap-2 text-sm">
                               <Check className="w-4 h-4 text-focus-green flex-shrink-0" />
                               <span className="text-focus-gray">{feature.name}</span>
-                            </div>
-                          ))}
+                            </div>)}
                         </div>
                         <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium text-xs" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
                           Escolher
@@ -232,12 +309,10 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                       </CardHeader>
                       <CardContent className="pb-4">
                         <div className="space-y-2 mb-4">
-                          {servicoPlans.essencial.features.map((feature, index) => (
-                            <div key={index} className="flex items-center gap-2 text-sm">
+                          {servicoPlans.essencial.features.map((feature, index) => <div key={index} className="flex items-center gap-2 text-sm">
                               <Check className="w-4 h-4 text-focus-green flex-shrink-0" />
                               <span className="text-focus-gray">{feature.name}</span>
-                            </div>
-                          ))}
+                            </div>)}
                         </div>
                         <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium text-xs" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
                           Escolher
@@ -258,12 +333,10 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                       </CardHeader>
                       <CardContent className="pb-4">
                         <div className="space-y-2 mb-4">
-                          {servicoPlans.pro.features.map((feature, index) => (
-                            <div key={index} className="flex items-center gap-2 text-sm">
+                          {servicoPlans.pro.features.map((feature, index) => <div key={index} className="flex items-center gap-2 text-sm">
                               <Check className="w-4 h-4 text-focus-green flex-shrink-0" />
                               <span className="text-focus-gray">{feature.name}</span>
-                            </div>
-                          ))}
+                            </div>)}
                         </div>
                         <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium text-xs" onClick={() => window.open(proWhatsappUrl, '_blank')}>
                           Escolher
@@ -296,11 +369,9 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                     <div className="h-32 flex items-end pb-4">
                       <h4 className="text-lg font-semibold text-focus-gray">Recursos</h4>
                     </div>
-                    {comercioPlanFeatures.map((feature, index) => (
-                      <div key={index} className="h-12 flex items-center">
+                    {comercioPlanFeatures.map((feature, index) => <div key={index} className="h-12 flex items-center">
                         <span className="text-focus-gray text-sm">{feature.name}</span>
-                      </div>
-                    ))}
+                      </div>)}
                     <div className="h-16"></div>
                   </div>
 
@@ -315,15 +386,9 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                         <CardDescription className="text-xl font-bold text-focus-gray">{comercioPlans.mei.price}<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
                       </CardHeader>
                     </Card>
-                    {comercioPlanFeatures.map((feature, index) => (
-                      <div key={index} className="h-12 flex items-center justify-center">
-                        {feature.mei ? (
-                          <Check className="w-5 h-5 text-focus-green" />
-                        ) : (
-                          <X className="w-5 h-5 text-gray-400" />
-                        )}
-                      </div>
-                    ))}
+                    {comercioPlanFeatures.map((feature, index) => <div key={index} className="h-12 flex items-center justify-center">
+                        {feature.mei ? <Check className="w-5 h-5 text-focus-green" /> : <X className="w-5 h-5 text-gray-400" />}
+                      </div>)}
                     <div className="h-16 flex items-center">
                       <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium hover:scale-105 transition-all duration-200" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
                         Escolher Plano
@@ -345,15 +410,9 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                         <CardDescription className="text-xl font-bold text-focus-gray">{comercioPlans.essencial.price}<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
                       </CardHeader>
                     </Card>
-                    {comercioPlanFeatures.map((feature, index) => (
-                      <div key={index} className="h-12 flex items-center justify-center">
-                        {feature.essencial ? (
-                          <Check className="w-5 h-5 text-focus-green" />
-                        ) : (
-                          <X className="w-5 h-5 text-gray-400" />
-                        )}
-                      </div>
-                    ))}
+                    {comercioPlanFeatures.map((feature, index) => <div key={index} className="h-12 flex items-center justify-center">
+                        {feature.essencial ? <Check className="w-5 h-5 text-focus-green" /> : <X className="w-5 h-5 text-gray-400" />}
+                      </div>)}
                     <div className="h-16 flex items-center">
                       <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium hover:scale-105 transition-all duration-200" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
                         Escolher Plano
@@ -372,15 +431,9 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                         <CardDescription className="text-xl font-bold text-focus-gray">{comercioPlans.pro.price}<span className="text-sm text-focus-gray/60">/mês</span></CardDescription>
                       </CardHeader>
                     </Card>
-                    {comercioPlanFeatures.map((feature, index) => (
-                      <div key={index} className="h-12 flex items-center justify-center">
-                        {feature.pro ? (
-                          <Check className="w-5 h-5 text-focus-green" />
-                        ) : (
-                          <X className="w-5 h-5 text-gray-400" />
-                        )}
-                      </div>
-                    ))}
+                    {comercioPlanFeatures.map((feature, index) => <div key={index} className="h-12 flex items-center justify-center">
+                        {feature.pro ? <Check className="w-5 h-5 text-focus-green" /> : <X className="w-5 h-5 text-gray-400" />}
+                      </div>)}
                     <div className="h-16 flex items-center">
                       <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium hover:scale-105 transition-all duration-200" onClick={() => window.open(proWhatsappUrl, '_blank')}>
                         Escolher Plano
@@ -407,12 +460,10 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                       </CardHeader>
                       <CardContent className="pb-4">
                         <div className="space-y-2 mb-4">
-                          {comercioPlans.mei.features.map((feature, index) => (
-                            <div key={index} className="flex items-center gap-2 text-sm">
+                          {comercioPlans.mei.features.map((feature, index) => <div key={index} className="flex items-center gap-2 text-sm">
                               <Check className="w-4 h-4 text-focus-green flex-shrink-0" />
                               <span className="text-focus-gray">{feature.name}</span>
-                            </div>
-                          ))}
+                            </div>)}
                         </div>
                         <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium text-xs" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
                           Escolher
@@ -436,12 +487,10 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                       </CardHeader>
                       <CardContent className="pb-4">
                         <div className="space-y-2 mb-4">
-                          {comercioPlans.essencial.features.map((feature, index) => (
-                            <div key={index} className="flex items-center gap-2 text-sm">
+                          {comercioPlans.essencial.features.map((feature, index) => <div key={index} className="flex items-center gap-2 text-sm">
                               <Check className="w-4 h-4 text-focus-green flex-shrink-0" />
                               <span className="text-focus-gray">{feature.name}</span>
-                            </div>
-                          ))}
+                            </div>)}
                         </div>
                         <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium text-xs" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
                           Escolher
@@ -462,12 +511,10 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                       </CardHeader>
                       <CardContent className="pb-4">
                         <div className="space-y-2 mb-4">
-                          {comercioPlans.pro.features.map((feature, index) => (
-                            <div key={index} className="flex items-center gap-2 text-sm">
+                          {comercioPlans.pro.features.map((feature, index) => <div key={index} className="flex items-center gap-2 text-sm">
                               <Check className="w-4 h-4 text-focus-green flex-shrink-0" />
                               <span className="text-focus-gray">{feature.name}</span>
-                            </div>
-                          ))}
+                            </div>)}
                         </div>
                         <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium text-xs" onClick={() => window.open(proWhatsappUrl, '_blank')}>
                           Escolher
@@ -513,8 +560,6 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
           </div>
         </Tabs>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default PlansSection;

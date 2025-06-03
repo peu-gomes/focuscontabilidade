@@ -1,8 +1,12 @@
 
 import React from 'react';
 import { MessageCircle, FileText, Zap, Shield } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const AdvantagesSection = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation({ threshold: 0.2 });
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation({ threshold: 0.1 });
+
   const advantages = [
     {
       icon: MessageCircle,
@@ -35,17 +39,21 @@ const AdvantagesSection = () => {
       </div>
       
       <div className="w-full max-w-[1280px] mx-auto px-4 relative">
-        <div className="text-center mb-12 animate-fade-in">
+        <div 
+          ref={titleRef}
+          className={`text-center mb-12 scroll-hidden ${titleVisible ? 'scroll-animate-slide-left' : ''}`}
+        >
           <h3 className="text-3xl font-bold mb-4">Por que escolher a Focus?</h3>
           <p className="text-blue-100 text-base">Soluções modernas para sua empresa</p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {advantages.map((advantage, index) => (
             <div 
               key={index} 
-              className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300 border border-white/20 hover:scale-105 animate-fade-in"
-              style={{ animationDelay: `${index * 0.1 + 0.2}s` }}
+              className={`text-center bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300 border border-white/20 hover:scale-105 scroll-hidden stagger-${index + 1} ${
+                cardsVisible ? 'scroll-animate-flip' : ''
+              }`}
             >
               <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
                 <advantage.icon className="w-8 h-8 text-white" />

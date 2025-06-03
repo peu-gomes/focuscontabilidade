@@ -2,8 +2,12 @@
 import React from 'react';
 import { Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const TestimonialsSection = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation({ threshold: 0.2 });
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation({ threshold: 0.1 });
+
   const testimonials = [
     {
       text: "Comecei com a Focus porque queria simplicidade. Hoje não me preocupo mais com nada, eles cuidam de tudo.",
@@ -70,17 +74,21 @@ const TestimonialsSection = () => {
   return (
     <section className="py-16 bg-white">
       <div className="w-full max-w-[1280px] mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-in">
+        <div 
+          ref={titleRef}
+          className={`text-center mb-12 scroll-hidden ${titleVisible ? 'scroll-animate-slide-top' : ''}`}
+        >
           <h3 className="text-3xl font-bold text-focus-gray mb-4">O que nossos clientes dizem</h3>
         </div>
         
         {/* Desktop/Tablet View */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div ref={cardsRef} className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {testimonials.slice(0, 9).map((testimonial, index) => (
             <Card 
               key={index} 
-              className="hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fade-in"
-              style={{ animationDelay: `${index * 0.1 + 0.2}s` }}
+              className={`hover:shadow-lg transition-all duration-300 hover:scale-105 scroll-hidden stagger-${(index % 6) + 1} ${
+                cardsVisible ? (index % 3 === 0 ? 'scroll-animate-slide-left' : index % 3 === 1 ? 'scroll-animate-zoom' : 'scroll-animate-slide-right') : ''
+              }`}
             >
               <CardContent className="p-6">
                 <div className="flex mb-4">

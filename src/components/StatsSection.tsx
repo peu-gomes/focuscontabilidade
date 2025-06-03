@@ -1,8 +1,12 @@
 
 import React from 'react';
 import { Users, FileCheck, Clock, TrendingUp } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const StatsSection = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation({ threshold: 0.2 });
+  const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation({ threshold: 0.1 });
+
   const stats = [
     {
       icon: Users,
@@ -33,7 +37,10 @@ const StatsSection = () => {
   return (
     <section className="py-16 bg-gradient-to-br from-focus-blue to-focus-green">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div 
+          ref={titleRef}
+          className={`text-center mb-12 scroll-hidden ${titleVisible ? 'scroll-animate-zoom' : ''}`}
+        >
           <h3 className="text-3xl font-bold text-white mb-4">
             Números que comprovam nossa excelência
           </h3>
@@ -42,10 +49,15 @@ const StatsSection = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div ref={statsRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+            <div 
+              key={index} 
+              className={`text-center scroll-hidden stagger-${index + 1} ${
+                statsVisible ? 'scroll-animate-bounce' : ''
+              }`}
+            >
+              <div className="bg-white/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
                 <stat.icon className="w-8 h-8 text-white" />
               </div>
               <div className="text-4xl font-bold text-white mb-2">{stat.number}</div>

@@ -58,7 +58,6 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
 
   const handleTabChange = (value: string) => {
     setActiveTab(value);
-    // Manter a posição do scroll no mobile
     if (scrollContainerRef.current) {
       const currentScrollLeft = scrollContainerRef.current.scrollLeft;
       setTimeout(() => {
@@ -72,25 +71,38 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
   return (
     <section id="planos" className="py-16 bg-white">
       <div className="w-full max-w-[1280px] mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-fade-in">
           <h3 className="font-bold text-focus-gray mb-4 text-3xl">Planos</h3>
           <p className="text-focus-gray/80 text-base">Soluções que acompanham o crescimento da sua empresa</p>
         </div>
 
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8 animate-scale-in">
             <TabsTrigger value="servico">Serviço</TabsTrigger>
             <TabsTrigger value="comercio">Comércio</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="servico">
+          <TabsContent value="servico" className="animate-fade-in">
             {/* Planos Desktop/Tablet - Layout de tabela lado a lado */}
             <div className="hidden md:block">
               <div className="max-w-6xl mx-auto">
                 <div className="grid grid-cols-4 gap-6">
+                  {/* Coluna de recursos */}
+                  <div className="space-y-4">
+                    <div className="h-32 flex items-end pb-4">
+                      <h4 className="text-lg font-semibold text-focus-gray">Recursos</h4>
+                    </div>
+                    {servicoPlanFeatures.map((feature, index) => (
+                      <div key={index} className="h-12 flex items-center">
+                        <span className="text-focus-gray text-sm">{feature.name}</span>
+                      </div>
+                    ))}
+                    <div className="h-16"></div>
+                  </div>
+
                   {/* Plano MEI */}
                   <div className="space-y-4">
-                    <Card className="h-32">
+                    <Card className="h-32 hover:shadow-lg transition-all duration-300">
                       <CardHeader className="text-center pb-4 h-full flex flex-col justify-center">
                         <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-2">
                           <span className="text-focus-blue font-bold text-sm">MEI</span>
@@ -109,7 +121,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                       </div>
                     ))}
                     <div className="h-16 flex items-center">
-                      <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
+                      <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium hover:scale-105 transition-all duration-200" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
                         Escolher Plano
                       </Button>
                     </div>
@@ -117,7 +129,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
 
                   {/* Plano Essencial */}
                   <div className="space-y-4">
-                    <Card className="h-32 relative">
+                    <Card className="h-32 relative hover:shadow-lg transition-all duration-300">
                       <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-3 py-1 rounded-full text-xs font-medium z-10">
                         Mais Popular
                       </div>
@@ -139,7 +151,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                       </div>
                     ))}
                     <div className="h-16 flex items-center">
-                      <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
+                      <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium hover:scale-105 transition-all duration-200" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
                         Escolher Plano
                       </Button>
                     </div>
@@ -147,7 +159,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
 
                   {/* Plano Pro */}
                   <div className="space-y-4">
-                    <Card className="h-32">
+                    <Card className="h-32 hover:shadow-lg transition-all duration-300">
                       <CardHeader className="text-center pb-4 h-full flex flex-col justify-center">
                         <div className="w-12 h-12 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center mx-auto mb-2">
                           <span className="text-white font-bold text-sm">PRO</span>
@@ -166,7 +178,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                       </div>
                     ))}
                     <div className="h-16 flex items-center">
-                      <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
+                      <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium hover:scale-105 transition-all duration-200" onClick={() => window.open(proWhatsappUrl, '_blank')}>
                         Escolher Plano
                       </Button>
                     </div>
@@ -181,7 +193,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                 <div className="flex gap-4 min-w-max">
                   {/* Plano MEI */}
                   <div className="flex-shrink-0 w-64">
-                    <Card className="h-full">
+                    <Card className="h-full hover:shadow-lg transition-all duration-300">
                       <CardHeader className="text-center pb-4">
                         <div className="w-10 h-10 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-2">
                           <span className="text-focus-blue font-bold text-xs">MEI</span>
@@ -207,7 +219,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
 
                   {/* Plano Essencial */}
                   <div className="flex-shrink-0 w-64">
-                    <Card className="h-full relative">
+                    <Card className="h-full relative hover:shadow-lg transition-all duration-300">
                       <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-2 py-1 rounded-full text-xs font-medium z-10">
                         Popular
                       </div>
@@ -236,7 +248,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
 
                   {/* Plano Pro */}
                   <div className="flex-shrink-0 w-64">
-                    <Card className="h-full">
+                    <Card className="h-full hover:shadow-lg transition-all duration-300">
                       <CardHeader className="text-center pb-4">
                         <div className="w-10 h-10 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center mx-auto mb-2">
                           <span className="text-white font-bold text-xs">PRO</span>
@@ -262,7 +274,6 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                 </div>
               </div>
 
-              {/* Dica de scroll para mobile */}
               <div className="text-center mt-4">
                 <p className="text-sm text-focus-gray/60 flex items-center justify-center gap-2">
                   <span>Deslize para ver todos os planos</span>
@@ -275,14 +286,27 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
             </div>
           </TabsContent>
 
-          <TabsContent value="comercio">
+          <TabsContent value="comercio" className="animate-fade-in">
             {/* Planos Comércio Desktop/Tablet */}
             <div className="hidden md:block">
               <div className="max-w-6xl mx-auto">
                 <div className="grid grid-cols-4 gap-6">
+                  {/* Coluna de recursos */}
+                  <div className="space-y-4">
+                    <div className="h-32 flex items-end pb-4">
+                      <h4 className="text-lg font-semibold text-focus-gray">Recursos</h4>
+                    </div>
+                    {comercioPlanFeatures.map((feature, index) => (
+                      <div key={index} className="h-12 flex items-center">
+                        <span className="text-focus-gray text-sm">{feature.name}</span>
+                      </div>
+                    ))}
+                    <div className="h-16"></div>
+                  </div>
+
                   {/* Plano MEI */}
                   <div className="space-y-4">
-                    <Card className="h-32">
+                    <Card className="h-32 hover:shadow-lg transition-all duration-300">
                       <CardHeader className="text-center pb-4 h-full flex flex-col justify-center">
                         <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-2">
                           <span className="text-focus-blue font-bold text-sm">MEI</span>
@@ -301,7 +325,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                       </div>
                     ))}
                     <div className="h-16 flex items-center">
-                      <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
+                      <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium hover:scale-105 transition-all duration-200" onClick={() => window.open(meiWhatsappUrl, '_blank')}>
                         Escolher Plano
                       </Button>
                     </div>
@@ -309,7 +333,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
 
                   {/* Plano Essencial */}
                   <div className="space-y-4">
-                    <Card className="h-32 relative">
+                    <Card className="h-32 relative hover:shadow-lg transition-all duration-300">
                       <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-3 py-1 rounded-full text-xs font-medium z-10">
                         Mais Popular
                       </div>
@@ -331,7 +355,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                       </div>
                     ))}
                     <div className="h-16 flex items-center">
-                      <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
+                      <Button className="w-full bg-focus-green hover:bg-focus-green/90 font-medium hover:scale-105 transition-all duration-200" onClick={() => window.open(essencialWhatsappUrl, '_blank')}>
                         Escolher Plano
                       </Button>
                     </div>
@@ -339,7 +363,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
 
                   {/* Plano Pro */}
                   <div className="space-y-4">
-                    <Card className="h-32">
+                    <Card className="h-32 hover:shadow-lg transition-all duration-300">
                       <CardHeader className="text-center pb-4 h-full flex flex-col justify-center">
                         <div className="w-12 h-12 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center mx-auto mb-2">
                           <span className="text-white font-bold text-sm">PRO</span>
@@ -358,7 +382,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                       </div>
                     ))}
                     <div className="h-16 flex items-center">
-                      <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium" onClick={() => window.open(proWhatsappUrl, '_blank')}>
+                      <Button className="w-full bg-gradient-to-r from-focus-blue to-focus-green hover:from-focus-blue/90 hover:to-focus-green/90 text-white font-medium hover:scale-105 transition-all duration-200" onClick={() => window.open(proWhatsappUrl, '_blank')}>
                         Escolher Plano
                       </Button>
                     </div>
@@ -373,7 +397,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                 <div className="flex gap-4 min-w-max">
                   {/* Plano MEI */}
                   <div className="flex-shrink-0 w-64">
-                    <Card className="h-full">
+                    <Card className="h-full hover:shadow-lg transition-all duration-300">
                       <CardHeader className="text-center pb-4">
                         <div className="w-10 h-10 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-2">
                           <span className="text-focus-blue font-bold text-xs">MEI</span>
@@ -399,7 +423,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
 
                   {/* Plano Essencial */}
                   <div className="flex-shrink-0 w-64">
-                    <Card className="h-full relative">
+                    <Card className="h-full relative hover:shadow-lg transition-all duration-300">
                       <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-focus-green text-white px-2 py-1 rounded-full text-xs font-medium z-10">
                         Popular
                       </div>
@@ -428,7 +452,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
 
                   {/* Plano Pro */}
                   <div className="flex-shrink-0 w-64">
-                    <Card className="h-full">
+                    <Card className="h-full hover:shadow-lg transition-all duration-300">
                       <CardHeader className="text-center pb-4">
                         <div className="w-10 h-10 bg-gradient-to-r from-focus-blue to-focus-green rounded-lg flex items-center justify-center mx-auto mb-2">
                           <span className="text-white font-bold text-xs">PRO</span>
@@ -454,7 +478,6 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                 </div>
               </div>
 
-              {/* Dica de scroll para mobile */}
               <div className="text-center mt-4">
                 <p className="text-sm text-focus-gray/60 flex items-center justify-center gap-2">
                   <span>Deslize para ver todos os planos</span>
@@ -468,8 +491,8 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
           </TabsContent>
 
           {/* Plano Personalizado sempre em baixo */}
-          <div className="mt-8">
-            <Card className="max-w-sm mx-auto">
+          <div className="mt-8 animate-scale-in">
+            <Card className="max-w-sm mx-auto hover:shadow-lg transition-all duration-300">
               <CardHeader className="text-center pb-4">
                 <div className="w-12 h-12 bg-focus-blue/10 rounded-lg flex items-center justify-center mx-auto mb-2">
                   <span className="text-focus-blue font-bold text-xs">PERS</span>
@@ -481,7 +504,7 @@ const PlansSection = ({ meiWhatsappUrl, essencialWhatsappUrl, proWhatsappUrl, pe
                 <div className="text-focus-gray/70 text-sm mb-4">
                   Plano sob medida para as necessidades específicas da sua empresa
                 </div>
-                <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium" onClick={() => window.open(personalizadoWhatsappUrl, '_blank')}>
+                <Button className="w-full bg-focus-blue hover:bg-focus-blue/90 font-medium hover:scale-105 transition-all duration-200" onClick={() => window.open(personalizadoWhatsappUrl, '_blank')}>
                   <MessageCircle className="w-4 h-4 mr-2" />
                   Solicitar Orçamento
                 </Button>

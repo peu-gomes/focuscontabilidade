@@ -44,20 +44,44 @@ const TestimonialsSection = () => {
       text: "Preços justos e serviço de qualidade. A Focus superou minhas expectativas.",
       author: "Ricardo M., Advogado",
       rating: 5
+    },
+    {
+      text: "Mudei para a Focus e nunca mais tive dor de cabeça com contabilidade.",
+      author: "Fernanda L., E-commerce",
+      rating: 5
+    },
+    {
+      text: "Processo de abertura da empresa foi muito rápido e sem burocracias.",
+      author: "Gabriel T., Startup",
+      rating: 5
+    },
+    {
+      text: "Atendem todas as minhas dúvidas pelo WhatsApp mesmo. Muito prático!",
+      author: "Carla F., Psicóloga",
+      rating: 5
+    },
+    {
+      text: "Relatórios sempre em dia e fáceis de entender. Equipe muito competente.",
+      author: "Pedro H., Restaurante",
+      rating: 5
     }
   ];
 
   return (
     <section className="py-16 bg-white">
       <div className="w-full max-w-[1280px] mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-fade-in">
           <h3 className="text-3xl font-bold text-focus-gray mb-4">O que nossos clientes dizem</h3>
         </div>
         
         {/* Desktop/Tablet View */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {testimonials.slice(0, 6).map((testimonial, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
+          {testimonials.slice(0, 9).map((testimonial, index) => (
+            <Card 
+              key={index} 
+              className="hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fade-in"
+              style={{ animationDelay: `${index * 0.1 + 0.2}s` }}
+            >
               <CardContent className="p-6">
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}

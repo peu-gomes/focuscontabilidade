@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -9,7 +8,7 @@ interface CTASectionProps {
 }
 
 const CTASection = ({ whatsappUrl }: CTASectionProps) => {
-  const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.3 });
+  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
 
   return (
     <section className="py-16 bg-gradient-to-r from-focus-blue to-focus-green">

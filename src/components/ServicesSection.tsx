@@ -1,12 +1,11 @@
-
 import React, { useState } from 'react';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const ServicesSection = () => {
   const [expandedService, setExpandedService] = useState<number | null>(null);
-  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation({ threshold: 0.2 });
-  const { ref: servicesRef, isVisible: servicesVisible } = useScrollAnimation({ threshold: 0.1 });
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
+  const { ref: servicesRef, isVisible: servicesVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.1 });
 
   const services = [
     {

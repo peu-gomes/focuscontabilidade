@@ -1,9 +1,13 @@
+
 import React from 'react';
 import { Users } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const AboutSection = () => {
-  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLHeadingElement>({ threshold: 0.2 });
+  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLHeadingElement>({ 
+    threshold: 0.2,
+    triggerOnce: true 
+  });
 
   return (
     <section id="quem-somos" className="py-16 bg-gradient-to-b from-focus-blue via-focus-blue/30 to-white">
@@ -12,14 +16,14 @@ const AboutSection = () => {
           <h3 
             ref={sectionRef}
             className={`text-3xl font-bold text-white mb-8 scroll-hidden ${
-              isVisible ? 'scroll-animate-zoom' : ''
+              isVisible ? 'scroll-animate-fade-up' : ''
             }`}
           >
             Quem Somos
           </h3>
           <div 
-            className={`bg-white rounded-lg p-8 shadow-sm hover:shadow-lg transition-all duration-300 scroll-hidden stagger-2 ${
-              isVisible ? 'scroll-animate-slide-bottom' : ''
+            className={`bg-white rounded-lg p-8 shadow-sm hover:shadow-lg transition-all duration-500 scroll-hidden stagger-2 ${
+              isVisible ? 'scroll-animate-scale' : ''
             }`}
           >
             <Users 

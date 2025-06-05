@@ -5,6 +5,7 @@ interface UseScrollAnimationOptions {
   threshold?: number;
   rootMargin?: string;
   triggerOnce?: boolean;
+  delay?: number;
 }
 
 export const useScrollAnimation = <T extends HTMLElement>(options: UseScrollAnimationOptions = {}) => {
@@ -15,14 +16,18 @@ export const useScrollAnimation = <T extends HTMLElement>(options: UseScrollAnim
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
+          if (options.delay) {
+            setTimeout(() => setIsVisible(true), options.delay);
+          } else {
+            setIsVisible(true);
+          }
         } else if (!options.triggerOnce) {
           setIsVisible(false);
         }
       },
       {
-        threshold: options.threshold || 0.1,
-        rootMargin: options.rootMargin || '0px 0px -100px 0px',
+        threshold: options.threshold || 0.15,
+        rootMargin: options.rootMargin || '0px 0px -50px 0px',
       }
     );
 
@@ -35,7 +40,7 @@ export const useScrollAnimation = <T extends HTMLElement>(options: UseScrollAnim
         observer.unobserve(ref.current);
       }
     };
-  }, [options.threshold, options.rootMargin, options.triggerOnce]);
+  }, [options.threshold, options.rootMargin, options.triggerOnce, options.delay]);
 
   return { ref, isVisible };
 };

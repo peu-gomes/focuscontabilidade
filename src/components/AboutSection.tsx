@@ -4,8 +4,13 @@ import { Users } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const AboutSection = () => {
-  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLHeadingElement>({ 
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation<HTMLHeadingElement>({ 
     threshold: 0.2,
+    triggerOnce: true 
+  });
+  
+  const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation<HTMLDivElement>({ 
+    threshold: 0.1,
     triggerOnce: true 
   });
 
@@ -14,21 +19,22 @@ const AboutSection = () => {
       <div className="w-full max-w-[1280px] mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h3 
-            ref={sectionRef}
+            ref={titleRef}
             className={`text-3xl font-bold text-white mb-8 scroll-hidden ${
-              isVisible ? 'scroll-animate-fade-up' : ''
+              titleVisible ? 'scroll-animate-slide-bottom' : ''
             }`}
           >
             Quem Somos
           </h3>
           <div 
-            className={`bg-white rounded-lg p-8 shadow-sm hover:shadow-lg transition-all duration-500 scroll-hidden stagger-2 ${
-              isVisible ? 'scroll-animate-scale' : ''
+            ref={contentRef}
+            className={`bg-white rounded-lg p-8 shadow-sm hover:shadow-lg transition-all duration-500 scroll-hidden ${
+              contentVisible ? 'scroll-animate-slide-top' : ''
             }`}
           >
             <Users 
               className={`w-16 h-16 text-focus-blue mx-auto mb-6 hover:scale-110 transition-transform duration-300 scroll-hidden stagger-3 ${
-                isVisible ? 'scroll-animate-bounce' : ''
+                contentVisible ? 'scroll-animate-bounce' : ''
               }`} 
             />
             <p className="text-lg text-focus-gray/80 mb-6 font-medium">Somos uma contabilidade feita por contadores conectados com o presente.</p>

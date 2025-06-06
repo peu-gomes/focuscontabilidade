@@ -58,30 +58,6 @@ const TestimonialsSection = () => {
       company: "StartUp Growth",
       logo: "/lovable-uploads/d46b0f3f-634a-4ba4-9b52-234af8bbba8b.png",
       rating: 5
-    },
-    {
-      text: "A Focus não é só uma contabilidade, é uma parceira estratégica. Sempre disponíveis para esclarecer dúvidas e orientar as melhores decisões fiscais.",
-      author: "Fernanda Lima",
-      position: "Proprietária",
-      company: "Boutique Elegance",
-      logo: "/lovable-uploads/f73e3f21-1797-4e03-b00e-8ca0470ce0c9.png",
-      rating: 5
-    },
-    {
-      text: "Migrei de uma contabilidade tradicional para a Focus e a diferença é impressionante. Tudo digital, organizado e com preços justos.",
-      author: "Gabriel Torres",
-      position: "CTO",
-      company: "DevSolutions Pro",
-      logo: "/lovable-uploads/72dd4e0c-c190-431c-b465-e6f21689b198.png",
-      rating: 5
-    },
-    {
-      text: "Suporte excepcional via WhatsApp. Sempre que precisei, obtive respostas rápidas e precisas. A Focus entende as necessidades do empreendedor moderno.",
-      author: "Carla Freitas",
-      position: "Psicóloga",
-      company: "Clínica Bem-Estar",
-      logo: "/lovable-uploads/7e766620-115f-42c5-b8f9-90b895b6862e.png",
-      rating: 5
     }
   ];
 

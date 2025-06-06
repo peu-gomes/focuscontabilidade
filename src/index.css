@@ -209,6 +209,16 @@
   }
 }
 
+/* New horizontal scrolling animation */
+@keyframes scrollHorizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 /* Professional animation classes with improved timing */
 .scroll-animate-slide-left {
   animation: slideInFromLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -248,6 +258,15 @@
 
 .scroll-animate-scale {
   animation: scaleInCenter 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Horizontal scrolling animation */
+.animate-scroll-horizontal {
+  animation: scrollHorizontal 30s linear infinite;
+}
+
+.pause-animation {
+  animation-play-state: paused;
 }
 
 /* Initial hidden state for scroll animations */
@@ -298,4 +317,9 @@ html {
 
 .animate-fade-in {
   animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Hover state for pausing animations */
+.hover\:pause-animation:hover {
+  animation-play-state: paused;
 }

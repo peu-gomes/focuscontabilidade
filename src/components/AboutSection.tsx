@@ -5,13 +5,8 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const AboutSection = () => {
   const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLHeadingElement>({ 
-    threshold: 0.3,
-    triggerOnce: true 
-  });
-  const { ref: cardRef, isVisible: cardVisible } = useScrollAnimation<HTMLDivElement>({ 
     threshold: 0.2,
-    triggerOnce: true,
-    delay: 200
+    triggerOnce: true 
   });
 
   return (
@@ -24,17 +19,16 @@ const AboutSection = () => {
               isVisible ? 'scroll-animate-fade-up' : ''
             }`}
           >
-            <span className="text-white">Quem</span> <span className="text-yellow-300">Somos</span>
+            Quem Somos
           </h3>
           <div 
-            ref={cardRef}
-            className={`bg-white rounded-lg p-8 shadow-sm hover:shadow-lg transition-all duration-500 scroll-hidden ${
-              cardVisible ? 'scroll-animate-scale' : ''
+            className={`bg-white rounded-lg p-8 shadow-sm hover:shadow-lg transition-all duration-500 scroll-hidden stagger-2 ${
+              isVisible ? 'scroll-animate-scale' : ''
             }`}
           >
             <Users 
-              className={`w-16 h-16 text-focus-blue mx-auto mb-6 hover:scale-110 transition-transform duration-300 scroll-hidden ${
-                cardVisible ? 'scroll-animate-bounce' : ''
+              className={`w-16 h-16 text-focus-blue mx-auto mb-6 hover:scale-110 transition-transform duration-300 scroll-hidden stagger-3 ${
+                isVisible ? 'scroll-animate-bounce' : ''
               }`} 
             />
             <p className="text-lg text-focus-gray/80 mb-6 font-medium">Somos uma contabilidade feita por contadores conectados com o presente.</p>

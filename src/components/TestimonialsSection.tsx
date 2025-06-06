@@ -1,19 +1,11 @@
-
 import React from 'react';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const TestimonialsSection = () => {
-  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation<HTMLDivElement>({ 
-    threshold: 0.3,
-    triggerOnce: true 
-  });
-  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation<HTMLDivElement>({ 
-    threshold: 0.2,
-    triggerOnce: true 
-  });
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.1 });
 
   const testimonials = [
     {
@@ -85,44 +77,29 @@ const TestimonialsSection = () => {
           ref={titleRef}
           className={`text-center mb-12 scroll-hidden ${titleVisible ? 'scroll-animate-slide-top' : ''}`}
         >
-          <h3 className="text-3xl font-bold text-focus-gray mb-4">
-            O que <span className="text-focus-blue">nossos clientes</span> dizem
-          </h3>
+          <h3 className="text-3xl font-bold text-focus-gray mb-4">O que nossos clientes dizem</h3>
         </div>
         
-        {/* Desktop/Tablet View with Navigation */}
-        <div ref={cardsRef} className="hidden md:block max-w-6xl mx-auto">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <Card 
-                    className={`hover:shadow-lg transition-all duration-300 hover:scale-105 scroll-hidden stagger-${(index % 6) + 1} ${
-                      cardsVisible ? (index % 3 === 0 ? 'scroll-animate-slide-left' : index % 3 === 1 ? 'scroll-animate-zoom' : 'scroll-animate-slide-right') : ''
-                    }`}
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex mb-4">
-                        {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
-                      </div>
-                      <p className="text-focus-gray/80 mb-4">
-                        "{testimonial.text}"
-                      </p>
-                      <p className="font-semibold text-focus-gray">— {testimonial.author}</p>
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-0 bg-white/90 hover:bg-white border-focus-blue/20 text-focus-blue hover:text-focus-blue" />
-            <CarouselNext className="right-0 bg-white/90 hover:bg-white border-focus-blue/20 text-focus-blue hover:text-focus-blue" />
-          </Carousel>
+        {/* Desktop/Tablet View */}
+        <div ref={cardsRef} className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {testimonials.slice(0, 9).map((testimonial, index) => (
+            <Card 
+              key={index} 
+              className={`hover:shadow-lg transition-all duration-300 hover:scale-105 scroll-hidden stagger-${(index % 6) + 1} ${
+                cardsVisible ? (index % 3 === 0 ? 'scroll-animate-slide-left' : index % 3 === 1 ? 'scroll-animate-zoom' : 'scroll-animate-slide-right') : ''
+              }`}
+            >
+              <CardContent className="p-6">
+                <div className="flex mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
+                </div>
+                <p className="text-focus-gray/80 mb-4">
+                  "{testimonial.text}"
+                </p>
+                <p className="font-semibold text-focus-gray">— {testimonial.author}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
         {/* Mobile View - Horizontal Scroll */}

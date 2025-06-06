@@ -7,7 +7,6 @@ import AdvantagesSection from '@/components/AdvantagesSection';
 import ServicesSection from '@/components/ServicesSection';
 import PlansSection from '@/components/PlansSection';
 import AboutSection from '@/components/AboutSection';
-import ClientsSection from '@/components/ClientsSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
@@ -46,7 +45,6 @@ const Index = () => {
         personalizadoWhatsappUrl={personalizadoWhatsappUrl}
       />
       <AboutSection />
-      <ClientsSection />
       <TestimonialsSection />
       <CTASection whatsappUrl={whatsappUrl} />
       <Footer whatsappUrl={whatsappUrl} />

@@ -1,9 +1,6 @@
-
 import React from 'react';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const TestimonialsSection = () => {
@@ -12,51 +9,63 @@ const TestimonialsSection = () => {
 
   const testimonials = [
     {
-      text: "A Focus Contabilidade transformou completamente nossa gestão financeira. O atendimento via WhatsApp é excepcional e sempre conseguimos resolver tudo rapidamente.",
-      author: "Marina Santos",
-      position: "CEO",
-      company: "TechStart Soluções",
-      logo: "/lovable-uploads/72dd4e0c-c190-431c-b465-e6f21689b198.png",
+      text: "Comecei com a Focus porque queria simplicidade. Hoje não me preocupo mais com nada, eles cuidam de tudo.",
+      author: "Luana M., Designer Freelancer",
       rating: 5
     },
     {
-      text: "Migrei minha empresa para a Focus e foi a melhor decisão que tomei. Processo 100% digital, sem burocracias e com total transparência nos serviços.",
-      author: "Carlos Roberto",
-      position: "Diretor Comercial",
-      company: "Inovare Consultoria",
-      logo: "/lovable-uploads/7e766620-115f-42c5-b8f9-90b895b6862e.png",
+      text: "Toda a documentação chega no meu WhatsApp. Rápido e simples, do jeito que eu precisava.",
+      author: "Carlos A., Prestador de Serviços",
       rating: 5
     },
     {
-      text: "A equipe da Focus é extremamente competente. Documentos sempre organizados na nuvem e relatórios mensais que realmente fazem sentido para nosso negócio.",
-      author: "Ana Paula Ferreira",
-      position: "Sócia-Fundadora",
-      company: "Design & Arquitetura AP",
-      logo: "/lovable-uploads/9044b07b-06bf-4225-a0f6-53ed0a06b67c.png",
+      text: "A Focus transformou minha relação com a contabilidade. Agora é tudo digital e sem complicação.",
+      author: "Marina S., Consultora",
       rating: 5
     },
     {
-      text: "Nunca imaginei que contabilidade poderia ser tão simples. A Focus cuida de tudo enquanto eu foco no que realmente importa: fazer minha empresa crescer.",
-      author: "João Pedro Silva",
-      position: "Empresário",
-      company: "Silva & Associados",
-      logo: "/lovable-uploads/92cc8ce4-c3a0-40f9-8a84-0671c985f5df.png",
+      text: "Migrei para a Focus e foi a melhor decisão. Atendimento excepcional e preços justos.",
+      author: "Roberto L., Comerciante",
       rating: 5
     },
     {
-      text: "Atendimento humanizado com tecnologia de ponta. A Focus conseguiu unir o melhor dos dois mundos para oferecer um serviço realmente diferenciado.",
-      author: "Paula Regina",
-      position: "Diretora",
-      company: "Nova Era TI",
-      logo: "/lovable-uploads/caa28dc7-ee67-4c8a-82ac-a2653995749f.png",
+      text: "Nunca imaginei que contabilidade poderia ser tão fácil. Recomendo de olhos fechados!",
+      author: "Ana P., Arquiteta",
       rating: 5
     },
     {
-      text: "Processo de abertura da empresa foi incrivelmente rápido. Em poucos dias já estava operando com toda documentação em ordem. Recomendo fortemente!",
-      author: "Ricardo Mendes",
-      position: "Founder",
-      company: "StartUp Growth",
-      logo: "/lovable-uploads/d46b0f3f-634a-4ba4-9b52-234af8bbba8b.png",
+      text: "O suporte via WhatsApp é incrível. Sempre que preciso, eles respondem rapidamente.",
+      author: "João S., Empresário",
+      rating: 5
+    },
+    {
+      text: "Documentos na nuvem facilitaram muito minha vida. Acesso tudo de qualquer lugar.",
+      author: "Paula R., Consultora de TI",
+      rating: 5
+    },
+    {
+      text: "Preços justos e serviço de qualidade. A Focus superou minhas expectativas.",
+      author: "Ricardo M., Advogado",
+      rating: 5
+    },
+    {
+      text: "Mudei para a Focus e nunca mais tive dor de cabeça com contabilidade.",
+      author: "Fernanda L., E-commerce",
+      rating: 5
+    },
+    {
+      text: "Processo de abertura da empresa foi muito rápido e sem burocracias.",
+      author: "Gabriel T., Startup",
+      rating: 5
+    },
+    {
+      text: "Atendem todas as minhas dúvidas pelo WhatsApp mesmo. Muito prático!",
+      author: "Carla F., Psicóloga",
+      rating: 5
+    },
+    {
+      text: "Relatórios sempre em dia e fáceis de entender. Equipe muito competente.",
+      author: "Pedro H., Restaurante",
       rating: 5
     }
   ];
@@ -69,67 +78,28 @@ const TestimonialsSection = () => {
           className={`text-center mb-12 scroll-hidden ${titleVisible ? 'scroll-animate-slide-top' : ''}`}
         >
           <h3 className="text-3xl font-bold text-focus-gray mb-4">O que nossos clientes dizem</h3>
-          <p className="text-focus-gray/70 max-w-2xl mx-auto">
-            Depoimentos reais de empresários que transformaram sua gestão contábil com a Focus
-          </p>
         </div>
         
-        {/* Desktop/Tablet View with Carousel */}
-        <div className="hidden md:block">
-          <Carousel
-            ref={cardsRef}
-            className={`w-full max-w-6xl mx-auto scroll-hidden ${cardsVisible ? 'scroll-animate-fade-up' : ''}`}
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <Card className="hover:shadow-lg transition-all duration-300 hover:scale-[1.02] h-full">
-                    <CardContent className="p-6 flex flex-col h-full">
-                      <div className="flex items-center mb-4">
-                        <img 
-                          src={testimonial.logo} 
-                          alt={`Logo ${testimonial.company}`}
-                          className="w-12 h-12 object-contain rounded-lg mr-4 bg-gray-50 p-2"
-                        />
-                        <div className="flex-1">
-                          <div className="flex mb-2">
-                            {[...Array(testimonial.rating)].map((_, i) => (
-                              <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                            ))}
-                          </div>
-                          <h4 className="font-semibold text-focus-gray text-sm">{testimonial.company}</h4>
-                        </div>
-                      </div>
-                      
-                      <p className="text-focus-gray/80 mb-6 flex-1 leading-relaxed">
-                        "{testimonial.text}"
-                      </p>
-                      
-                      <div className="mt-auto">
-                        <p className="font-semibold text-focus-gray">{testimonial.author}</p>
-                        <p className="text-sm text-focus-gray/60">{testimonial.position}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            
-            <CarouselPrevious className="hidden lg:flex -left-16 border-focus-blue/20 text-focus-blue hover:bg-focus-blue hover:text-white transition-all duration-300" />
-            <CarouselNext className="hidden lg:flex -right-16 border-focus-blue/20 text-focus-blue hover:bg-focus-blue hover:text-white transition-all duration-300" />
-          </Carousel>
-
-          {/* Navigation hint for smaller screens */}
-          <div className="text-center mt-6 lg:hidden">
-            <p className="text-sm text-focus-gray/60 flex items-center justify-center gap-2">
-              <span>Deslize para ver mais depoimentos</span>
-              <ChevronRight className="w-4 h-4 animate-pulse" />
-            </p>
-          </div>
+        {/* Desktop/Tablet View */}
+        <div ref={cardsRef} className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {testimonials.slice(0, 9).map((testimonial, index) => (
+            <Card 
+              key={index} 
+              className={`hover:shadow-lg transition-all duration-300 hover:scale-105 scroll-hidden stagger-${(index % 6) + 1} ${
+                cardsVisible ? (index % 3 === 0 ? 'scroll-animate-slide-left' : index % 3 === 1 ? 'scroll-animate-zoom' : 'scroll-animate-slide-right') : ''
+              }`}
+            >
+              <CardContent className="p-6">
+                <div className="flex mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
+                </div>
+                <p className="text-focus-gray/80 mb-4">
+                  "{testimonial.text}"
+                </p>
+                <p className="font-semibold text-focus-gray">— {testimonial.author}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
         {/* Mobile View - Horizontal Scroll */}
@@ -137,32 +107,15 @@ const TestimonialsSection = () => {
           <div className="overflow-x-auto pb-6 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
             <div className="flex gap-4 min-w-max">
               {testimonials.map((testimonial, index) => (
-                <Card key={index} className="flex-shrink-0 w-[300px] snap-center hover:shadow-lg transition-shadow">
+                <Card key={index} className="flex-shrink-0 w-[280px] snap-center hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
-                    <div className="flex items-center mb-4">
-                      <img 
-                        src={testimonial.logo} 
-                        alt={`Logo ${testimonial.company}`}
-                        className="w-10 h-10 object-contain rounded-lg mr-3 bg-gray-50 p-2"
-                      />
-                      <div className="flex-1">
-                        <div className="flex mb-2">
-                          {[...Array(testimonial.rating)].map((_, i) => (
-                            <Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
-                          ))}
-                        </div>
-                        <h4 className="font-semibold text-focus-gray text-xs">{testimonial.company}</h4>
-                      </div>
+                    <div className="flex mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />)}
                     </div>
-                    
-                    <p className="text-focus-gray/80 mb-4 text-sm leading-relaxed">
+                    <p className="text-focus-gray/80 mb-4 text-sm">
                       "{testimonial.text}"
                     </p>
-                    
-                    <div>
-                      <p className="font-semibold text-focus-gray text-sm">{testimonial.author}</p>
-                      <p className="text-xs text-focus-gray/60">{testimonial.position}</p>
-                    </div>
+                    <p className="font-semibold text-focus-gray text-sm">— {testimonial.author}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -173,7 +126,10 @@ const TestimonialsSection = () => {
           <div className="text-center mt-4">
             <p className="text-sm text-focus-gray/60 flex items-center justify-center gap-2">
               <span>Deslize para ver mais depoimentos</span>
-              <ChevronRight className="w-4 h-4 animate-pulse" />
+              <svg width="20" height="12" viewBox="0 0 20 12" fill="none" className="animate-pulse">
+                <path d="M14 2L18 6L14 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M2 6H18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
             </p>
           </div>
         </div>

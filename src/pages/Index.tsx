@@ -38,7 +38,6 @@ const Index = () => {
       <AdvantagesSection />
       <ProcessSteps />
       <ServicesSection />
-      <ServicesIndustriesSection />
       <PlansSection 
         meiWhatsappUrl={meiWhatsappUrl}
         essencialWhatsappUrl={essencialWhatsappUrl}
